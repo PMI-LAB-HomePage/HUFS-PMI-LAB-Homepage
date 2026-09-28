@@ -1,0 +1,24 @@
+{% extends "lab/base.html" %}{% load lab %}
+{% block content %}
+<h2>{{ site|tr:"lab_name" }}</h2>
+{% if site.home_image %}<img src="{{ site.home_image.url }}" alt="">{% endif %}
+{% if professor %}
+<section>
+  <h3>{{ professor.name_ko }} {{ professor.name_en }}</h3>
+  {% if professor.photo %}<img src="{{ professor.photo.url }}" alt="" width="160">{% endif %}
+  <p>{{ professor|tr:"bio"|hide_emails }}</p>
+  <p>{{ professor.email|email }}</p>
+</section>
+{% endif %}
+{% if site.recruit_notice_ko or site.recruit_notice_en %}
+<section><h3>Recruit</h3><p>{{ site.recruit_notice_ko|hide_emails }}</p><p>{{ site.recruit_notice_en|hide_emails }}</p></section>
+{% endif %}
+<section>
+  <h3>News</h3>
+  <ul>{% for n in news %}<li>{{ n.date|date:"Y-m-d" }} {{ n|tr:"title" }}</li>{% endfor %}</ul>
+</section>
+<section>
+  <h3>Recent Accomplishments</h3>
+  <ul>{% for a in awards %}<li>{{ a.date|date:"Y-m-d" }} {{ a|tr:"title" }}</li>{% endfor %}</ul>
+</section>
+{% endblock %}

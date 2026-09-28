@@ -1,0 +1,12 @@
+{% extends "lab/base.html" %}{% load lab %}
+{% block title %}Awards · {{ block.super }}{% endblock %}
+{% block content %}
+<h2>Recent Accomplishments</h2>
+{% for a in items %}
+<article>
+  <h3>{{ a|tr:"title" }}</h3>
+  <p>{{ a.date|date:"Y-m-d" }}{% if a.recipients %} · {{ a.recipients }}{% endif %}</p>
+  {% for i in a.images.all %}<img src="{{ i.image.url }}" alt="" loading="lazy" width="300">{% endfor %}
+</article>
+{% endfor %}
+{% endblock %}

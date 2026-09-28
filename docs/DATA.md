@@ -69,7 +69,11 @@ site.json          site{...} · professor{...} · research_groups[...]
 
 ```
 SiteSetting    (단일 레코드)
-  lab_name_ko/en · lab_short · email · address_ko/en · recruit_notice_ko/en
+  lab_name_ko/en · lab_short · email · address_ko/en · recruit_notice_ko/en · home_image(홈 대표 사진)
+  ※ 상단 메뉴 구성은 만들지 않았다 (2026-09-28 결정). `03_작업메모/06_동적기능_범위확정.md`에는
+    관리 항목으로 적혀 있으나, ① 메뉴는 페이지를 새로 만들 때만 바뀌고 페이지 추가는 코드 작업이라
+    메뉴만 따로 관리해서 얻는 게 없다 ② 2단계 시안에서 메뉴 구조를 다시 짠다 ③ 관리자가 전부 숨기면
+    사이트 이동이 막힌다. 2단계에서 시안을 보고 다시 판단한다. 지금은 `lab/templates/lab/base.html`에 고정.
 
 Member
   name_ko · name_en · role (professor|phd|ms|undergrad|researcher|other)
@@ -97,7 +101,8 @@ Award + AwardImage(award, image, order)
   title_ko/en · date · recipients · order · is_public
 
 Project
-  text · raw · year_start · order · is_public
+  text · raw · year · order · is_public
+  ※ year는 정렬용. seed 값이 "2022-2027"의 끝 연도라서 year_start가 아니라 year로 둠
   ※ 역할·과제명·금액·발주처 분리는 2차 작업
 ```
 
@@ -132,6 +137,15 @@ gallery · awards   "2026년 2월 20일"      (YYYY년 M월 D일)
 
 **파일:** `seed/<경로>`를 Django `File`로 열어 모델 필드에 저장 → `media/` 아래로 복사된다.
 research·resources의 `images`는 확장자가 `.mp4`면 `kind=video`.
+저장 파일명은 `media/<종류>/<무작위 16자>.<확장자>` — 관리자가 한글 파일명을 올려도 ASCII로 저장된다(규칙 1).
+
+**이메일:** 노션 Export가 붙인 `mailto:`·`https://app.notion.com` 접두어를 떼고 첫 번째를 `email`에 넣는다.
+원문 전체는 `import_note`.
+
+**멤버 사진:** `asset_map.csv`의 `members`·`home` 섹션에서 이름(`name`·`name_variants`)을 공백·구두점
+제거 후 소문자로 비교해 첫 사진을 연결한다. 29명 전원 매칭됨.
+
+**홈 대표 사진:** `assets/img/home/home/01.webp` → `SiteSetting.home_image`.
 
 **태그:** news `Academic/Recruit/Patent/News` → 소문자 choice.
 
@@ -153,10 +167,7 @@ Export의 `Publication/<종류>/*.md`에서 번호 항목 바로 다음 줄의 `
 첨부다. 파일명으로 `asset_map.csv`의 `제목`(원본 파일명)을 찾아 `새경로`를 연결한다.
 `10-2507855-특허증.pdf`는 특허 "고속 연산이 가능한 딥러닝 신경망 장치(등록번호 10-2507855)"의 것.
 
-**멤버 사진**
-`asset_map.csv`의 섹션 `members`(동문 페이지들)와 `home`(홈 인라인 멤버 페이지들)에 사람 이름을
-제목으로 한 사진 폴더가 있다. 이름 비교는 공백·구두점 제거 후 소문자로 (`Prof Jae Young, Choi` ↔
-`Prof. Jae Young, Choi`). `home/home/01.webp`는 홈 대표 사진이지 멤버 사진이 아니다.
+**멤버 사진** — ✓ `load_notion`이 처리함 (4절). 한 사람에게 사진이 여러 장이면 첫 장만 연결.
 
 **교수 CV:** `assets/pdf/home/jae-young-choi-cv-23-02.pdf`.
 

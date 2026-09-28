@@ -1,0 +1,9 @@
+{% extends "lab/base.html" %}{% load lab %}
+{% block title %}{{ item|tr:"title" }} · {{ block.super }}{% endblock %}
+{% block content %}
+<h2>{{ item|tr:"title" }}</h2>
+<p>{{ item.date|date:"Y-m-d" }}{% if item.date_end %} ~ {{ item.date_end|date:"Y-m-d" }}{% endif %}{% if item.location %} · {{ item.location }}{% endif %}</p>
+<p>{{ item|tr:"description"|hide_emails }}</p>
+{% for i in item.images.all %}<img src="{{ i.image.url }}" alt="" loading="lazy">{% endfor %}
+<p><a href="{% url 'gallery' %}">← Gallery</a></p>
+{% endblock %}

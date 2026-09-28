@@ -1,0 +1,13 @@
+{% extends "lab/base.html" %}{% load lab %}
+{% block title %}Research · {{ block.super }}{% endblock %}
+{% block content %}
+<h2>Research</h2>
+{% for r in items %}
+<article>
+  <h3>{{ r|tr:"title" }}</h3>
+  {% if r.subtitle %}<p>{{ r.subtitle }}</p>{% endif %}
+  <p>{{ r|tr:"description"|hide_emails }}</p>
+  {% include "lab/_media.html" with media=r.media.all %}
+</article>
+{% endfor %}
+{% endblock %}

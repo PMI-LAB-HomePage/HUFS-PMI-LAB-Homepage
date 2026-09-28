@@ -1,0 +1,36 @@
+{% load lab %}<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}{{ site.lab_short|default:"PMI Lab" }}{% endblock %}</title>
+<style>body{max-width:960px;margin:0 auto;padding:16px;font-family:sans-serif;line-height:1.6}img,video{max-width:100%;height:auto}nav a{margin-right:12px}</style>
+</head>
+<body>
+<header>
+  <h1><a href="{% url 'home' %}">{{ site.lab_short|default:"PMI Lab" }}</a></h1>
+  <nav>
+    <a href="{% url 'members' %}">Members</a>
+    <a href="{% url 'publications' %}">Publications</a>
+    <a href="{% url 'research' %}">Research</a>
+    <a href="{% url 'projects' %}">Projects</a>
+    <a href="{% url 'news' %}">News</a>
+    <a href="{% url 'awards' %}">Awards</a>
+    <a href="{% url 'gallery' %}">Gallery</a>
+    <a href="{% url 'resources' %}">Resources</a>
+  </nav>
+</header>
+<main>{% block content %}{% endblock %}</main>
+<footer>
+  <hr>
+  <p>{{ site|tr:"lab_name" }}<br>{{ site|tr:"address" }}<br>{{ site.email|email }}</p>
+</footer>
+<script>
+document.querySelectorAll("a.email").forEach(a => {
+  const addr = a.dataset.u + "@" + a.dataset.d;
+  a.href = "mailto:" + addr;
+  a.textContent = addr;
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+{% extends "lab/base.html" %}
+{% block title %}Publications · {{ block.super }}{% endblock %}
+{% block content %}
+<h2>Publications</h2>
+{% for label, ps in groups %}
+<h3>{{ label }}</h3>
+<ol>{% for p in ps %}<li>{{ p.text }}{% if p.pdf %} <a href="{{ p.pdf.url }}">[PDF]</a>{% endif %}{% if p.doi_url %} <a href="{{ p.doi_url }}">[Link]</a>{% endif %}</li>{% endfor %}</ol>
+{% endfor %}
+{% endblock %}

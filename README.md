@@ -26,7 +26,7 @@ deploy/   Caddyfile · systemd · 백업 스크립트
 docs/     문서
 ```
 
-## 로컬 실행 (Django 코드 작성 후)
+## 로컬 실행
 
 ```bash
 python3 -m venv .venv && source .venv/bin/activate
@@ -36,4 +36,5 @@ python manage.py migrate
 python manage.py load_notion        # seed/ 데이터 최초 적재 (데이터가 있으면 거부)
 python manage.py createsuperuser
 python manage.py runserver          # http://localhost:8000/admin
+python manage.py test lab           # 적재·페이지·관리자 스모크 테스트
 ```

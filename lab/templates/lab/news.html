@@ -1,0 +1,13 @@
+{% extends "lab/base.html" %}{% load lab %}
+{% block title %}News · {{ block.super }}{% endblock %}
+{% block content %}
+<h2>News</h2>
+{% for n in items %}
+<article>
+  <h3>{{ n|tr:"title" }}</h3>
+  <p>{{ n.date|date:"Y-m-d" }} · {{ n.get_tag_display }}</p>
+  {% with body=n|tr:"body" %}{% if body %}<p>{{ body|hide_emails }}</p>{% endif %}{% endwith %}
+  {% if n.link %}<a href="{{ n.link }}">{{ n.link }}</a>{% endif %}
+</article>
+{% endfor %}
+{% endblock %}

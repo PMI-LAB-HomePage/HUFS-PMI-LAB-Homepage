@@ -1,0 +1,1 @@
+{% for m in media %}{% if m.kind == "video" %}<video src="{{ m.file.url }}" controls preload="metadata"></video>{% else %}<img src="{{ m.file.url }}" alt="" loading="lazy">{% endif %}{% endfor %}

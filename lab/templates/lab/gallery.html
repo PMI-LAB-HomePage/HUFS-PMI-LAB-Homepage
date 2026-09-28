@@ -1,0 +1,12 @@
+{% extends "lab/base.html" %}{% load lab %}
+{% block title %}Gallery · {{ block.super }}{% endblock %}
+{% block content %}
+<h2>Gallery</h2>
+{% for g in items %}
+<article>
+  <h3><a href="{% url 'gallery_detail' g.pk %}">{{ g|tr:"title" }}</a></h3>
+  <p>{{ g.date|date:"Y-m-d" }}{% if g.date_end %} ~ {{ g.date_end|date:"Y-m-d" }}{% endif %}{% if g.location %} · {{ g.location }}{% endif %}</p>
+  {% with first=g.images.all|first %}{% if first %}<a href="{% url 'gallery_detail' g.pk %}"><img src="{{ first.image.url }}" alt="" loading="lazy" width="300"></a>{% endif %}{% endwith %}
+</article>
+{% endfor %}
+{% endblock %}
