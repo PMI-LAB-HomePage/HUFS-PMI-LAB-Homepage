@@ -1,12 +1,41 @@
 {% extends "lab/base.html" %}{% load lab %}
-{% block title %}Gallery · {{ block.super }}{% endblock %}
+{% block title %}갤러리 · {{ block.super }}{% endblock %}
 {% block content %}
-<h2>Gallery</h2>
-{% for g in items %}
-<article>
-  <h3><a href="{% url 'gallery_detail' g.pk %}">{{ g|tr:"title" }}</a></h3>
-  <p>{{ g.date|date:"Y-m-d" }}{% if g.date_end %} ~ {{ g.date_end|date:"Y-m-d" }}{% endif %}{% if g.location %} · {{ g.location }}{% endif %}</p>
-  {% with first=g.images.all|first %}{% if first %}<a href="{% url 'gallery_detail' g.pk %}"><img src="{{ first.image.url }}" alt="" loading="lazy" width="300"></a>{% endif %}{% endwith %}
-</article>
-{% endfor %}
+<div class="container section stack stack--lg">
+  <div class="section-head" style="align-items:flex-end">
+    <h1 class="title-2">갤러리 <span class="count">{{ total }}</span></h1>
+    <nav class="year-jump" aria-label="연도">
+      {% for year, events in years %}<a href="#g{{ year|default:'x' }}">{{ year|default:"연도 미상" }}</a>{% endfor %}
+    </nav>
+  </div>
+
+  {% for year, events in years %}
+  <div class="year-divider" id="g{{ year|default:'x' }}"><b>{{ year|default:"연도 미상" }}</b><span class="meta">{{ events|length }}건</span></div>
+  <div class="grid-auto" style="--min:230px">
+    {% for ev in events %}
+      {% with first=ev.images.all|first count=ev.images.all|length %}
+      {% if first %}
+      <a class="event-card" href="{% url 'gallery_detail' ev.pk %}">
+        <div class="event-card__cover">
+          <img src="{{ first.image.url }}" alt="" loading="lazy">
+          {% if count > 1 %}<span class="event-card__count">{{ count }}장</span>{% endif %}
+        </div>
+        <div class="event-card__title">{{ ev|tr:"title" }}</div>
+        <div class="meta-line"><span>{% include "lab/_dates.html" with obj=ev %}</span>{% if ev.location %}<span>{{ ev.location }}</span>{% endif %}</div>
+      </a>
+      {% else %}
+      <div class="event-card">
+        <div class="event-card__cover event-card__cover--empty">
+          <span class="meta">사진 없음</span>
+          <span class="big">{{ ev.date|date:"Y" }}<br>{{ ev.date|date:"m.d" }}</span>
+        </div>
+        <div class="event-card__title">{{ ev|tr:"title" }}</div>
+        <div class="meta-line"><span>{% include "lab/_dates.html" with obj=ev %}</span>{% if ev.location %}<span>{{ ev.location }}</span>{% endif %}</div>
+      </div>
+      {% endif %}
+      {% endwith %}
+    {% endfor %}
+  </div>
+  {% endfor %}
+</div>
 {% endblock %}

@@ -1,13 +1,22 @@
 {% extends "lab/base.html" %}{% load lab %}
-{% block title %}Research · {{ block.super }}{% endblock %}
+{% block title %}연구 · {{ block.super }}{% endblock %}
 {% block content %}
-<h2>Research</h2>
-{% for r in items %}
-<article>
-  <h3>{{ r|tr:"title" }}</h3>
-  {% if r.subtitle %}<p>{{ r.subtitle }}</p>{% endif %}
-  <p>{{ r|tr:"description"|hide_emails }}</p>
-  {% include "lab/_media.html" with media=r.media.all %}
-</article>
-{% endfor %}
+<div class="container section stack stack--lg">
+  <div class="section-head"><h1 class="title-2">연구 분야</h1></div>
+  {% for g in groups %}
+  <section class="stack stack--lg" id="g{{ g.pk }}">
+    <div class="group-head">
+      <span class="eyebrow eyebrow--accent">{{ forloop.counter|stringformat:"02d" }}</span>
+      <b class="title-3">{{ g|tr:"title" }}</b>
+    </div>
+    {% for r in g.items.all %}{% if r.is_public %}
+    <div class="stack">
+      <div class="section-head"><b class="row__title">{{ r|tr:"title" }}</b>{% if r.subtitle %}<span class="meta">{{ r.subtitle }}</span>{% endif %}</div>
+      {% with body=r|tr:"description" %}{% if body %}<p class="lead" style="max-width:68ch">{{ body|hide_emails }}</p>{% endif %}{% endwith %}
+      {% if r.media.all %}{% include "lab/_media.html" with media=r.media.all group="r"|add:r.pk|stringformat:"s" %}{% endif %}
+    </div>
+    {% endif %}{% endfor %}
+  </section>
+  {% endfor %}
+</div>
 {% endblock %}

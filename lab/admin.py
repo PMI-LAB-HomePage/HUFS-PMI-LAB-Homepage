@@ -3,7 +3,7 @@ from django.utils.html import format_html
 
 from .models import (
     Award, AwardImage, GalleryEvent, GalleryImage, Member, News, NewsImage, Project, Publication,
-    Research, ResearchMedia, Resource, ResourceMedia, SiteSetting,
+    Research, ResearchGroup, ResearchMedia, Resource, ResourceMedia, SiteSetting,
 )
 
 admin.site.site_header = "PMI Lab 홈페이지 관리"
@@ -123,10 +123,21 @@ class GalleryEventAdmin(admin.ModelAdmin):
         return obj.images.count()
 
 
+@admin.register(ResearchGroup)
+class ResearchGroupAdmin(admin.ModelAdmin):
+    list_display = ["__str__", "item_count", "is_public", "order"]
+    list_editable = ["is_public", "order"]
+
+    @admin.display(description="연구 수")
+    def item_count(self, obj):
+        return obj.items.count()
+
+
 @admin.register(Research)
 class ResearchAdmin(admin.ModelAdmin):
-    list_display = ["__str__", "subtitle", "is_public", "order"]
-    list_editable = ["is_public", "order"]
+    list_display = ["__str__", "group", "subtitle", "is_public", "order"]
+    list_editable = ["group", "is_public", "order"]
+    list_filter = ["group", "is_public"]
     search_fields = ["title_ko", "title_en", "subtitle"]
     inlines = [ResearchMediaInline]
 

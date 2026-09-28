@@ -1,1 +1,10 @@
-{% for m in media %}{% if m.kind == "video" %}<video src="{{ m.file.url }}" controls preload="metadata"></video>{% else %}<img src="{{ m.file.url }}" alt="" loading="lazy">{% endif %}{% endfor %}
+{% load lab %}{# 이미지·영상 섞인 그리드 (연구·자료실) #}
+<div class="photo-grid">
+  {% for m in media %}
+    {% if m.kind == "video" %}
+      <video src="{{ m.file.url }}" controls preload="metadata"></video>
+    {% else %}
+      <a href="{{ m.file.url }}" data-lightbox="{{ group }}"><img src="{{ m.file.url }}" alt="" loading="lazy"></a>
+    {% endif %}
+  {% endfor %}
+</div>

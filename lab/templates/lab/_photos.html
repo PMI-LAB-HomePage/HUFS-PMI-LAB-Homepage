@@ -1,0 +1,6 @@
+{% load lab %}{# 사진 그리드 (갤러리·수상·소식). 원본 비율 그대로 흐르게 두고 클릭하면 라이트박스 #}
+<div class="photo-grid{% if photos|length == 1 %} photo-grid--single{% endif %}">
+  {% for p in photos %}
+    <a href="{{ p.image.url }}" data-lightbox="{{ group }}"><img src="{{ p.image.url }}" alt="{{ alt|default:'' }}" loading="lazy"></a>
+  {% endfor %}
+</div>

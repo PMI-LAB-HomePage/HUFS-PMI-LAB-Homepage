@@ -1,0 +1,1 @@
+{% load lab %}{% if obj.date %}{{ obj.date|date:"Y.m.d" }}{% if obj.date_end %} – {% if obj.date_end|date:"Y" == obj.date|date:"Y" %}{{ obj.date_end|date:"m.d" }}{% else %}{{ obj.date_end|date:"Y.m.d" }}{% endif %}{% endif %}{% else %}날짜 미상{% endif %}

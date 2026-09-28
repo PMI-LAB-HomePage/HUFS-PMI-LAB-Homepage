@@ -1,14 +1,21 @@
 {% extends "lab/base.html" %}{% load lab %}
-{% block title %}News · {{ block.super }}{% endblock %}
+{% block title %}소식 · {{ block.super }}{% endblock %}
 {% block content %}
-<h2>News</h2>
-{% for n in items %}
-<article>
-  <h3>{{ n|tr:"title" }}</h3>
-  <p>{{ n.date|date:"Y-m-d" }} · {{ n.get_tag_display }}</p>
-  {% with body=n|tr:"body" %}{% if body %}<p>{{ body|hide_emails }}</p>{% endif %}{% endwith %}
-  {% if n.link %}<a href="{{ n.link }}">{{ n.link }}</a>{% endif %}
-  {% for i in n.images.all %}<img src="{{ i.image.url }}" alt="" loading="lazy" width="300">{% endfor %}
-</article>
-{% endfor %}
+<div class="container section stack stack--lg">
+  <div class="section-head" style="align-items:flex-end"><h1 class="title-2">연구실 소식</h1></div>
+  <nav class="tabs" aria-label="분류">
+    {% for value, label, n in tabs %}
+    <a class="tab{% if value == active %} is-active{% endif %}" href="?tag={{ value }}">{{ label }}<span class="tab__count">{{ n }}</span></a>
+    {% endfor %}
+  </nav>
+  <ul class="row-list">
+    {% for n in items %}
+    <li class="row row--compact">
+      <span class="tag{% if n.tag == 'recruit' %} tag--filled{% endif %}">{{ n.get_tag_display }}</span>
+      <div class="row__main"><span class="row__title">{% include "lab/_news_title.html" %}</span></div>
+      <span class="row__meta">{{ n.date|date:"Y.m.d"|default:"날짜 미상" }}</span>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
 {% endblock %}

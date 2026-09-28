@@ -2,7 +2,7 @@ import re
 
 from django import template
 from django.template.defaultfilters import linebreaksbr
-from django.utils.html import format_html
+from django.utils.html import conditional_escape, format_html
 from django.utils.safestring import mark_safe
 
 register = template.Library()
@@ -35,3 +35,15 @@ def hide_emails(text):
     for addr, rest in zip(found, parts[1:]):
         out += [email(addr), linebreaksbr(rest)]
     return mark_safe("".join(str(x) for x in out))
+
+
+@register.filter(needs_autoescape=True)
+def highlight(text, term, autoescape=True):
+    """검색어를 <mark>로 감싼다. 시안 .cite__text mark 스타일. 이스케이프 후 감싸므로 주입 안전."""
+    escaped = conditional_escape(text)
+    if not term:
+        return mark_safe(escaped)
+    parts = re.split(f"({re.escape(conditional_escape(term))})", escaped, flags=re.I)
+    return mark_safe("".join(
+        f"<mark>{p}</mark>" if i % 2 else p for i, p in enumerate(parts)
+    ))

@@ -1,0 +1,17 @@
+{% extends "lab/base.html" %}{% load lab %}
+{% block title %}{{ item|tr:"title" }} · {{ block.super }}{% endblock %}
+{% block content %}
+<div class="container section stack stack--lg">
+  <a class="link-arrow" href="{% url 'news' %}" style="align-self:flex-start">← 소식</a>
+  <div class="event-head">
+    <h1 class="title-2">{{ item|tr:"title" }}</h1>
+    <dl class="facts">
+      <dt>DATE</dt><dd>{{ item.date|date:"Y.m.d"|default:"날짜 미상" }}</dd>
+      <dt>TYPE</dt><dd>{{ item.get_tag_display }}</dd>
+      {% if item.link %}<dt>LINK</dt><dd><a href="{{ item.link }}">{{ item.link }}</a></dd>{% endif %}
+    </dl>
+  </div>
+  {% with body=item|tr:"body" %}{% if body %}<div class="pi__bio">{{ body|hide_emails }}</div>{% endif %}{% endwith %}
+  {% if images %}{% include "lab/_photos.html" with photos=images group="n"|add:item.pk|stringformat:"s" alt=item %}{% endif %}
+</div>
+{% endblock %}

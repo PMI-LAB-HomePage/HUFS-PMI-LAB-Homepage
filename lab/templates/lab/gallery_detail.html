@@ -1,9 +1,27 @@
 {% extends "lab/base.html" %}{% load lab %}
 {% block title %}{{ item|tr:"title" }} · {{ block.super }}{% endblock %}
 {% block content %}
-<h2>{{ item|tr:"title" }}</h2>
-<p>{{ item.date|date:"Y-m-d" }}{% if item.date_end %} ~ {{ item.date_end|date:"Y-m-d" }}{% endif %}{% if item.location %} · {{ item.location }}{% endif %}</p>
-<p>{{ item|tr:"description"|hide_emails }}</p>
-{% for i in item.images.all %}<img src="{{ i.image.url }}" alt="" loading="lazy">{% endfor %}
-<p><a href="{% url 'gallery' %}">← Gallery</a></p>
+<div class="container section stack stack--lg">
+  <a class="link-arrow" href="{% url 'gallery' %}" style="align-self:flex-start">← 갤러리</a>
+  <div class="event-head">
+    <h1 class="title-2">{{ item|tr:"title" }}</h1>
+    <dl class="facts">
+      <dt>DATE</dt><dd>{% include "lab/_dates.html" with obj=item %}</dd>
+      {% if item.location %}<dt>PLACE</dt><dd>{{ item.location }}</dd>{% endif %}
+      {% with note=item|tr:"description" %}{% if note %}<dt>NOTE</dt><dd>{{ note }}</dd>{% endif %}{% endwith %}
+      {% if images %}<dt>PHOTOS</dt><dd>{{ images|length }}</dd>{% endif %}
+    </dl>
+  </div>
+
+  {% if images %}
+    {% include "lab/_photos.html" with photos=images group="g"|add:item.pk|stringformat:"s" alt=item %}
+  {% else %}
+    <p class="note" style="border:1px dashed var(--line-strong);padding:28px">이 행사에는 등록된 사진이 없습니다.</p>
+  {% endif %}
+
+  <nav class="pager">
+    {% if prev %}<a href="{% url 'gallery_detail' prev.pk %}"><span>← 이전</span>{{ prev|tr:"title" }}</a>{% else %}<span></span>{% endif %}
+    {% if next %}<a href="{% url 'gallery_detail' next.pk %}"><span>다음 →</span>{{ next|tr:"title" }}</a>{% endif %}
+  </nav>
+</div>
 {% endblock %}

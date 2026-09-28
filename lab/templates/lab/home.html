@@ -1,25 +1,65 @@
 {% extends "lab/base.html" %}{% load lab %}
 {% block content %}
-<h2>{{ site|tr:"lab_name" }}</h2>
-{% if site.home_image %}<img src="{{ site.home_image.url }}" alt="">{% endif %}
-{% if professor %}
-<section>
-  <h3>{{ professor.name_ko }} {{ professor.name_en }}</h3>
-  {% if professor.photo %}<img src="{{ professor.photo.url }}" alt="" width="160">{% endif %}
-  <p>{{ professor|tr:"bio"|hide_emails }}</p>
-  <p>{{ professor.email|email }}</p>
-  {% if professor.cv %}<p><a href="{{ professor.cv.url }}">CV (PDF)</a></p>{% endif %}
-</section>
-{% endif %}
-{% if site.recruit_notice_ko or site.recruit_notice_en %}
-<section><h3>Recruit</h3><p>{{ site.recruit_notice_ko|hide_emails }}</p><p>{{ site.recruit_notice_en|hide_emails }}</p></section>
-{% endif %}
-<section>
-  <h3>News</h3>
-  <ul>{% for n in news %}<li>{{ n.date|date:"Y-m-d" }} {{ n|tr:"title" }}</li>{% endfor %}</ul>
-</section>
-<section>
-  <h3>Recent Accomplishments</h3>
-  <ul>{% for a in awards %}<li>{{ a.date|date:"Y-m-d" }} {{ a|tr:"title" }}</li>{% endfor %}</ul>
-</section>
+<div class="container">
+
+  <div class="split" style="border-bottom:1px solid var(--line);gap:0">
+    <div class="stack" style="gap:24px;padding-block:clamp(48px,7vw,84px);padding-right:var(--gutter);justify-content:center">
+      <div class="eyebrow eyebrow--accent">Pattern · Media · Intelligence Lab</div>
+      <h1 class="title-display">얼굴을 인식하고,<br>영상을 이해하고,<br>이미지를 만듭니다.</h1>
+      <p class="lead">{{ site|tr:"lab_name" }}. 한국외국어대학교 컴퓨터공학부 {{ professor.name_ko }} 교수 연구실.</p>
+      <div class="btn-row">
+        <a class="btn btn--primary" href="{% url 'research' %}">연구 분야</a>
+        <a class="btn" href="{% url 'resources' %}">모집 안내</a>
+      </div>
+    </div>
+    {% if site.home_image %}
+    <div class="media" style="aspect-ratio:auto;min-height:340px"><img src="{{ site.home_image.url }}" alt="{{ site.lab_short }}"></div>
+    {% endif %}
+  </div>
+
+  <div class="section stack">
+    <div class="section-head"><span class="eyebrow">연구 분야</span><a class="link-arrow" href="{% url 'research' %}">자세히</a></div>
+    <ol class="row-list">
+      {% for g in groups %}
+      <li class="row">
+        <span class="row__num">{{ forloop.counter|stringformat:"02d" }}</span>
+        <div class="row__main">
+          <a class="row__title" href="{% url 'research' %}#g{{ g.pk }}">{{ g|tr:"title" }}</a>
+          <div class="row__sub">{% for item in g.items.all %}{% if item.is_public %}<span>{{ item|tr:"title" }}</span>{% endif %}{% endfor %}</div>
+        </div>
+      </li>
+      {% endfor %}
+    </ol>
+  </div>
+
+  <div class="section stack">
+    <div class="section-head"><span class="eyebrow">연구실 소식</span><a class="link-arrow" href="{% url 'news' %}">전체 보기</a></div>
+    <ul class="row-list">
+      {% for n in news %}
+      <li class="row row--compact">
+        <span class="tag{% if n.tag == 'recruit' %} tag--filled{% endif %}">{{ n.get_tag_display }}</span>
+        <div class="row__main"><span class="row__title">{% include "lab/_news_title.html" %}</span></div>
+        <span class="row__meta">{{ n.date|date:"Y.m.d" }}</span>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="section split">
+    <div class="stack">
+      <span class="eyebrow">연락처</span>
+      <p class="lead">{{ site|tr:"address" }}</p>
+      {{ site.email|email }}
+    </div>
+    {% if professor %}
+    <div class="stack">
+      <span class="eyebrow">지도교수</span>
+      <div class="title-3">{{ professor.name_ko }} · {{ professor.name_en }}</div>
+      <p class="person-card__title">{{ professor.status_text }}</p>
+      <a class="link-arrow" href="{% url 'members' %}">약력 보기</a>
+    </div>
+    {% endif %}
+  </div>
+
+</div>
 {% endblock %}

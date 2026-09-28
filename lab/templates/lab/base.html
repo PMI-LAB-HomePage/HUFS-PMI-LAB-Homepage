@@ -1,36 +1,58 @@
-{% load lab %}<!doctype html>
+{% load static lab %}<!doctype html>
 <html lang="ko">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{% block title %}{{ site.lab_short|default:"PMI Lab" }}{% endblock %}</title>
-<style>body{max-width:960px;margin:0 auto;padding:16px;font-family:sans-serif;line-height:1.6}img,video{max-width:100%;height:auto}nav a{margin-right:12px}</style>
+<title>{% block title %}{{ site.lab_short|default:"PMI Lab @ HUFS" }}{% endblock %}</title>
+<meta name="description" content="{% block description %}{{ site|tr:"lab_name" }} — 한국외국어대학교 컴퓨터공학부{% endblock %}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600&family=IBM+Plex+Sans+KR:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'lab/site.css' %}">
 </head>
 <body>
-<header>
-  <h1><a href="{% url 'home' %}">{{ site.lab_short|default:"PMI Lab" }}</a></h1>
-  <nav>
-    <a href="{% url 'members' %}">Members</a>
-    <a href="{% url 'publications' %}">Publications</a>
-    <a href="{% url 'research' %}">Research</a>
-    <a href="{% url 'projects' %}">Projects</a>
-    <a href="{% url 'news' %}">News</a>
-    <a href="{% url 'awards' %}">Awards</a>
-    <a href="{% url 'gallery' %}">Gallery</a>
-    <a href="{% url 'resources' %}">Resources</a>
-  </nav>
+
+<header class="site-nav">
+  <div class="container site-nav__inner">
+    <a class="site-nav__brand" href="{% url 'home' %}">
+      <span class="site-nav__name">PMI Lab</span>
+      <span class="site-nav__sub">HUFS · 컴퓨터공학부</span>
+    </a>
+    <button class="site-nav__toggle" type="button" aria-expanded="false" aria-controls="menu-main">MENU</button>
+    {# 메뉴는 아직 코드 고정. 관리자에서 편집할지는 2단계 이후 판단 (docs/DATA.md 3절) #}
+    <ul class="site-nav__menu" id="menu-main">
+      {% url 'research' as u %}<li><a href="{{ u }}"{% if request.path == u %} aria-current="page"{% endif %}>연구</a></li>
+      {% url 'publications' as u %}<li><a href="{{ u }}"{% if request.path == u %} aria-current="page"{% endif %}>논문·특허</a></li>
+      {% url 'projects' as u %}<li><a href="{{ u }}"{% if request.path == u %} aria-current="page"{% endif %}>과제</a></li>
+      {% url 'members' as u %}<li><a href="{{ u }}"{% if request.path == u %} aria-current="page"{% endif %}>구성원</a></li>
+      {% url 'news' as u %}<li><a href="{{ u }}"{% if request.path == u %} aria-current="page"{% endif %}>소식</a></li>
+      {% url 'awards' as u %}<li><a href="{{ u }}"{% if request.path == u %} aria-current="page"{% endif %}>수상</a></li>
+      {% url 'gallery' as u %}<li><a href="{{ u }}"{% if u in request.path %} aria-current="page"{% endif %}>갤러리</a></li>
+      {% url 'resources' as u %}<li><a href="{{ u }}"{% if request.path == u %} aria-current="page"{% endif %}>모집</a></li>
+    </ul>
+  </div>
 </header>
+
 <main>{% block content %}{% endblock %}</main>
-<footer>
-  <hr>
-  <p>{{ site|tr:"lab_name" }}<br>{{ site|tr:"address" }}<br>{{ site.email|email }}</p>
+
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <span class="site-footer__name">{{ site.lab_short|default:"PMI Lab @ HUFS" }}</span>
+    <span>{{ site|tr:"address" }}</span>
+    {{ site.email|email }}
+  </div>
 </footer>
-<script>
-document.querySelectorAll("a.email").forEach(a => {
-  const addr = a.dataset.u + "@" + a.dataset.d;
-  a.href = "mailto:" + addr;
-  a.textContent = addr;
-});
-</script>
+
+<div class="lightbox" role="dialog" aria-modal="true" aria-label="사진 보기">
+  <button class="lightbox__btn lightbox__close" type="button" data-lb="close">닫기 ✕</button>
+  <div class="lightbox__stage"></div>
+  <div class="lightbox__bar">
+    <button class="lightbox__btn" type="button" data-lb="prev">← 이전</button>
+    <span class="lightbox__count"></span>
+    <button class="lightbox__btn" type="button" data-lb="next">다음 →</button>
+  </div>
+</div>
+
+<script src="{% static 'lab/site.js' %}" defer></script>
 </body>
 </html>

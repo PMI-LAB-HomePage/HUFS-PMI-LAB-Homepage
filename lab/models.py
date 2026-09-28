@@ -179,7 +179,25 @@ class GalleryImage(models.Model):
         verbose_name = verbose_name_plural = "사진"
 
 
+class ResearchGroup(Listed):
+    """연구 대주제. 노션 홈의 연구 분야 5분류(`site.json`의 research_groups)."""
+
+    title_ko = models.CharField("제목(국문)", max_length=200, blank=True)
+    title_en = models.CharField("제목(영문)", max_length=200, blank=True)
+
+    class Meta:
+        ordering = ["order", "id"]
+        verbose_name = verbose_name_plural = "연구 분야"
+
+    def __str__(self):
+        return self.title_ko or self.title_en
+
+
 class Research(Listed):
+    group = models.ForeignKey(
+        ResearchGroup, on_delete=models.SET_NULL, null=True, blank=True,
+        related_name="items", verbose_name="연구 분야",
+    )
     title_ko = models.CharField("제목(국문)", max_length=300, blank=True)
     title_en = models.CharField("제목(영문)", max_length=300, blank=True)
     subtitle = models.CharField("부제", max_length=300, blank=True)
@@ -187,7 +205,7 @@ class Research(Listed):
     description_en = models.TextField("설명(영문)", blank=True)
 
     class Meta:
-        ordering = ["order", "id"]
+        ordering = ["group__order", "order", "id"]
         verbose_name = verbose_name_plural = "연구"
 
     def __str__(self):

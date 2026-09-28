@@ -1,9 +1,26 @@
-{% extends "lab/base.html" %}
-{% block title %}Publications · {{ block.super }}{% endblock %}
+{% extends "lab/base.html" %}{% load lab %}
+{% block title %}논문·특허 · {{ block.super }}{% endblock %}
 {% block content %}
-<h2>Publications</h2>
-{% for label, ps in groups %}
-<h3>{{ label }}</h3>
-<ol>{% for p in ps %}<li>{{ p.text }}{% if p.pdf %} <a href="{{ p.pdf.url }}">[PDF]</a>{% endif %}{% if p.doi_url %} <a href="{{ p.doi_url }}">[Link]</a>{% endif %}</li>{% endfor %}</ol>
-{% endfor %}
+<div class="container section stack stack--lg">
+  <div class="section-head" style="align-items:flex-end">
+    <h1 class="title-2">논문 · 특허 <span class="count">{{ total }}</span></h1>
+    <form class="search" method="get">
+      <span class="search__icon" aria-hidden="true">⌕</span>
+      <input type="search" name="q" value="{{ q }}" placeholder="저자·제목·학술지 검색" aria-label="논문 검색">
+      {% if active != "all" %}<input type="hidden" name="type" value="{{ active }}">{% endif %}
+    </form>
+  </div>
+
+  <nav class="tabs" aria-label="종류">
+    {% for value, label, n in tabs %}
+    <a class="tab{% if value == active %} is-active{% endif %}" href="?type={{ value }}{% if q %}&q={{ q|urlencode }}{% endif %}">{{ label }}<span class="tab__count">{{ n }}</span></a>
+    {% endfor %}
+  </nav>
+
+  {% if years %}
+    {% include "lab/_cite_years.html" %}
+  {% else %}
+    <p class="note">“{{ q }}”에 해당하는 결과가 없습니다.</p>
+  {% endif %}
+</div>
 {% endblock %}

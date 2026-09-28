@@ -1,6 +1,18 @@
-{% extends "lab/base.html" %}
-{% block title %}Projects · {{ block.super }}{% endblock %}
+{% extends "lab/base.html" %}{% load lab %}
+{% block title %}과제 · {{ block.super }}{% endblock %}
 {% block content %}
-<h2>Projects</h2>
-<ol>{% for p in items %}<li>{{ p.text }}</li>{% endfor %}</ol>
+<div class="container section stack stack--lg">
+  <div class="section-head" style="align-items:flex-end">
+    <h1 class="title-2">수주 과제 <span class="count">{{ total }}</span></h1>
+    <form class="search" method="get">
+      <span class="search__icon" aria-hidden="true">⌕</span>
+      <input type="search" name="q" value="{{ q }}" placeholder="과제명·발주처 검색" aria-label="과제 검색">
+    </form>
+  </div>
+  {% if years %}
+    {% include "lab/_cite_years.html" %}
+  {% else %}
+    <p class="note">“{{ q }}”에 해당하는 결과가 없습니다.</p>
+  {% endif %}
+</div>
 {% endblock %}

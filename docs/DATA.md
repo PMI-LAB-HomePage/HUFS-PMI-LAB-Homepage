@@ -85,14 +85,20 @@ Publication
   kind · text · raw · year · pdf · doi_url · order · is_public
   ※ 저자·제목·학술지 분리는 2차 작업. 지금은 만들지 않는다
 
-News + NewsImage(news, image, order)
+News + NewsImage(news, image, order)   ※ 본문·사진이 있는 12건만 상세 페이지로 링크
   title_ko/en · date · tag (academic|recruit|patent|news) · body_ko/en · link · is_public
 
 GalleryEvent + GalleryImage(event, image, order)
   title_ko/en · date · date_end · location · description_ko/en · is_public · order
 
+ResearchGroup   연구 대주제 5개 (노션 홈의 연구 분야 분류. site.json의 research_groups)
+  title_ko/en · order · is_public
+
 Research + ResearchMedia(research, file, kind=image|video, order)
-  title_ko/en · subtitle · description_ko/en · order · is_public
+  group(FK → ResearchGroup) · title_ko/en · subtitle · description_ko/en · order · is_public
+  ※ 11건을 5개 주제에 배정. 이름만으로는 자동으로 못 맞춰서(예: "Supervised, Unsupervised Image
+    Inpainting" ↔ "Deep Image Restoration") load_notion.py의 RESEARCH_GROUP 표에 사람이 판단해 적어 둠.
+    바꾸려면 그 표를 고치거나 관리자 화면에서 연구별 "연구 분야"를 바꾼다.
 
 Resource + ResourceMedia(resource, file, kind, order)
   title_ko/en · subtitle · body_ko/en · order · is_public
@@ -152,7 +158,7 @@ research·resources의 `images`는 확장자가 `.mp4`면 `kind=video`.
 ## 5. 기대 건수 (적재 후 대조)
 
 ```
-SiteSetting 1 · Member 29 (현재 9) · Publication 119 · News 24
+SiteSetting 1 · Member 29 (현재 9) · Publication 119 · News 24 · ResearchGroup 5
 GalleryEvent 38 (이미지 있는 것 35) · Research 11 · Resource 5 · Award 7 · Project 16
 
 Publication 종류별: intl_journal 43 · intl_conference 37 · dom_journal 18 · dom_conference 5 · patent 16

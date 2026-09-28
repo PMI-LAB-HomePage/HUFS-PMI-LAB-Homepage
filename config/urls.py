@@ -14,6 +14,7 @@ urlpatterns = [
     path("gallery/", views.gallery, name="gallery"),
     path("gallery/<int:pk>/", views.gallery_detail, name="gallery_detail"),
     path("news/", views.news, name="news"),
+    path("news/<int:pk>/", views.news_detail, name="news_detail"),
     path("awards/", views.awards, name="awards"),
     path("resources/", views.resources, name="resources"),
     path("admin/", admin.site.urls),

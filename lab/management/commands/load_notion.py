@@ -16,11 +16,29 @@ from django.db import transaction
 
 from lab.models import (
     Award, AwardImage, GalleryEvent, GalleryImage, Member, News, Project, Publication,
-    Research, ResearchMedia, Resource, ResourceMedia, SiteSetting,
+    Research, ResearchGroup, ResearchMedia, Resource, ResourceMedia, SiteSetting,
 )
 
 SEED = settings.BASE_DIR / "seed"
-MODELS = [SiteSetting, Member, Publication, News, GalleryEvent, Research, Resource, Award, Project]
+MODELS = [SiteSetting, Member, Publication, News, GalleryEvent, ResearchGroup, Research,
+          Resource, Award, Project]
+
+# 연구 11건 → 노션 홈의 연구 분야 5분류. 이름만으로는 자동으로 못 맞춰서(예: "Supervised,
+# Unsupervised Image Inpainting" ↔ "Deep Image Restoration") 사람이 판단해 적어 둔 표다.
+# 바꾸려면 여기를 고치거나 관리자 화면에서 연구별 "연구 분야"를 바꾸면 된다.
+RESEARCH_GROUP = {
+    "Deep Domain Adaptation": "Deep Face Recognition",
+    "Deep Attention Learning": "Deep Face Recognition",
+    "3D-2D Cascaded Deep Networks for Video Face Recognition": "Deep Face Recognition",
+    "Deep Ensemble Network": "Deep Face Recognition",
+    "Deep Image Restoration": "Deep Learning for Image Generation",
+    "Deep Image Translation": "Deep Learning for Image Generation",
+    "Object Detection and Tracking": "Deep Object Detection and Tracking",
+    "Object Re-Identification": "Deep Object Detection and Tracking",
+    "LSTM Ensemble for Time-series Forecasting": "Deep Learning for Time-series Prediction",
+    "3D DCNN and ConvLSTM for Predicting fine dust": "Deep Learning for Time-series Prediction",
+    "Facial Emotion Recognition": "Demo Videos",
+}
 MEDIA_DIRS = ["site", "members", "publications", "gallery", "research", "resources", "awards"]
 
 # 위쪽이 우선
@@ -37,7 +55,7 @@ ROLE_TITLES = {t for t, _ in ROLE_MAP}
 
 EXPECTED = {
     SiteSetting: 1, Member: 29, Publication: 119, News: 24, GalleryEvent: 38,
-    Research: 11, Resource: 5, Award: 7, Project: 16,
+    ResearchGroup: 5, Research: 11, Resource: 5, Award: 7, Project: 16,
 }
 
 
@@ -81,7 +99,9 @@ class Command(BaseCommand):
             self.load_publications()
             self.load_news()
             self.load_gallery()
+            self.load_research_groups()
             self.load_media_items("research", Research, ResearchMedia, "research")
+            self.assign_research_groups()
             self.load_media_items("resources", Resource, ResourceMedia, "resource")
             self.load_awards()
             self.load_projects()
@@ -192,6 +212,21 @@ class Command(BaseCommand):
                 self.attach(img.image, path)
                 img.save()
 
+    def load_research_groups(self):
+        for i, g in enumerate(self.seed_json("site")["research_groups"]):
+            ResearchGroup.objects.create(order=i, **ko_en("title", g["title"]))
+
+    def assign_research_groups(self):
+        groups = {g.title_en or g.title_ko: g for g in ResearchGroup.objects.all()}
+        for obj in Research.objects.all():
+            title = obj.title_en or obj.title_ko
+            group_title = RESEARCH_GROUP.get(title)
+            if group_title is None:
+                self.stderr.write(self.style.WARNING(f"연구 분야 미배정: {title}"))
+                continue
+            obj.group = groups[group_title]
+            obj.save(update_fields=["group"])
+
     def load_media_items(self, name, model, media_model, fk):
         for r in self.seed_json(name):
             obj = model.objects.create(subtitle=r["subtitle"], order=r["order"], **ko_en("title", r["title"]))
@@ -230,6 +265,7 @@ class Command(BaseCommand):
             "사진 있는 갤러리 (기대 35)": GalleryEvent.objects.filter(images__isnull=False).distinct().count(),
             "갤러리 사진": GalleryImage.objects.count(),
             "연구 영상": ResearchMedia.objects.filter(kind="video").count(),
+            "연구 분야 미배정 (기대 0)": Research.objects.filter(group=None).count(),
         }
         for kind, label in Publication.Kind.choices:
             extra[f"논문 {kind}"] = Publication.objects.filter(kind=kind).count()

@@ -1,13 +1,21 @@
 {% extends "lab/base.html" %}{% load lab %}
-{% block title %}Resources · {{ block.super }}{% endblock %}
+{% block title %}모집 · {{ block.super }}{% endblock %}
 {% block content %}
-<h2>Resources</h2>
-{% for r in items %}
-<article>
-  <h3>{{ r|tr:"title" }}</h3>
-  {% if r.subtitle %}<p>{{ r.subtitle }}</p>{% endif %}
-  <p>{{ r|tr:"body"|hide_emails }}</p>
-  {% include "lab/_media.html" with media=r.media.all %}
-</article>
-{% endfor %}
+<div class="container section stack stack--lg">
+  <div class="section-head" style="align-items:flex-end"><h1 class="title-2">대학원생 모집</h1></div>
+  {% if site.recruit_notice_ko or site.recruit_notice_en %}
+  <div class="pi__bio">
+    {% if site.recruit_notice_ko %}<p>{{ site.recruit_notice_ko|hide_emails }}</p>{% endif %}
+    {% if site.recruit_notice_en %}<p lang="en">{{ site.recruit_notice_en|hide_emails }}</p>{% endif %}
+  </div>
+  {% endif %}
+
+  {% for r in items %}
+  <section class="stack">
+    <div class="group-head"><b class="title-3">{{ r|tr:"title" }}</b>{% if r.subtitle %}<span class="meta">{{ r.subtitle }}</span>{% endif %}</div>
+    {% with body=r|tr:"body" %}{% if body %}<p class="lead" style="max-width:68ch">{{ body|hide_emails }}</p>{% endif %}{% endwith %}
+    {% if r.media.all %}{% include "lab/_media.html" with media=r.media.all group="s"|add:r.pk|stringformat:"s" %}{% endif %}
+  </section>
+  {% endfor %}
+</div>
 {% endblock %}

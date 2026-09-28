@@ -1,18 +1,61 @@
 {% extends "lab/base.html" %}{% load lab %}
-{% block title %}Members · {{ block.super }}{% endblock %}
+{% block title %}구성원 · {{ block.super }}{% endblock %}
 {% block content %}
-<h2>Members</h2>
-{% for label, ms in groups %}
-<h3>{{ label }}</h3>
-{% for m in ms %}
-<article>
-  {% if m.photo %}<img src="{{ m.photo.url }}" alt="" width="120">{% endif %}
-  <h4>{{ m.name_ko }} {{ m.name_en }}</h4>
-  <p>{{ m.status_text }}{% if m.research_interests %} · {{ m.research_interests }}{% endif %}</p>
-  <p>{{ m.email|email }}{% if m.cv %} · <a href="{{ m.cv.url }}">CV (PDF)</a>{% endif %}</p>
-</article>
-{% endfor %}
-{% endfor %}
-<h3>Alumni</h3>
-<ul>{% for m in alumni %}<li>{{ m.name_ko }} {{ m.name_en }}{% if m.career_after %} — {{ m.career_after }}{% endif %}</li>{% endfor %}</ul>
+<div class="container section stack stack--lg">
+  <div class="section-head" style="align-items:flex-end">
+    <h1 class="title-2">구성원</h1>
+    <nav class="tabs" aria-label="구분" style="border:0">
+      <a class="tab is-active" href="#current">현재<span class="tab__count">{{ current_count }}</span></a>
+      <a class="tab" href="#alumni">동문<span class="tab__count">{{ alumni|length }}</span></a>
+    </nav>
+  </div>
+
+  {% if professor %}
+  <div class="pi" id="current">
+    {% if professor.photo %}<div class="media media--4x5 pi__photo"><img src="{{ professor.photo.url }}" alt="{{ professor }}"></div>{% endif %}
+    <div class="stack" style="gap:18px;justify-content:center">
+      <span class="person-card__role">Professor</span>
+      <div class="title-2">{{ professor.name_ko }}{% if professor.name_en %} · {{ professor.name_en }}{% endif %}</div>
+      {% if professor.status_text %}<p class="person-card__title" style="font-size:14px">{{ professor.status_text }}</p>{% endif %}
+      {% with bio=professor|tr:"bio" %}{% if bio %}<div class="pi__bio">{{ bio|hide_emails }}</div>{% endif %}{% endwith %}
+      <div class="btn-row" style="align-items:center;gap:20px">
+        {% if professor.cv %}<a class="pdf-link" href="{{ professor.cv.url }}">CV · PDF</a>{% endif %}
+        {{ professor.email|email }}
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+  {% for label, short, people in groups %}
+  <div class="stack">
+    <div class="group-head"><b class="title-3">{{ label }}</b><span class="meta">{{ people|length }}</span></div>
+    <div class="grid-auto" style="--min:170px">
+      {% for m in people %}
+      <div class="person-card">
+        {% if m.photo %}<div class="media media--4x5"><img src="{{ m.photo.url }}" alt="{{ m }}" loading="lazy"></div>{% endif %}
+        <span class="person-card__role">{{ short }}</span>
+        <span class="person-card__name">{{ m.name_ko|default:m.name_en }}</span>
+        {% if m.name_ko and m.name_en %}<span class="person-card__title">{{ m.name_en }}</span>{% endif %}
+        {% if m.research_interests %}<span class="person-card__interest">{{ m.research_interests }}</span>{% endif %}
+        {{ m.email|email }}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endfor %}
+
+  <div class="stack" id="alumni">
+    <div class="group-head"><b class="title-3">동문</b><span class="meta">{{ alumni|length }}</span></div>
+    <ul class="alumni-list">
+      {% for m in alumni %}
+      <li class="alumni-row">
+        {% if m.photo %}<div class="media media--1x1"><img src="{{ m.photo.url }}" alt="" loading="lazy"></div>{% else %}<span></span>{% endif %}
+        <span>{{ m.name_ko|default:m.name_en }}</span>
+        <span class="alumni-row__role">{{ m.get_role_display }}</span>
+        <span class="alumni-row__career">{{ m.career_after }}</span>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
 {% endblock %}
