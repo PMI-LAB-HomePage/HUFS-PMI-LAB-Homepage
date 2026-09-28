@@ -1,0 +1,47 @@
+[
+ {
+  "title": "PMI 연구실 장점 및 혜택",
+  "subtitle": "",
+  "images": [
+   "assets/img/resources/pmi-2/01.webp"
+  ],
+  "order": 0
+ },
+ {
+  "title": "PMI 연구환경",
+  "subtitle": "",
+  "images": [
+   "assets/img/resources/pmi-3/01.webp",
+   "assets/img/resources/pmi-3/02.webp",
+   "assets/img/resources/pmi-3/03.webp",
+   "assets/img/resources/pmi-3/04.webp",
+   "assets/img/resources/pmi-3/05.webp",
+   "assets/img/resources/pmi-3/06.webp",
+   "assets/img/resources/pmi-3/07.webp",
+   "assets/img/resources/pmi-3/08.webp",
+   "assets/img/resources/pmi-3/09.webp",
+   "assets/img/resources/pmi-3/10.webp"
+  ],
+  "order": 1
+ },
+ {
+  "title": "PMI 연구분야",
+  "subtitle": "",
+  "images": [
+   "assets/img/resources/pmi/01.webp"
+  ],
+  "order": 2
+ },
+ {
+  "title": "Prof. Choi’s Short Introduction",
+  "subtitle": "",
+  "images": [],
+  "order": 3
+ },
+ {
+  "title": "Recruit: 대학원 및 학부연구생 모집",
+  "subtitle": "",
+  "images": [],
+  "order": 4
+ }
+]

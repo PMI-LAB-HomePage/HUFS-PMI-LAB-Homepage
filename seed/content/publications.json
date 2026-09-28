@@ -1,0 +1,1192 @@
+[
+ {
+  "kind": "dom_conference",
+  "kind_label": "Domestic Conferences",
+  "seq": 1,
+  "raw": "**한아영**, 김경태, 한명수, 최흥배, 최재영, “운형 부류 불균형 문제에 강인한 LADE 손실함수 기반 심층 합성곱 신경망 분류기 제안,” 대한전자공학회 추계학술대회, 2022년 11월.",
+  "text": "한아영, 김경태, 한명수, 최흥배, 최재영, “운형 부류 불균형 문제에 강인한 LADE 손실함수 기반 심층 합성곱 신경망 분류기 제안,” 대한전자공학회 추계학술대회, 2022년 11월.",
+  "year": 2022,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "dom_conference",
+  "kind_label": "Domestic Conferences",
+  "seq": 2,
+  "raw": "**김성주**, 김경태, 최재영,  \"해수면 위성 온도 영상의 공간해상도 및 해수면 경계선 품질 향상을 위한 딥러닝 네트워크 구조 제안,” 대한전자공학회 추계학술대회, 2022년 11월.",
+  "text": "김성주, 김경태, 최재영, \"해수면 위성 온도 영상의 공간해상도 및 해수면 경계선 품질 향상을 위한 딥러닝 네트워크 구조 제안,” 대한전자공학회 추계학술대회, 2022년 11월.",
+  "year": 2022,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "dom_conference",
+  "kind_label": "Domestic Conferences",
+  "seq": 3,
+  "raw": "**허이경**, 최재영,  \"다중 스케일 Self-Attention 연동 적대적 생성 신경망을 활용한 얼굴 영상 애니메이션 변환,” 한국멀티미디어학회 추계학술대회, 2022년 11월.",
+  "text": "허이경, 최재영, \"다중 스케일 Self-Attention 연동 적대적 생성 신경망을 활용한 얼굴 영상 애니메이션 변환,” 한국멀티미디어학회 추계학술대회, 2022년 11월.",
+  "year": 2022,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "dom_conference",
+  "kind_label": "Domestic Conferences",
+  "seq": 4,
+  "raw": "이영찬, 박범진, 최재영, 이범식, 유원상, \"털 합성 데이터 증강을 통한 피부영상 털 제거 심층학습 기법: 기존 방법의 적용성 평가,\" 제34회 영상처리 및 이해에 관한 워크샵 (IPIU 2022), 2022년 2월.",
+  "text": "이영찬, 박범진, 최재영, 이범식, 유원상, \"털 합성 데이터 증강을 통한 피부영상 털 제거 심층학습 기법: 기존 방법의 적용성 평가,\" 제34회 영상처리 및 이해에 관한 워크샵 (IPIU 2022), 2022년 2월.",
+  "year": 2022,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "dom_conference",
+  "kind_label": "Domestic Conferences",
+  "seq": 5,
+  "raw": "이영찬, 박범진, 최재영, 이범식, 유원상, \"반려동물 피부질환 검출을 위한 피부영상 털 영역분할에 대한 크로스 도메인 지식 증류 기법,\" KCC 한국컴퓨터종합학술대회, 2022년 7월.",
+  "text": "이영찬, 박범진, 최재영, 이범식, 유원상, \"반려동물 피부질환 검출을 위한 피부영상 털 영역분할에 대한 크로스 도메인 지식 증류 기법,\" KCC 한국컴퓨터종합학술대회, 2022년 7월.",
+  "year": 2022,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "dom_journal",
+  "kind_label": "Domestic Journals",
+  "seq": 1,
+  "raw": "Kyeong Tae Kim, Jae Young Choi. Realizing Virtual Try-On with Korean Garment Size Control Using Text-Guided Diffusion Model (한국인 체형 기반 의상 크기 조정 가능한 가상 의상 착용 텍스트 연동 디퓨전 모델). *Journal of Korea Multimedia Society*, vol. 28, no. 8, pp. 937-951, August, 2025.",
+  "text": "Kyeong Tae Kim, Jae Young Choi. Realizing Virtual Try-On with Korean Garment Size Control Using Text-Guided Diffusion Model (한국인 체형 기반 의상 크기 조정 가능한 가상 의상 착용 텍스트 연동 디퓨전 모델). Journal of Korea Multimedia Society, vol. 28, no. 8, pp. 937-951, August, 2025.",
+  "year": 2025,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "dom_journal",
+  "kind_label": "Domestic Journals",
+  "seq": 2,
+  "raw": "Min Su Jo, Jae Young Choi. Improvnig MOT Based on Optimization of Learnable Kalman Filter: Trajectory Visualization-Based Data Augmentation and Loss Function Development(학습 가능한 칼만 필터 최적화 기반 다중 객체 추적 향상: 궤적의 시각화 정보 활용 데이터 증강 및 손실 함수 개발). *Journal of Korea Multimedia Society*, vol. 27, no. 12, pp. 1567-1583, December, 2024.",
+  "text": "Min Su Jo, Jae Young Choi. Improvnig MOT Based on Optimization of Learnable Kalman Filter: Trajectory Visualization-Based Data Augmentation and Loss Function Development(학습 가능한 칼만 필터 최적화 기반 다중 객체 추적 향상: 궤적의 시각화 정보 활용 데이터 증강 및 손실 함수 개발). Journal of Korea Multimedia Society, vol. 27, no. 12, pp. 1567-1583, December, 2024.",
+  "year": 2024,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "dom_journal",
+  "kind_label": "Domestic Journals",
+  "seq": 3,
+  "raw": "A Yeong Han, Kyeong Tae Kim, and Jae Young Choi.  Multi-scale Attention GAN with Adaptive Feature Fusion for Unsupervised Animation Face Generation(애니메이션 얼굴 변환을 위한 적응형 특징 융합 연동 다중 스케일 어텐션 활용 비지도 GAN 모델 개발). *Journal of Korea Multimedia Society*, vol. 27, no. 5, pp. 563-576, May., 2024.",
+  "text": "A Yeong Han, Kyeong Tae Kim, and Jae Young Choi. Multi-scale Attention GAN with Adaptive Feature Fusion for Unsupervised Animation Face Generation(애니메이션 얼굴 변환을 위한 적응형 특징 융합 연동 다중 스케일 어텐션 활용 비지도 GAN 모델 개발). Journal of Korea Multimedia Society, vol. 27, no. 5, pp. 563-576, May., 2024.",
+  "year": 2024,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "dom_journal",
+  "kind_label": "Domestic Journals",
+  "seq": 4,
+  "raw": "Seong-Joo Kim and Jae Young Choi. Multiscale Window based Vision Transformer for Image Inpainting(영상 복원을 위한 다차원 윈도우 기반 비전 트랜스포머 네트워크). *한국차세대컴퓨팅학회 논문지*, vol. 7, no. 12, pp. 1-000, Dec., 2023.",
+  "text": "Seong-Joo Kim and Jae Young Choi. Multiscale Window based Vision Transformer for Image Inpainting(영상 복원을 위한 다차원 윈도우 기반 비전 트랜스포머 네트워크). 한국차세대컴퓨팅학회 논문지, vol. 7, no. 12, pp. 1-000, Dec., 2023.",
+  "year": 2023,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "dom_journal",
+  "kind_label": "Domestic Journals",
+  "seq": 5,
+  "raw": "Joon Min Lee, Kyeong Tae Kim, Jae Young Choi. Ensemble Prediction of 3D Deep Convolutional Neural Networks for the Prediction of PM2.5 Level for the Seoul, Republic of Korea(서울시 대기 중 미세먼지 농도 예측을 위한 3D 심층 합성곱 신경망 앙상블 예측). *한국차세대컴퓨팅학회 논문지*, vol. 7, no. 9, pp. 1-000, Setp., 2023.",
+  "text": "Joon Min Lee, Kyeong Tae Kim, Jae Young Choi. Ensemble Prediction of 3D Deep Convolutional Neural Networks for the Prediction of PM2.5 Level for the Seoul, Republic of Korea(서울시 대기 중 미세먼지 농도 예측을 위한 3D 심층 합성곱 신경망 앙상블 예측). 한국차세대컴퓨팅학회 논문지, vol. 7, no. 9, pp. 1-000, Setp., 2023.",
+  "year": 2023,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "dom_journal",
+  "kind_label": "Domestic Journals",
+  "seq": 6,
+  "raw": "Joon Min Lee, Kyeong Tae Kim, Jae Young Choi. Attention Based-ConvLSTM-DNN Networks for Fine Dust Concentration Prediction(미세먼지 농도 예측을 위한 어텐션 기반 합성곱 장단기 메모리 모델). *Journal of Korea Multimedia Society*, vol. 26, no. 8, pp. 911-924, Aug., 2023",
+  "text": "Joon Min Lee, Kyeong Tae Kim, Jae Young Choi. Attention Based-ConvLSTM-DNN Networks for Fine Dust Concentration Prediction(미세먼지 농도 예측을 위한 어텐션 기반 합성곱 장단기 메모리 모델). Journal of Korea Multimedia Society, vol. 26, no. 8, pp. 911-924, Aug., 2023",
+  "year": 2023,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "dom_journal",
+  "kind_label": "Domestic Journals",
+  "seq": 7,
+  "raw": "Mun Eob Kim, Seong Joo Kim, and **Jae Young Choi**. Restoration of Satellite Sea Surface Temperature Imagery Using Unsupervised External-Internal Deep Learning (비지도 외부-내부 심층 학습을 사용한 해수면 온도 위성 영상 복원). *한국차세대컴퓨팅학회 논문지*, vol. 18, no. 5, pp. 58-71, Oct., 2022.",
+  "text": "Mun Eob Kim, Seong Joo Kim, and Jae Young Choi. Restoration of Satellite Sea Surface Temperature Imagery Using Unsupervised External-Internal Deep Learning (비지도 외부-내부 심층 학습을 사용한 해수면 온도 위성 영상 복원). 한국차세대컴퓨팅학회 논문지, vol. 18, no. 5, pp. 58-71, Oct., 2022.",
+  "year": 2022,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "dom_journal",
+  "kind_label": "Domestic Journals",
+  "seq": 8,
+  "raw": "Kyeong Tae Kim and **Jae Young Choi**. Development of Semi-Supervised Deep Domain Adaptation Based Face Recognition Using Only a Single Training Sample (단일 훈련 샘플만을 활용하는 준-지도학습 심층 도메인 적응 기반 얼굴인식 기술 개발). *Journal of Korea Multimedia Society*, vol. 25, no. 10, pp. 1375-1385, Oct., 2022",
+  "text": "Kyeong Tae Kim and Jae Young Choi. Development of Semi-Supervised Deep Domain Adaptation Based Face Recognition Using Only a Single Training Sample (단일 훈련 샘플만을 활용하는 준-지도학습 심층 도메인 적응 기반 얼굴인식 기술 개발). Journal of Korea Multimedia Society, vol. 25, no. 10, pp. 1375-1385, Oct., 2022",
+  "year": 2022,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "dom_journal",
+  "kind_label": "Domestic Journals",
+  "seq": 9,
+  "raw": "Min Ho Kwak, Kyeong Tae Kim, and **Jae Young Choi**. Multi-scale Attention and Deep Ensemble-Based Animal Skin Lesions Classification (다중 스케일 어텐션과 심층 앙상블 기반 동물 피부 병변 분류 기법). *Journal of Korea Multimedia Society*, vol. 25, no. 8, pp. 1212-1223, Aug., 2022.",
+  "text": "Min Ho Kwak, Kyeong Tae Kim, and Jae Young Choi. Multi-scale Attention and Deep Ensemble-Based Animal Skin Lesions Classification (다중 스케일 어텐션과 심층 앙상블 기반 동물 피부 병변 분류 기법). Journal of Korea Multimedia Society, vol. 25, no. 8, pp. 1212-1223, Aug., 2022.",
+  "year": 2022,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "dom_journal",
+  "kind_label": "Domestic Journals",
+  "seq": 10,
+  "raw": "Youngchan Lee, Bumjin Park, **Jae Young Choi**, Bumshik Lee, Wonsang You. Deep learning approaches to hair segmentation for disease detection in pet skin images: Applicability evaluation of current methods (반려동물 피부영상에서의 질환 검출을 위한 딥러닝 기반 털 영역분할 기법: 기존 방법의 적용성 평가). 한국차세대컴퓨팅학회 논문지, vol. 18, no. 2, pp. 59-74, April, 2022.",
+  "text": "Youngchan Lee, Bumjin Park, Jae Young Choi, Bumshik Lee, Wonsang You. Deep learning approaches to hair segmentation for disease detection in pet skin images: Applicability evaluation of current methods (반려동물 피부영상에서의 질환 검출을 위한 딥러닝 기반 털 영역분할 기법: 기존 방법의 적용성 평가). 한국차세대컴퓨팅학회 논문지, vol. 18, no. 2, pp. 59-74, April, 2022.",
+  "year": 2022,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "dom_journal",
+  "kind_label": "Domestic Journals",
+  "seq": 11,
+  "raw": "Kyeong-Tae kim, Wonsang You, and **Jae Young Choi**. Attention Deep Neural Networks Learning based on Multiple Loss functions for Video Face Recognition (비디오 얼굴인식을 위한 다중 손실 함수 기반 어텐션 심층신경망 학습 제안). *Journal of Korea Multimedia Society*, vol. 24, no. 19, pp. 1380-1390, Oct., 2021.",
+  "text": "Kyeong-Tae kim, Wonsang You, and Jae Young Choi. Attention Deep Neural Networks Learning based on Multiple Loss functions for Video Face Recognition (비디오 얼굴인식을 위한 다중 손실 함수 기반 어텐션 심층신경망 학습 제안). Journal of Korea Multimedia Society, vol. 24, no. 19, pp. 1380-1390, Oct., 2021.",
+  "year": 2021,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "dom_journal",
+  "kind_label": "Domestic Journals",
+  "seq": 12,
+  "raw": "Joo Young Yun, Kyeong-Tae kim and **Jae Young Choi**. Using 3D Deep Convolutional Neural Network with MRI Biomarker patch Images for Alzheimer's Disease Diagnosis (치매 진단을 위한 MRI 바이오마커 패치 영상 기반3차원 심층합성곱신경망 분류 기술). *Journal of Korea Multimedia Society*, vol. 23, no. 8, pp. 940-952, Aug., 2020.",
+  "text": "Joo Young Yun, Kyeong-Tae kim and Jae Young Choi. Using 3D Deep Convolutional Neural Network with MRI Biomarker patch Images for Alzheimer's Disease Diagnosis (치매 진단을 위한 MRI 바이오마커 패치 영상 기반3차원 심층합성곱신경망 분류 기술). Journal of Korea Multimedia Society, vol. 23, no. 8, pp. 940-952, Aug., 2020.",
+  "year": 2020,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "dom_journal",
+  "kind_label": "Domestic Journals",
+  "seq": 13,
+  "raw": "Kyung Shin Yoon and **Jae Young Choi**. Compressed Ensemble of Deep Convolutional Neural Networks with Global and Local Facial Features for Improved Face Recognition (얼굴인식 성능 향상을 위한 얼굴 전역 및 지역 특징 기반 앙상블 압축 심층합성곱신경망 모델 제안). *Journal of Korea Multimedia Society*, vol. 23, no. 8, pp. 1019-1029, Aug., 2020.",
+  "text": "Kyung Shin Yoon and Jae Young Choi. Compressed Ensemble of Deep Convolutional Neural Networks with Global and Local Facial Features for Improved Face Recognition (얼굴인식 성능 향상을 위한 얼굴 전역 및 지역 특징 기반 앙상블 압축 심층합성곱신경망 모델 제안). Journal of Korea Multimedia Society, vol. 23, no. 8, pp. 1019-1029, Aug., 2020.",
+  "year": 2020,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "dom_journal",
+  "kind_label": "Domestic Journals",
+  "seq": 14,
+  "raw": "Kyeong-Tae kim and **Jae Young Choi**. Deep Neual Networks Learning based on Multiple Loss Functions for Both Person and Vehicles Re-Identification (사람과 자동차 재인식이 가능한 다중 손실함수 기반 심층 신경망 학습). *Journal of Korea Multimedia Society*, vol. 23, no. 8, pp. 891-902, Aug., 2020.",
+  "text": "Kyeong-Tae kim and Jae Young Choi. Deep Neual Networks Learning based on Multiple Loss Functions for Both Person and Vehicles Re-Identification (사람과 자동차 재인식이 가능한 다중 손실함수 기반 심층 신경망 학습). Journal of Korea Multimedia Society, vol. 23, no. 8, pp. 891-902, Aug., 2020.",
+  "year": 2020,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "dom_journal",
+  "kind_label": "Domestic Journals",
+  "seq": 15,
+  "raw": "Kyeong-Tae kim and **Jae Young Choi**. Development of Combined Architecture of Multiple Deep Convolutional Neural Networks for Improving Video Face Identification (비디오 얼굴 식별 성능개선을 위한 다중 심층합성곱신경망 결합 구조 개발). *Journal of Korea Multimedia Society*, vol. 22, no. 6, pp. 655-664, June, 2019.",
+  "text": "Kyeong-Tae kim and Jae Young Choi. Development of Combined Architecture of Multiple Deep Convolutional Neural Networks for Improving Video Face Identification (비디오 얼굴 식별 성능개선을 위한 다중 심층합성곱신경망 결합 구조 개발). Journal of Korea Multimedia Society, vol. 22, no. 6, pp. 655-664, June, 2019.",
+  "year": 2019,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "dom_journal",
+  "kind_label": "Domestic Journals",
+  "seq": 16,
+  "raw": "Joo Hyung Son, Kyeong-Tae kim and **Jae Young Choi**. Alzheimer's Disease Classification with Automated MRI Biomarker Detection Using Faster R-CNN for Alzheimer's Disease Diagnosis (치매 진단을 위한 Faster R-CNN 활용 MRI 바이오마커 자동 검출 연동 분류 기술 개발). *Journal of Korea Multimedia Society*, vol. 22, no. 10, pp. 1168-1177, Oct., 2019.",
+  "text": "Joo Hyung Son, Kyeong-Tae kim and Jae Young Choi. Alzheimer's Disease Classification with Automated MRI Biomarker Detection Using Faster R-CNN for Alzheimer's Disease Diagnosis (치매 진단을 위한 Faster R-CNN 활용 MRI 바이오마커 자동 검출 연동 분류 기술 개발). Journal of Korea Multimedia Society, vol. 22, no. 10, pp. 1168-1177, Oct., 2019.",
+  "year": 2019,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "dom_journal",
+  "kind_label": "Domestic Journals",
+  "seq": 17,
+  "raw": "Kyeong-Tae kim and **Jae Young Choi**. Facial Local Region Based Deep Convolutional Neural Networks for Automated Face Recognition (자동 얼굴인식을 위한 얼굴 지역 영역 기반 다중 심층 합성곱 신경망 시스템). ***Journal of the Korea Convergence Society*,** vol.9 no.4 , pp.47-55, 2018",
+  "text": "Kyeong-Tae kim and Jae Young Choi. Facial Local Region Based Deep Convolutional Neural Networks for Automated Face Recognition (자동 얼굴인식을 위한 얼굴 지역 영역 기반 다중 심층 합성곱 신경망 시스템). Journal of the Korea Convergence Society, vol.9 no.4 , pp.47-55, 2018",
+  "year": 2018,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "dom_journal",
+  "kind_label": "Domestic Journals",
+  "seq": 18,
+  "raw": "Kyeong-Tae kim and **Jae Young Choi**. Weighted Soft Voting Classification for Emotion Recognition from Facial Expressions on Image Sequences (이미지 시퀀스 얼굴표정 기반 감정인식을 위한 가중 소프트 투표 분류 방법). *Journal of Korea Multimedia Society*, vol. 20, no. 8, pp. 1175-1186, Aug., 2017.",
+  "text": "Kyeong-Tae kim and Jae Young Choi. Weighted Soft Voting Classification for Emotion Recognition from Facial Expressions on Image Sequences (이미지 시퀀스 얼굴표정 기반 감정인식을 위한 가중 소프트 투표 분류 방법). Journal of Korea Multimedia Society, vol. 20, no. 8, pp. 1175-1186, Aug., 2017.",
+  "year": 2017,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_conference",
+  "kind_label": "International Conferences",
+  "seq": 1,
+  "raw": "Min Ho Kwak and **Jae Young Choi**. Generative Adversarial Network with Modified Contents Loss for Image-to-Image Translation. *2021 Int’l Conf. on Multimedia Information Technology and Applications,* Jeju Island, Korea, July, 2021.",
+  "text": "Min Ho Kwak and Jae Young Choi. Generative Adversarial Network with Modified Contents Loss for Image-to-Image Translation. 2021 Int’l Conf. on Multimedia Information Technology and Applications, Jeju Island, Korea, July, 2021.",
+  "year": 2021,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_conference",
+  "kind_label": "International Conferences",
+  "seq": 2,
+  "raw": "**Eunyeong Hong, Songhee Kang, Eunae Lee, Namjo Yoo, **Jae Young Choi** and Dong Sik Kim. Pixel-defect corrections for radiography detectors based on deep learning. *2020 SPIE Medical Imaging*, Houston, Texas, USA, 2020.",
+  "text": "Eunyeong Hong, Songhee Kang, Eunae Lee, Namjo Yoo, Jae Young Choi* and Dong Sik Kim. Pixel-defect corrections for radiography detectors based on deep learning. 2020 SPIE Medical Imaging*, Houston, Texas, USA, 2020.",
+  "year": 2020,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_conference",
+  "kind_label": "International Conferences",
+  "seq": 3,
+  "raw": "Kyeong-Tae kim, Joo-Hyung Son, and **Jae Young Choi.** Video Face Recognition Using Combination of Joint Bayesian Metric Scores with Deep Face Features. *2018 Int’l Conf. on Innovative Convergence Technology*, Jeju Island, Korea, Oct., 2018.",
+  "text": "Kyeong-Tae kim, Joo-Hyung Son, and Jae Young Choi. Video Face Recognition Using Combination of Joint Bayesian Metric Scores with Deep Face Features. 2018 Int’l Conf. on Innovative Convergence Technology, Jeju Island, Korea, Oct., 2018.",
+  "year": 2018,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_conference",
+  "kind_label": "International Conferences",
+  "seq": 4,
+  "raw": "****Shonket Ray, **Jae Young Choi**, Brad M. Keller, Jinbo Chen, Emily F. Conant, and Despina Kontos. Application of computer-extracted breast tissue texture features in predicting false-positive recalls from screening mammography. *2014 SPIE Medical Imaging*, USA, 2014.",
+  "text": "*Shonket Ray, Jae Young Choi, Brad M. Keller, Jinbo Chen, Emily F. Conant, and Despina Kontos. Application of computer-extracted breast tissue texture features in predicting false-positive recalls from screening mammography. 2014 SPIE Medical Imaging*, USA, 2014.",
+  "year": 2014,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_conference",
+  "kind_label": "International Conferences",
+  "seq": 5,
+  "raw": "**Jae Young Choi**, Brad M. Keller, Emily F. Conant, Andrew Maidment, and Despina Kontos. Effect of Reduced Radiation Dose on Breast Density Estimation in Digital Mammography: Data from the ACRIN 4006 Trial. *2013 Radiology Society of North America (RSNA)*, USA, 2013.",
+  "text": "Jae Young Choi, Brad M. Keller, Emily F. Conant, Andrew Maidment, and Despina Kontos. Effect of Reduced Radiation Dose on Breast Density Estimation in Digital Mammography: Data from the ACRIN 4006 Trial. 2013 Radiology Society of North America (RSNA), USA, 2013.",
+  "year": 2013,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_conference",
+  "kind_label": "International Conferences",
+  "seq": 6,
+  "raw": "**Jae Young Choi**, Brad M. Keller, Emily F. Conant, Jinbo Chen, and Despina Kontos. Predicting False-Positive Biopsy Risk from Digital Mammography Using Locally-Adaptive Parenchymal Texture Analysis. *2013 Medical Image Computing and Computer Assisted Intervention (MICCAI) Workshop*, Japan, 2013.",
+  "text": "Jae Young Choi, Brad M. Keller, Emily F. Conant, Jinbo Chen, and Despina Kontos. Predicting False-Positive Biopsy Risk from Digital Mammography Using Locally-Adaptive Parenchymal Texture Analysis. 2013 Medical Image Computing and Computer Assisted Intervention (MICCAI) Workshop, Japan, 2013.",
+  "year": 2013,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_conference",
+  "kind_label": "International Conferences",
+  "seq": 7,
+  "raw": "****Mathew Thomas, Matsutani, Yohei, **Jae Young Choi**, Brad M. Keller, Emily F. Conant, and Despina Kontos. ACRIN PA 4006: Characterization of Mean Glandular Dose Adjusted to Volumetric Breast Density in a Prospective Digital Breast Tomosynthesis Screening Trial. *2013 Radiology Society of North America (RSNA)*, USA, 2013.",
+  "text": "*Mathew Thomas, Matsutani, Yohei, Jae Young Choi, Brad M. Keller, Emily F. Conant, and Despina Kontos. ACRIN PA 4006: Characterization of Mean Glandular Dose Adjusted to Volumetric Breast Density in a Prospective Digital Breast Tomosynthesis Screening Trial. 2013 Radiology Society of North America (RSNA)*, USA, 2013.",
+  "year": 2013,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_conference",
+  "kind_label": "International Conferences",
+  "seq": 8,
+  "raw": "Hao Jing, Brad M. Keller, **Jae Young Choi**, R Crescenzi, Emily F. Conant, Andrew D. A. Maidment, and Despina Kontos. Dependence of radiation dose on area and volumetric mammographic breast density estimation. *2013 SPIE Medical Imaging*, USA, 2013.",
+  "text": "Hao Jing, Brad M. Keller, Jae Young Choi, R Crescenzi, Emily F. Conant, Andrew D. A. Maidment, and Despina Kontos. Dependence of radiation dose on area and volumetric mammographic breast density estimation. 2013 SPIE Medical Imaging, USA, 2013.",
+  "year": 2013,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_conference",
+  "kind_label": "International Conferences",
+  "seq": 9,
+  "raw": "Seung Hyun Lee, Dae Hoe Kim, **Jae Young Choi**, and Yong Man Ro. Improving positive predictive value in Computer-aided Diagnosis using mammographic mass and microcalcification confidence score fusion based on co-location information. *2013 SPIE Medical Imaging*, USA, 2013.",
+  "text": "Seung Hyun Lee, Dae Hoe Kim, Jae Young Choi, and Yong Man Ro. Improving positive predictive value in Computer-aided Diagnosis using mammographic mass and microcalcification confidence score fusion based on co-location information. 2013 SPIE Medical Imaging, USA, 2013.",
+  "year": 2013,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_conference",
+  "kind_label": "International Conferences",
+  "seq": 10,
+  "raw": "Dae Hoe Kim, **Jae Young Choi**, and Yong Man Ro. Boosting framework for mammographic mass classification with combination of CC and MLO view information*. 2013 SPIE Medical Imaging*, USA, 2013.",
+  "text": "Dae Hoe Kim, Jae Young Choi, and Yong Man Ro. Boosting framework for mammographic mass classification with combination of CC and MLO view information. 2013 SPIE Medical Imaging, USA, 2013.",
+  "year": 2013,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_conference",
+  "kind_label": "International Conferences",
+  "seq": 11,
+  "raw": "**Jae Young Choi**, Dae Hoe Kim, Konstantinos N. Plataniotis, and Yong Man Ro. Combining Multiple Feature Representations and AdaBoost Ensemble Learning for Reducing False-Positive Detection in Computer-aided Detection of Masses on Mammograms. *2012 IEEE Engineering in Medicine and Biology Conference (EMBC)*, USA, 2012.",
+  "text": "Jae Young Choi, Dae Hoe Kim, Konstantinos N. Plataniotis, and Yong Man Ro. Combining Multiple Feature Representations and AdaBoost Ensemble Learning for Reducing False-Positive Detection in Computer-aided Detection of Masses on Mammograms. 2012 IEEE Engineering in Medicine and Biology Conference (EMBC), USA, 2012.",
+  "year": 2012,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_conference",
+  "kind_label": "International Conferences",
+  "seq": 12,
+  "raw": "Dae Hoe Kim, **Jae Young Choi**, and Yong Man Ro. A Novel Mammogram Mass Detection Approach To Combining Supervised and Unsupervised Detection Algorithms. *2012 IEEE Int’l Conf. on Image Processing (ICIP)*, USA, 2012.",
+  "text": "Dae Hoe Kim, Jae Young Choi, and Yong Man Ro. A Novel Mammogram Mass Detection Approach To Combining Supervised and Unsupervised Detection Algorithms. 2012 IEEE Int’l Conf. on Image Processing (ICIP), USA, 2012.",
+  "year": 2012,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_conference",
+  "kind_label": "International Conferences",
+  "seq": 13,
+  "raw": "Dae Hoe Kim, **Jae Young Choi**, and Yong Man Ro. Region Based Stellate Features for Classification of Mammographic Spiculated Lesions in Computer-aided Detection. *2012 IEEE Int’l Conf. on Image Processing (ICIP)*, USA, 2012.",
+  "text": "Dae Hoe Kim, Jae Young Choi, and Yong Man Ro. Region Based Stellate Features for Classification of Mammographic Spiculated Lesions in Computer-aided Detection. 2012 IEEE Int’l Conf. on Image Processing (ICIP), USA, 2012.",
+  "year": 2012,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_conference",
+  "kind_label": "International Conferences",
+  "seq": 14,
+  "raw": "**Jae Young Choi**, Dae Hoe Kim, and Yong Man Ro. Combining Multiresolution Local Binary Pattern Texture Analysis and Variable Selection Strategy Applied to Computer-Aided Detection of Breast Masses on Mammograms. *2012* *IEEE-EMBS Int’l Conf. on Biomedical and Health Informatics (BHI),* China, 2012.",
+  "text": "Jae Young Choi, Dae Hoe Kim, and Yong Man Ro. Combining Multiresolution Local Binary Pattern Texture Analysis and Variable Selection Strategy Applied to Computer-Aided Detection of Breast Masses on Mammograms. 2012 IEEE-EMBS Int’l Conf. on Biomedical and Health Informatics (BHI), China, 2012.",
+  "year": 2012,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_conference",
+  "kind_label": "International Conferences",
+  "seq": 15,
+  "raw": "**Jae Young Choi**, Dae Hoe Kim, Seon Hyeong Choi, and Yong Man Ro. Multiresolution Local Binary Pattern Texture Analysis for False Positive Reduction in Computerized Detection of Breast Masses on Mammograms. *2012 SPIE Medical Imaging*, USA, 2012.",
+  "text": "Jae Young Choi, Dae Hoe Kim, Seon Hyeong Choi, and Yong Man Ro. Multiresolution Local Binary Pattern Texture Analysis for False Positive Reduction in Computerized Detection of Breast Masses on Mammograms. 2012 SPIE Medical Imaging, USA, 2012.",
+  "year": 2012,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_conference",
+  "kind_label": "International Conferences",
+  "seq": 16,
+  "raw": "Dae Hoe Kim, **Jae Young Choi**, Seon Hyeong Choi, and Yong Man Ro. Mammographic enhancement with combining local statistical measures and sliding band filter for improved mass segmentation in mammograms. *2012 SPIE Medical Imaging*, USA, 2012.",
+  "text": "Dae Hoe Kim, Jae Young Choi, Seon Hyeong Choi, and Yong Man Ro. Mammographic enhancement with combining local statistical measures and sliding band filter for improved mass segmentation in mammograms. 2012 SPIE Medical Imaging, USA, 2012.",
+  "year": 2012,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_conference",
+  "kind_label": "International Conferences",
+  "seq": 17,
+  "raw": "Hyun-seok Min, **Jae Young Choi**, Wesley De Neve, and Yong Man Ro. Comparison of Semantic Similarity Measures for NDVC Detection using Semantic Features. *IEEE Int’l Conf. on Multimedia Information Technology and Applications,* China, 2012.",
+  "text": "Hyun-seok Min, Jae Young Choi, Wesley De Neve, and Yong Man Ro. Comparison of Semantic Similarity Measures for NDVC Detection using Semantic Features. IEEE Int’l Conf. on Multimedia Information Technology and Applications, China, 2012.",
+  "year": 2012,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_conference",
+  "kind_label": "International Conferences",
+  "seq": 18,
+  "raw": "**Jae Young Choi**, Dae Hoe Kim, and Yong Man Ro. Computer-Aided Detection of Breast Masses on Mammograms Using Region-Based Feature Analysis. *IEEE Int’l Conf. on Multimedia Information Technology and Applications,* Mongol, 2011.",
+  "text": "Jae Young Choi, Dae Hoe Kim, and Yong Man Ro. Computer-Aided Detection of Breast Masses on Mammograms Using Region-Based Feature Analysis. IEEE Int’l Conf. on Multimedia Information Technology and Applications, Mongol, 2011.",
+  "year": 2011,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_conference",
+  "kind_label": "International Conferences",
+  "seq": 19,
+  "raw": "Seung-Ho Lee, **Jae Young Choi**, Konstantinos N. Plataniotis, and Yong Man Ro. Local Color Vector Binary Pattern for Face Recognition. *IEEE Int’l Conf. on Image Processing (ICIP)*, Belgium, 2011*.*",
+  "text": "Seung-Ho Lee, Jae Young Choi, Konstantinos N. Plataniotis, and Yong Man Ro. Local Color Vector Binary Pattern for Face Recognition. IEEE Int’l Conf. on Image Processing (ICIP), Belgium, 2011.",
+  "year": 2011,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_conference",
+  "kind_label": "International Conferences",
+  "seq": 20,
+  "raw": "Hyun-seok Min, **Jae Young Choi**, Wesley De Neve, and Yong Man Ro. Toward a better understanding of model-free semantic concept detection for annotation and near-duplicate video clip detection. *IEEE Int’l Conf. on Image Processing (ICIP)*, Belgium, 2011*.*",
+  "text": "Hyun-seok Min, Jae Young Choi, Wesley De Neve, and Yong Man Ro. Toward a better understanding of model-free semantic concept detection for annotation and near-duplicate video clip detection. IEEE Int’l Conf. on Image Processing (ICIP), Belgium, 2011.",
+  "year": 2011,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_conference",
+  "kind_label": "International Conferences",
+  "seq": 21,
+  "raw": "Hyun-seok Min, **Jae Young Choi**, Wesley De Neve, and Yong Man Ro. Leveraging an Image Folksonomy and The Signature Quadratic Form Distance for Semantic-Based Detection of Near-Duplicate Video Clips. *IEEE Int’l Conf. on Multimedia and Expo (ICME),* Spain*, 2011*.",
+  "text": "Hyun-seok Min, Jae Young Choi, Wesley De Neve, and Yong Man Ro. Leveraging an Image Folksonomy and The Signature Quadratic Form Distance for Semantic-Based Detection of Near-Duplicate Video Clips. IEEE Int’l Conf. on Multimedia and Expo (ICME), Spain, 2011.",
+  "year": 2011,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_conference",
+  "kind_label": "International Conferences",
+  "seq": 22,
+  "raw": "Seung Ho Lee, **Jae Young Choi**, Wesley De Neve, and Yong Man Ro. Towards Adaptive Matching of Face Signatures for Robust Video Face Recognition. *The 26th International Technical Conference on Circuits/Systems, Computers and Communications*, Korea, 2011.",
+  "text": "Seung Ho Lee, Jae Young Choi, Wesley De Neve, and Yong Man Ro. Towards Adaptive Matching of Face Signatures for Robust Video Face Recognition. The 26th International Technical Conference on Circuits/Systems, Computers and Communications, Korea, 2011.",
+  "year": 2011,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_conference",
+  "kind_label": "International Conferences",
+  "seq": 23,
+  "raw": "Jae-Hyun Jeon, **Jae Young Choi**, Se Min Kim, Hyun Suk Min, Seungwan Han, and Yong-Man Ro. Training Strategy of Semantic Concept Detectors Using Support Vector Machine in Naked Image Classification. *Int’l Conf. on Advances in Multimedia Information Processing*, China, 2010.",
+  "text": "Jae-Hyun Jeon, Jae Young Choi, Se Min Kim, Hyun Suk Min, Seungwan Han, and Yong-Man Ro. Training Strategy of Semantic Concept Detectors Using Support Vector Machine in Naked Image Classification. Int’l Conf. on Advances in Multimedia Information Processing, China, 2010.",
+  "year": 2010,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_conference",
+  "kind_label": "International Conferences",
+  "seq": 24,
+  "raw": "Jae-Hyun Jeon, Se Min Kim, **Jae Young Choi**, Hyun Suk Min, and Yong-Man Ro. Semantic Detection of Adult Image Using Semantic Features. *IEEE Int’l Conf. on Multimedia and Ubiquitous Engineering (MUE)*, Philippines, 2010.",
+  "text": "Jae-Hyun Jeon, Se Min Kim, Jae Young Choi, Hyun Suk Min, and Yong-Man Ro. Semantic Detection of Adult Image Using Semantic Features. IEEE Int’l Conf. on Multimedia and Ubiquitous Engineering (MUE), Philippines, 2010.",
+  "year": 2010,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_conference",
+  "kind_label": "International Conferences",
+  "seq": 25,
+  "raw": "**Jae Young Choi**, Konstantinos N. Plataniotis, and Yong Man Ro. USING COLOUR LOCAL BINARY PATTERN FEATURES FOR FACE RECOGNITION. *IEEE Int’l Conf. on Image Processing (ICIP)*, Hong Kong, 2010.",
+  "text": "Jae Young Choi, Konstantinos N. Plataniotis, and Yong Man Ro. USING COLOUR LOCAL BINARY PATTERN FEATURES FOR FACE RECOGNITION. IEEE Int’l Conf. on Image Processing (ICIP), Hong Kong, 2010.",
+  "year": 2010,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_conference",
+  "kind_label": "International Conferences",
+  "seq": 26,
+  "raw": "**Jae Young Choi**, Yong Man Ro, and Konstantinos N. Plataniotis. Face Annotation for Online Personal Videos Using Color Feature Fusion Based Face Recognition. *IEEE Int’l Conf. on Multimedia and Expo (ICME)*, Singapore, 2010. **(Accepted as oral and acceptance rate: about 15%)**",
+  "text": "Jae Young Choi, Yong Man Ro, and Konstantinos N. Plataniotis. Face Annotation for Online Personal Videos Using Color Feature Fusion Based Face Recognition. IEEE Int’l Conf. on Multimedia and Expo (ICME), Singapore, 2010. (Accepted as oral and acceptance rate: about 15%)",
+  "year": 2010,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_conference",
+  "kind_label": "International Conferences",
+  "seq": 27,
+  "raw": "Seung Ho Lee, **Jae Young Choi**, Yong Man Ro, and Konstantinos N. Plataniotis. Color Component Feature Selection in Feature-Level Fusion Based Color Face Recognition. *IEEE Int’l Conf. on World Congress on Computational Intelligence (WCCI)*, Spain, 2010.",
+  "text": "Seung Ho Lee, Jae Young Choi, Yong Man Ro, and Konstantinos N. Plataniotis. Color Component Feature Selection in Feature-Level Fusion Based Color Face Recognition. IEEE Int’l Conf. on World Congress on Computational Intelligence (WCCI), Spain, 2010.",
+  "year": 2010,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_conference",
+  "kind_label": "International Conferences",
+  "seq": 28,
+  "raw": "**Jae Young Choi**, Wesley De Neve, Seung-Ho Lee, and Yong Man Ro. An Automatic Face Indexing Framework for Actor-based Video Services in an IPTV Environment. *IEEE Int’l Conf. on Consumer Electronics (ICCE)*, America, 2009.",
+  "text": "Jae Young Choi, Wesley De Neve, Seung-Ho Lee, and Yong Man Ro. An Automatic Face Indexing Framework for Actor-based Video Services in an IPTV Environment. IEEE Int’l Conf. on Consumer Electronics (ICCE), America, 2009.",
+  "year": 2009,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_conference",
+  "kind_label": "International Conferences",
+  "seq": 29,
+  "raw": "Hyun-seok Min, **Jae Young Choi**, Wesley De Neve, and Yong Man Ro. Near-Duplicate Video Detection using Temporal Patterns of Semantic Concepts. *IEEE Int’l Symposium on Multimedia*, America, 2009.",
+  "text": "Hyun-seok Min, Jae Young Choi, Wesley De Neve, and Yong Man Ro. Near-Duplicate Video Detection using Temporal Patterns of Semantic Concepts. IEEE Int’l Symposium on Multimedia, America, 2009.",
+  "year": 2009,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_conference",
+  "kind_label": "International Conferences",
+  "seq": 30,
+  "raw": "**Jae Young Choi**, Yong Man Ro, and Konstantinos N. Plataniotis. Face Annotation For Personal Photos Using Collaborative Face Recognition in Online Social Networks. *IEEE Int’l Conf. on Digital Signal Processing (DSP)*, Greece, 2009.",
+  "text": "Jae Young Choi, Yong Man Ro, and Konstantinos N. Plataniotis. Face Annotation For Personal Photos Using Collaborative Face Recognition in Online Social Networks. IEEE Int’l Conf. on Digital Signal Processing (DSP), Greece, 2009.",
+  "year": 2009,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_conference",
+  "kind_label": "International Conferences",
+  "seq": 31,
+  "raw": "**Jae Young Choi**, Yong Man Ro, and Konstantinos N. Plataniotis. Image Compression Mismatch Effect of Color on Color Image Based Face Recognition System. *IEEE Int’l Conf. on Image Processing (ICIP)*, Egypt, 2009.",
+  "text": "Jae Young Choi, Yong Man Ro, and Konstantinos N. Plataniotis. Image Compression Mismatch Effect of Color on Color Image Based Face Recognition System. IEEE Int’l Conf. on Image Processing (ICIP), Egypt, 2009.",
+  "year": 2009,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_conference",
+  "kind_label": "International Conferences",
+  "seq": 32,
+  "raw": "Hyun-seok Min, **Jae Young Choi**, Yong Man Ro, and Konstantinos N. Plataniotis. Semantic Annotation of Personal Video Context Using an Image Folksonomy. *IEEE Int’l Conf. on Image Processing (ICIP)*, Egypt, 2009.",
+  "text": "Hyun-seok Min, Jae Young Choi, Yong Man Ro, and Konstantinos N. Plataniotis. Semantic Annotation of Personal Video Context Using an Image Folksonomy. IEEE Int’l Conf. on Image Processing (ICIP), Egypt, 2009.",
+  "year": 2009,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_conference",
+  "kind_label": "International Conferences",
+  "seq": 35,
+  "raw": "**Jae Young Choi** and Yong Man Ro. Color Correction using Color Flow Eigenspace Model in Color Face Recognition.  *SPIE Int’l Conf. on Electronic Imaging*, America, 2009.",
+  "text": "Jae Young Choi and Yong Man Ro. Color Correction using Color Flow Eigenspace Model in Color Face Recognition. SPIE Int’l Conf. on Electronic Imaging, America, 2009.",
+  "year": 2009,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_conference",
+  "kind_label": "International Conferences",
+  "seq": 33,
+  "raw": "**Jae Young Choi**, Seungji Yang, Yong Man Ro, and Konstantinos N. Plataniotis. Color effect on the face recognition with spatial resolution constraints. *IEEE Int’l Conf. on International Sysmposium on Multimedia (ISM)*,  America, 2008.",
+  "text": "Jae Young Choi, Seungji Yang, Yong Man Ro, and Konstantinos N. Plataniotis. Color effect on the face recognition with spatial resolution constraints. IEEE Int’l Conf. on International Sysmposium on Multimedia (ISM), America, 2008.",
+  "year": 2008,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_conference",
+  "kind_label": "International Conferences",
+  "seq": 34,
+  "raw": "**Jae Young Choi**, Seungji Yang, Yong Man Ro, and Konstantinos N. Plataniotis. Face Annotation for Personal Photos Using Context-Assisted Face Recognition. *ACM Int’l Conf. on Multimedia Information Retrieval (MIR)*, Canada, 2008. **(Accepted as oral and acceptance rate: about 9% and Citation: 38)**",
+  "text": "Jae Young Choi, Seungji Yang, Yong Man Ro, and Konstantinos N. Plataniotis. Face Annotation for Personal Photos Using Context-Assisted Face Recognition. ACM Int’l Conf. on Multimedia Information Retrieval (MIR), Canada, 2008. (Accepted as oral and acceptance rate: about 9% and Citation: 38)",
+  "year": 2008,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_conference",
+  "kind_label": "International Conferences",
+  "seq": 36,
+  "raw": "**Jae Young Choi**, Yong Man Ro, and Konstantinos N. Plataniotis. Feature subspace determination video-based mismatched face recognition. *IEEE Int’l Conf. on Automatic Face and Gesture Recognition (AFGR*), Netherlands, 2008.",
+  "text": "Jae Young Choi, Yong Man Ro, and Konstantinos N. Plataniotis. Feature subspace determination video-based mismatched face recognition. IEEE Int’l Conf. on Automatic Face and Gesture Recognition (AFGR), Netherlands, 2008.",
+  "year": 2008,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_conference",
+  "kind_label": "International Conferences",
+  "seq": 37,
+  "raw": "**Jae Young Choi**, Sung Ho Jin, Jin Woo Hong, and Yong Man Ro. Program Segment based Personalized Broadcasting. *IEEE Int’l Conf. on TENCON*, Taipei, 2007.",
+  "text": "Jae Young Choi, Sung Ho Jin, Jin Woo Hong, and Yong Man Ro. Program Segment based Personalized Broadcasting. IEEE Int’l Conf. on TENCON, Taipei, 2007.",
+  "year": 2007,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_journal",
+  "kind_label": "International Journal",
+  "seq": 1,
+  "raw": "Kyeong Tae Kim, and Jae Young Choi. **Triple-branch Attention Network with Multiscale Facial Region Feature Selection for Facial Emotion Recognition. **PATTERN RECOGNITION**, vol. 170, Feb., 2025. (SCI, IF: 7.9, Top 3%)",
+  "text": "Kyeong Tae Kim, and Jae Young Choi. Triple-branch Attention Network with Multiscale Facial Region Feature Selection for Facial Emotion Recognition. PATTERN RECOGNITION**, vol. 170, Feb., 2025. (SCI, IF: 7.9, Top 3%)",
+  "year": 2025,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_journal",
+  "kind_label": "International Journal",
+  "seq": 2,
+  "raw": "A Yeong Han, Kwang Moo Yi, Kyeong Tae Kim, and Jae Young Choi. Hierarchical Feature Attention Learning Network for Detecting Object and Discriminative Parts in Fine-Grained Visual Classification. IEEE ACESS, 2025. (Early Access) (SCIE, IF: 3.4)",
+  "text": "A Yeong Han, Kwang Moo Yi, Kyeong Tae Kim, and Jae Young Choi. Hierarchical Feature Attention Learning Network for Detecting Object and Discriminative Parts in Fine-Grained Visual Classification. IEEE ACESS, 2025. (Early Access) (SCIE, IF: 3.4)",
+  "year": 2025,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_journal",
+  "kind_label": "International Journal",
+  "seq": 3,
+  "raw": "Min Ho Kwak, Youngwoo Kim, Kangin Lee, and Jae Young Choi. Convolution Block Feature Addition Module (CBFAM) for Lightweight and Fast Object Detection on Non-GPU Devices. IEICE TRANSACTIONS on Information and Systems, Vol.E106-D,No.5,May. 2023.",
+  "text": "Min Ho Kwak, Youngwoo Kim, Kangin Lee, and Jae Young Choi. Convolution Block Feature Addition Module (CBFAM) for Lightweight and Fast Object Detection on Non-GPU Devices. IEICE TRANSACTIONS on Information and Systems, Vol.E106-D,No.5,May. 2023.",
+  "year": 2023,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_journal",
+  "kind_label": "International Journal",
+  "seq": 4,
+  "raw": "Jae Young Choi and Bumshik Lee. Combining Deep Convolutional Neural Networks with Stochastic Ensemble Weight Optimization for Facial Expression Recognition in the Wild. IEEE Trans. on Multimedia, vol. 25, pp. 100-111, Jan., 2023. (SCI, IF: 6.513)",
+  "text": "Jae Young Choi and Bumshik Lee. Combining Deep Convolutional Neural Networks with Stochastic Ensemble Weight Optimization for Facial Expression Recognition in the Wild. IEEE Trans. on Multimedia, vol. 25, pp. 100-111, Jan., 2023. (SCI, IF: 6.513)",
+  "year": 2023,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_journal",
+  "kind_label": "International Journal",
+  "seq": 5,
+  "raw": "Nagaraj Yamanakkanavar, Jae Young Choi, Bumshik Lee. SM-SegNet: A lightweight Squeeze M-SegNet for tissue segmentation in brain MRI. Sensors, July, 2022 (In publish).",
+  "text": "Nagaraj Yamanakkanavar, Jae Young Choi, Bumshik Lee. SM-SegNet: A lightweight Squeeze M-SegNet for tissue segmentation in brain MRI. Sensors, July, 2022 (In publish).",
+  "year": 2022,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_journal",
+  "kind_label": "International Journal",
+  "seq": 6,
+  "raw": "Chaitra Dayananda, Jae Young Choi, Bumshik Lee. A Squeeze U-SegNet Architecture Based on Residual Convolution for Brain MRI Segmentation. IEEE Access, vol. 10, pp. 52804-52817, 16th May, 2022.",
+  "text": "Chaitra Dayananda, Jae Young Choi, Bumshik Lee. A Squeeze U-SegNet Architecture Based on Residual Convolution for Brain MRI Segmentation. IEEE Access, vol. 10, pp. 52804-52817, 16th May, 2022.",
+  "year": 2022,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_journal",
+  "kind_label": "International Journal",
+  "seq": 7,
+  "raw": "Nagaraj Yamanakkanavar, Jae Young Choi, Bumshik Lee. Using a multiscale and hierarchical feature-aggregation network for the segmentation of medical images. Sensors, May, 2022 (In publish).",
+  "text": "Nagaraj Yamanakkanavar, Jae Young Choi, Bumshik Lee. Using a multiscale and hierarchical feature-aggregation network for the segmentation of medical images. Sensors, May, 2022 (In publish).",
+  "year": 2022,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_journal",
+  "kind_label": "International Journal",
+  "seq": 10,
+  "raw": "Chaitra Dayananda, Jae Young Choi and Bumshik Lee. Multi-Scale Squeeze U-SegNet with Multi Global Attention for Brain MRI Segmentation. Sensors, vol. 21, no. 10, May, 2021. (SCIE, IF: 3.576)",
+  "text": "Chaitra Dayananda, Jae Young Choi and Bumshik Lee. Multi-Scale Squeeze U-SegNet with Multi Global Attention for Brain MRI Segmentation. Sensors, vol. 21, no. 10, May, 2021. (SCIE, IF: 3.576)",
+  "year": 2021,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_journal",
+  "kind_label": "International Journal",
+  "seq": 11,
+  "raw": "Song-Hee Kang, Youngjin Choi, and Jae Young Choi. Restoration of Missing Patterns on Satellite Infrared Sea Surface Temperature Images Due to Cloud Coverage Using Deep Generative Inpainting Network. Journal of Marine Science and Engineering, vol. 9, no. 3, pp. 1-19, March, 2021. (SCIE, IF: 2.458)",
+  "text": "Song-Hee Kang, Youngjin Choi, and Jae Young Choi. Restoration of Missing Patterns on Satellite Infrared Sea Surface Temperature Images Due to Cloud Coverage Using Deep Generative Inpainting Network. Journal of Marine Science and Engineering, vol. 9, no. 3, pp. 1-19, March, 2021. (SCIE, IF: 2.458)",
+  "year": 2021,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_journal",
+  "kind_label": "International Journal",
+  "seq": 12,
+  "raw": "Kyeong Tae Kim, Bumshik Lee, and Jae Young Choi. 3D-2D deep convolutional neural Networks (DCNN) Cascade fro robust video face identification. Multimedia Tools and Applications, vol. 80, pp. 4023-4036, 2021. (SCIE, IF: 2.757)",
+  "text": "Kyeong Tae Kim, Bumshik Lee, and Jae Young Choi. 3D-2D deep convolutional neural Networks (DCNN) Cascade fro robust video face identification. Multimedia Tools and Applications, vol. 80, pp. 4023-4036, 2021. (SCIE, IF: 2.757)",
+  "year": 2021,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_journal",
+  "kind_label": "International Journal",
+  "seq": 8,
+  "raw": "Jae Young Choi and Bumshik Lee. Ensemble of Deep Convolutional Neural Networks with Gabor Face Representations for Face Recognition. IEEE Trans. on Image Processing, vol. 29, pp. 3270-3281, Jan., 2020. (SCI, IF: 10.856, Citation: 18)",
+  "text": "Jae Young Choi and Bumshik Lee. Ensemble of Deep Convolutional Neural Networks with Gabor Face Representations for Face Recognition. IEEE Trans. on Image Processing, vol. 29, pp. 3270-3281, Jan., 2020. (SCI, IF: 10.856, Citation: 18)",
+  "year": 2020,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_journal",
+  "kind_label": "International Journal",
+  "seq": 9,
+  "raw": "Jae Young Choi and Bumshik Lee. Combining of Multiple Deep Networks via Ensemble Generalization Loss, based on MRI Images, for Alzheimer’s Disease Classification. IEEE Signal Processing Letters, vol. 27, pp. 206-210, Jan., 2020 (SCI, IF: 3.268, Citation: 13)",
+  "text": "Jae Young Choi and Bumshik Lee. Combining of Multiple Deep Networks via Ensemble Generalization Loss, based on MRI Images, for Alzheimer’s Disease Classification. IEEE Signal Processing Letters, vol. 27, pp. 206-210, Jan., 2020 (SCI, IF: 3.268, Citation: 13)",
+  "year": 2020,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_journal",
+  "kind_label": "International Journal",
+  "seq": 13,
+  "raw": "Nagaraj Yamanakkanavar, Jae Young Choi, and Bumshik Lee. MRI Segmentation and Classification of Human Brain Using Deep Learning for Diagnosis of Alzheimer’s Disease: A Survey. Sensors, vol. 20, no. 11, pp. 1-28, Jun, 2020. (SCIE, IF: 3.576, Citation: 37)",
+  "text": "Nagaraj Yamanakkanavar, Jae Young Choi, and Bumshik Lee. MRI Segmentation and Classification of Human Brain Using Deep Learning for Diagnosis of Alzheimer’s Disease: A Survey. Sensors, vol. 20, no. 11, pp. 1-28, Jun, 2020. (SCIE, IF: 3.576, Citation: 37)",
+  "year": 2020,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_journal",
+  "kind_label": "International Journal",
+  "seq": 14,
+  "raw": "Bumshik Lee, Nagaraj Yamanakkanavar, and Jae Young Choi. Automatic segmentation of brain MRI using a novel patch-wise U-net deep architecture. PLUS ONE, vol. 16, no. 1, pp. 1-20, Aug., 2020. (SCIE, IF: 3.24, Citation: 21)",
+  "text": "Bumshik Lee, Nagaraj Yamanakkanavar, and Jae Young Choi. Automatic segmentation of brain MRI using a novel patch-wise U-net deep architecture. PLUS ONE, vol. 16, no. 1, pp. 1-20, Aug., 2020. (SCIE, IF: 3.24, Citation: 21)",
+  "year": 2020,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_journal",
+  "kind_label": "International Journal",
+  "seq": 15,
+  "raw": "Sarala Ghimire, Jae Young Choi, and Bumshik Lee. Using Blockchain for Improved Video Integrity Verification. IEEE Trans. on Multimedia, vol. 22, no. 1, pp. 108-121, Jan., 2020. (SCI, IF: 6.513, Citation: 22)",
+  "text": "Sarala Ghimire, Jae Young Choi, and Bumshik Lee. Using Blockchain for Improved Video Integrity Verification. IEEE Trans. on Multimedia, vol. 22, no. 1, pp. 108-121, Jan., 2020. (SCI, IF: 6.513, Citation: 22)",
+  "year": 2020,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_journal",
+  "kind_label": "International Journal",
+  "seq": 16,
+  "raw": "Jae Young Choi and Bumshik Lee. Combining LSTM Network Ensemble via Adaptive Weighting for Improved Time Series Forecasting. Mathematical Problem in Engineering, vol. 2018, no. 2470171, pp. 1-8, Aug., 2019. (SCIE, IF: 1.305, Citation: 108)",
+  "text": "Jae Young Choi and Bumshik Lee. Combining LSTM Network Ensemble via Adaptive Weighting for Improved Time Series Forecasting. Mathematical Problem in Engineering, vol. 2018, no. 2470171, pp. 1-8, Aug., 2019. (SCIE, IF: 1.305, Citation: 108)",
+  "year": 2019,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_journal",
+  "kind_label": "International Journal",
+  "seq": 17,
+  "raw": "Jae Young Choi. Weighted fusion joint bayesian metric with patch-based facial region-specific features for face identification. Multimedia Tools and Applications, vol. 78, no. 17, pp. 24883-24092, Sep., 2019. (SCIE, IF: 2.757)",
+  "text": "Jae Young Choi. Weighted fusion joint bayesian metric with patch-based facial region-specific features for face identification. Multimedia Tools and Applications, vol. 78, no. 17, pp. 24883-24092, Sep., 2019. (SCIE, IF: 2.757)",
+  "year": 2019,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_journal",
+  "kind_label": "International Journal",
+  "seq": 18,
+  "raw": "Muhammad Ammar Malik, Jae Young Choi, Moonsoo Kang, and Bumshik Lee. Improved Majority Filtering Algorithm for Cleaning Class Label Noise in Supervised Learning. IEICE Trans. Fundamentals, vol. E102-A, no. 11, pp. 1556-1559, Nov., 2019. (SCIE, IF: 0.50)",
+  "text": "Muhammad Ammar Malik, Jae Young Choi, Moonsoo Kang, and Bumshik Lee. Improved Majority Filtering Algorithm for Cleaning Class Label Noise in Supervised Learning. IEICE Trans. Fundamentals, vol. E102-A, no. 11, pp. 1556-1559, Nov., 2019. (SCIE, IF: 0.50)",
+  "year": 2019,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_journal",
+  "kind_label": "International Journal",
+  "seq": 19,
+  "raw": "Bumshik Lee, Waqas ELLAHI, and Jae Young Choi. Using Deep CNN with Data Permutation Scheme for Classification of Alzheimer’s Disease in Structural Magnetic Resonance Imaging (sMRI). IEICE Trans. Information and Systems, vol. E102-D, no. 7, pp. 1384-1395, July, 2019. (SCIE, IF: 0.84)",
+  "text": "Bumshik Lee, Waqas ELLAHI, and Jae Young Choi. Using Deep CNN with Data Permutation Scheme for Classification of Alzheimer’s Disease in Structural Magnetic Resonance Imaging (sMRI). IEICE Trans. Information and Systems, vol. E102-D, no. 7, pp. 1384-1395, July, 2019. (SCIE, IF: 0.84)",
+  "year": 2019,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_journal",
+  "kind_label": "International Journal",
+  "seq": 20,
+  "raw": "Bumshik Lee and Jae Young Choi. A Rate Perceptual-Distortion Optimized Video Cdoing HEVC. IEICE Trans. Information and Systems, vol. E101-D, no. 12, pp. 3158-3169, Dec., 2018. (SCIE, IF: 0.84)",
+  "text": "Bumshik Lee and Jae Young Choi. A Rate Perceptual-Distortion Optimized Video Cdoing HEVC. IEICE Trans. Information and Systems, vol. E101-D, no. 12, pp. 3158-3169, Dec., 2018. (SCIE, IF: 0.84)",
+  "year": 2018,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_journal",
+  "kind_label": "International Journal",
+  "seq": 21,
+  "raw": "Jae Young Choi. Spatial pyramid face feature representation and weighted dissimilarity matching for improved face recognition. The Visual Computer, vol. 34, no. 11, pp. 1535-1549, Nov., 2018. (SCIE, IF: 2.601, Citation: 6)",
+  "text": "Jae Young Choi. Spatial pyramid face feature representation and weighted dissimilarity matching for improved face recognition. The Visual Computer, vol. 34, no. 11, pp. 1535-1549, Nov., 2018. (SCIE, IF: 2.601, Citation: 6)",
+  "year": 2018,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_journal",
+  "kind_label": "International Journal",
+  "seq": 22,
+  "raw": "Youngjin Choi, Hyeong-Gu Choe, Jae Young Choi, Kyeong Tae Kim, Jong-Beom Kim. Automatic Sea Fog Detection and Estimation of Visibility Distance on CCTV. Journal of Coastal Research, vol. 85, no. 10085, pp. 881-885, May, 2018. (SCIE, IF: 0.854)",
+  "text": "Youngjin Choi, Hyeong-Gu Choe, Jae Young Choi, Kyeong Tae Kim, Jong-Beom Kim. Automatic Sea Fog Detection and Estimation of Visibility Distance on CCTV. Journal of Coastal Research, vol. 85, no. 10085, pp. 881-885, May, 2018. (SCIE, IF: 0.854)",
+  "year": 2018,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_journal",
+  "kind_label": "International Journal",
+  "seq": 23,
+  "raw": "Jae Young Choi. Color Compensation via Color-Flow Representation and Eigenspace Manifold Learning for Robust Color-Invariant Face Recognition. Multidimensional Systems and Signal Processing, vol. 29, no. 01, pp. 77-97, Jan., 2018. (SCI, IF: 2.10)",
+  "text": "Jae Young Choi. Color Compensation via Color-Flow Representation and Eigenspace Manifold Learning for Robust Color-Invariant Face Recognition. Multidimensional Systems and Signal Processing, vol. 29, no. 01, pp. 77-97, Jan., 2018. (SCI, IF: 2.10)",
+  "year": 2018,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_journal",
+  "kind_label": "International Journal",
+  "seq": 24,
+  "raw": "Jae Young Choi. Improved deep face identification with multi-class pairwise discriminant loss. Electronics Letters, vol. 53, no. 20, pp. 1356-97, Setp., 2017. (SCI, IF: 1.314)",
+  "text": "Jae Young Choi. Improved deep face identification with multi-class pairwise discriminant loss. Electronics Letters, vol. 53, no. 20, pp. 1356-97, Setp., 2017. (SCI, IF: 1.314)",
+  "year": 2017,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_journal",
+  "kind_label": "International Journal",
+  "seq": 25,
+  "raw": "Jae Young Choi. Feature subspace estimation for resolving dimensionality mismatch in practical color-based face recognition systems. International Journal of Pattern Recognition and Artificial Intelligence, vol. 30, no. 04, pp. (1656004-1)-(1656004-24), April, 2016. (SCI, IF: 1.60)",
+  "text": "Jae Young Choi. Feature subspace estimation for resolving dimensionality mismatch in practical color-based face recognition systems. International Journal of Pattern Recognition and Artificial Intelligence, vol. 30, no. 04, pp. (1656004-1)-(1656004-24), April, 2016. (SCI, IF: 1.60)",
+  "year": 2016,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_journal",
+  "kind_label": "International Journal",
+  "seq": 26,
+  "raw": "Hyungil Kim, Jae Young Choi, Seung-Ho Lee, and Yong Man Ro. Feature Scalability for a Low Complexity Face Recognition with Unconstrained Spatial Resolution. Multimedia Tools and Applications, vol. 75, no. 12, pp. 6887-6908, Jun, 2016. (SCIE, IF: 2.757)",
+  "text": "Hyungil Kim, Jae Young Choi, Seung-Ho Lee, and Yong Man Ro. Feature Scalability for a Low Complexity Face Recognition with Unconstrained Spatial Resolution. Multimedia Tools and Applications, vol. 75, no. 12, pp. 6887-6908, Jun, 2016. (SCIE, IF: 2.757)",
+  "year": 2016,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_journal",
+  "kind_label": "International Journal",
+  "seq": 27,
+  "raw": "Jae Young Choi, Dae Hoe Kim, Konstantinos N. Plataniotis, and Yong Man Ro. Classifier Ensemble Generation and Selection with Multiple Feature Representations for Classification Applications in Computer-Aided Detection and Diagnosis on Mammography. Expert Systems with Applications, vol. 46, no. 15, Mar., pp. 106-121, 2016. (SCI, IF: 6.954, Citation: 56)",
+  "text": "Jae Young Choi, Dae Hoe Kim, Konstantinos N. Plataniotis, and Yong Man Ro. Classifier Ensemble Generation and Selection with Multiple Feature Representations for Classification Applications in Computer-Aided Detection and Diagnosis on Mammography. Expert Systems with Applications, vol. 46, no. 15, Mar., pp. 106-121, 2016. (SCI, IF: 6.954, Citation: 56)",
+  "year": 2016,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_journal",
+  "kind_label": "International Journal",
+  "seq": 28,
+  "raw": "Dae Hoe Kim, Jae Young Choi, and Yong Man Ro. Region Based Stellate Features Combined with Variable Selection Using AdaBoost Learning in Mammographic Computer-aided Detection. Computers in biology and medicine, vol. 63, no. 3, pp. 238-250, Aug., 2015. (SCI, IF: 4.589)",
+  "text": "Dae Hoe Kim, Jae Young Choi, and Yong Man Ro. Region Based Stellate Features Combined with Variable Selection Using AdaBoost Learning in Mammographic Computer-aided Detection. Computers in biology and medicine, vol. 63, no. 3, pp. 238-250, Aug., 2015. (SCI, IF: 4.589)",
+  "year": 2015,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_journal",
+  "kind_label": "International Journal",
+  "seq": 29,
+  "raw": "Se Min Kim, Jae Young Choi, Seungwan Han, and Yong Man Ro. Weighted adaptive fusion of spatial and temporal modalities for video copy detection. Signal Processing: Image Communication, vol. 29, no. 7, pp. 788-806, Aug., 2014. (SCI, IF: 4.17, Citation: 25)",
+  "text": "Se Min Kim, Jae Young Choi, Seungwan Han, and Yong Man Ro. Weighted adaptive fusion of spatial and temporal modalities for video copy detection. Signal Processing: Image Communication, vol. 29, no. 7, pp. 788-806, Aug., 2014. (SCI, IF: 4.17, Citation: 25)",
+  "year": 2014,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_journal",
+  "kind_label": "International Journal",
+  "seq": 30,
+  "raw": "Jae Young Choi, Dae Hoe Kim, Konstantinos N. Plataniotis, and Yong Man Ro. Computer-Aided Detection (CAD) of Breast Masses in Mammography: Combined Detection and Ensemble Classification. Physics in Medicine and Biology, vol. 59, no. 10, pp. 3697-3719, June, 2014. (SCI, IF: 3.609, Citation: 20)",
+  "text": "Jae Young Choi, Dae Hoe Kim, Konstantinos N. Plataniotis, and Yong Man Ro. Computer-Aided Detection (CAD) of Breast Masses in Mammography: Combined Detection and Ensemble Classification. Physics in Medicine and Biology, vol. 59, no. 10, pp. 3697-3719, June, 2014. (SCI, IF: 3.609, Citation: 20)",
+  "year": 2014,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_journal",
+  "kind_label": "International Journal",
+  "seq": 31,
+  "raw": "Jae Hyun Jeon, Jae Young Choi, Sihyung Lee, and Yong Man Ro. Multiple ROI Selection Based Focal Liver Lesion Classification in Ultrasound Images. Expert Systems with Applications, vol. 40, no. 2, pp. 450-457, Feb., 2013. (SCI, IF: 6.954, Citation: 42)",
+  "text": "Jae Hyun Jeon, Jae Young Choi, Sihyung Lee, and Yong Man Ro. Multiple ROI Selection Based Focal Liver Lesion Classification in Ultrasound Images. Expert Systems with Applications, vol. 40, no. 2, pp. 450-457, Feb., 2013. (SCI, IF: 6.954, Citation: 42)",
+  "year": 2013,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_journal",
+  "kind_label": "International Journal",
+  "seq": 32,
+  "raw": "Jae Young Choi and Yong Man Ro. Multiresolution Local Binary Pattern Texture Analysis Combined with Variable Selection for an Application to False Positive Reduction in Computer-Aided Detection of Breast Masses on Mammograms. Physics in Medicine and Biology, vol. 57, no. 21, pp. 7029-7052, Oct., 2012. (SCI, IF: 3.609, Citation: 42)",
+  "text": "Jae Young Choi and Yong Man Ro. Multiresolution Local Binary Pattern Texture Analysis Combined with Variable Selection for an Application to False Positive Reduction in Computer-Aided Detection of Breast Masses on Mammograms. Physics in Medicine and Biology, vol. 57, no. 21, pp. 7029-7052, Oct., 2012. (SCI, IF: 3.609, Citation: 42)",
+  "year": 2012,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_journal",
+  "kind_label": "International Journal",
+  "seq": 33,
+  "raw": "Jae Young Choi, Konstantinos N. Plataniotis, and Yong Man Ro. Face Feature Weighted Fusion Based Fuzzy Membership Degree for Video Face Recognition. IEEE Trans. on Systems. Man and Cybernetics- Part B., vol. 42, no. 4, pp. 1270-1282, Aug., 2012. (SCI, IF: 11.448, Citation: 25)",
+  "text": "Jae Young Choi, Konstantinos N. Plataniotis, and Yong Man Ro. Face Feature Weighted Fusion Based Fuzzy Membership Degree for Video Face Recognition. IEEE Trans. on Systems. Man and Cybernetics- Part B., vol. 42, no. 4, pp. 1270-1282, Aug., 2012. (SCI, IF: 11.448, Citation: 25)",
+  "year": 2012,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_journal",
+  "kind_label": "International Journal",
+  "seq": 34,
+  "raw": "Hyun-seok Min, Jae Young Choi, Wesley De Neve, and Yong Man Ro. Near-Duplicate Video Clip Detection Using Model-Free Semantic Concept Detection and Adaptive Semantic Distance Measurement. IEEE Trans. on Circuits and Systems for Video Technology, vol. 22, no. 8, pp. 1174-1187, Aug., 2012. (SCI, IF: 6.01, Citation: 18)",
+  "text": "Hyun-seok Min, Jae Young Choi, Wesley De Neve, and Yong Man Ro. Near-Duplicate Video Clip Detection Using Model-Free Semantic Concept Detection and Adaptive Semantic Distance Measurement. IEEE Trans. on Circuits and Systems for Video Technology, vol. 22, no. 8, pp. 1174-1187, Aug., 2012. (SCI, IF: 6.01, Citation: 18)",
+  "year": 2012,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_journal",
+  "kind_label": "International Journal",
+  "seq": 35,
+  "raw": "Seung-Ho Lee, Jae Young Choi, Yong Man Ro, and Konstantinos N. Plataniotis. Local Color Vector Binary Patterns From Multichannel Face Images for Face Recognition. IEEE Trans. on Image Processing, vol. 21, no. 4, pp. 2347-2353, April, 2012. (SCI, IF: 10.856, Citation: 151)",
+  "text": "Seung-Ho Lee, Jae Young Choi, Yong Man Ro, and Konstantinos N. Plataniotis. Local Color Vector Binary Patterns From Multichannel Face Images for Face Recognition. IEEE Trans. on Image Processing, vol. 21, no. 4, pp. 2347-2353, April, 2012. (SCI, IF: 10.856, Citation: 151)",
+  "year": 2012,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_journal",
+  "kind_label": "International Journal",
+  "seq": 36,
+  "raw": "Jae Young Choi, Yong Man Ro, and Konstantinos N. Plataniotis. Color Local Texture Features for Color Face Recognition. IEEE Trans. on Image Processing, vol. 21, no. 3, pp. 1366-1380, March, 2012. (SCI, IF: 10.856, Citation: 184)",
+  "text": "Jae Young Choi, Yong Man Ro, and Konstantinos N. Plataniotis. Color Local Texture Features for Color Face Recognition. IEEE Trans. on Image Processing, vol. 21, no. 3, pp. 1366-1380, March, 2012. (SCI, IF: 10.856, Citation: 184)",
+  "year": 2012,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_journal",
+  "kind_label": "International Journal",
+  "seq": 37,
+  "raw": "Hyun-seok Min, Jae Young Choi, Wesley De Neve, and Yong Man Ro. Bimodal Fusion of Low-level Visual Features and High-Level Semantic Features for Near-duplicate Video Clip Detection. Signal Processing: Image Communication, vol. 26, no. 10, pp. 612-627, Nov., 2011. (SCI, IF: 4.17, Citation: 11)",
+  "text": "Hyun-seok Min, Jae Young Choi, Wesley De Neve, and Yong Man Ro. Bimodal Fusion of Low-level Visual Features and High-Level Semantic Features for Near-duplicate Video Clip Detection. Signal Processing: Image Communication, vol. 26, no. 10, pp. 612-627, Nov., 2011. (SCI, IF: 4.17, Citation: 11)",
+  "year": 2011,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_journal",
+  "kind_label": "International Journal",
+  "seq": 38,
+  "raw": "Jae Young Choi, Yong Man Ro, and Konstantinos N. Plataniotis. Boosting Color Feature Selection for Color Face Recognition. IEEE Trans. on Image Processing, vol. 20, no. 5, pp. 1425-1434, May, 2011. (SCI, IF: 10.856, Citation: 83)",
+  "text": "Jae Young Choi, Yong Man Ro, and Konstantinos N. Plataniotis. Boosting Color Feature Selection for Color Face Recognition. IEEE Trans. on Image Processing, vol. 20, no. 5, pp. 1425-1434, May, 2011. (SCI, IF: 10.856, Citation: 83)",
+  "year": 2011,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_journal",
+  "kind_label": "International Journal",
+  "seq": 39,
+  "raw": "Jae Young Choi, Wesley De Neve, Konstantinos N. Plataniotis, Yong Man Ro. Collaborative Face Recognition for Improved Face Annotation in Personal Photo Collections Shared on Online Social Networks. IEEE Trans. on Multimedia, vol. 13, no. 1, pp. 14-28, Feb., 2011. (SCI, IF: 6.513, Citation: 131)",
+  "text": "Jae Young Choi, Wesley De Neve, Konstantinos N. Plataniotis, Yong Man Ro. Collaborative Face Recognition for Improved Face Annotation in Personal Photo Collections Shared on Online Social Networks. IEEE Trans. on Multimedia, vol. 13, no. 1, pp. 14-28, Feb., 2011. (SCI, IF: 6.513, Citation: 131)",
+  "year": 2011,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_journal",
+  "kind_label": "International Journal",
+  "seq": 40,
+  "raw": "Jae Young Choi, Yong Man Ro, and Konstantinos N. Plataniotis. A Comparative Study of Preprocessing Mismatch Effects in Color Image Based Face Recognition. Pattern Recognition, vol. 44, no. 2, pp. 412-430, Feb., 2011. (SCI, IF: 7.74, Citation: 44)",
+  "text": "Jae Young Choi, Yong Man Ro, and Konstantinos N. Plataniotis. A Comparative Study of Preprocessing Mismatch Effects in Color Image Based Face Recognition. Pattern Recognition, vol. 44, no. 2, pp. 412-430, Feb., 2011. (SCI, IF: 7.74, Citation: 44)",
+  "year": 2011,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_journal",
+  "kind_label": "International Journal",
+  "seq": 41,
+  "raw": "Jae Young Choi, Wesley De Neve, Yong Man Ro, Konstantinos N. Plataniotis. Automatic Face Annotation in Personal Photo Collections Using Context-Based Unsupervised Clustering and Face Information Fusion. IEEE Trans. on Circuits and Systems for Video Technology, vol. 20, no. 10, pp. 1292-1309, Oct., 2010. (SCI, IF: 6.01, Citation: 39)",
+  "text": "Jae Young Choi, Wesley De Neve, Yong Man Ro, Konstantinos N. Plataniotis. Automatic Face Annotation in Personal Photo Collections Using Context-Based Unsupervised Clustering and Face Information Fusion. IEEE Trans. on Circuits and Systems for Video Technology, vol. 20, no. 10, pp. 1292-1309, Oct., 2010. (SCI, IF: 6.01, Citation: 39)",
+  "year": 2010,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_journal",
+  "kind_label": "International Journal",
+  "seq": 42,
+  "raw": "Jae Young Choi, Wesley De Neve, Yong Man Ro. Towards an Automatic Face Indexing System for Actor-based Video Services in an IPTV Environment. IEEE Trans. on Consumer Electronics, vol. 56. no. 1, pp. 147-155, Feb., 2010. (SCIE, IF: 2.74, Citation: 32)",
+  "text": "Jae Young Choi, Wesley De Neve, Yong Man Ro. Towards an Automatic Face Indexing System for Actor-based Video Services in an IPTV Environment. IEEE Trans. on Consumer Electronics, vol. 56. no. 1, pp. 147-155, Feb., 2010. (SCIE, IF: 2.74, Citation: 32)",
+  "year": 2010,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "intl_journal",
+  "kind_label": "International Journal",
+  "seq": 43,
+  "raw": "Jae Young Choi, Yong Man Ro, and Konstantinos N. Plataniotis. Color Face Recognition for Degraded Face Images. IEEE Trans. on Systems. Man and Cybernetics- Part B, vol. 39, no. 5, pp. 1217-1230, Oct., 2009. (SCI, IF: 11.448, Citation: .pdf",
+  "text": "Jae Young Choi, Yong Man Ro, and Konstantinos N. Plataniotis. Color Face Recognition for Degraded Face Images. IEEE Trans. on Systems. Man and Cybernetics- Part B, vol. 39, no. 5, pp. 1217-1230, Oct., 2009. (SCI, IF: 11.448, Citation: .pdf",
+  "year": 2009,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "patent",
+  "kind_label": "Patents",
+  "seq": 3,
+  "raw": "**최재영, 조민수**. 다중 객체 추적 시스템 및 방법{SYSTEM AND METHOD FOR TRACKING MULTI OBJECT} (출원번호: 10-2025-0045299, 2025년 4월 08일)",
+  "text": "최재영, 조민수. 다중 객체 추적 시스템 및 방법{SYSTEM AND METHOD FOR TRACKING MULTI OBJECT} (출원번호: 10-2025-0045299, 2025년 4월 08일)",
+  "year": 2025,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "patent",
+  "kind_label": "Patents",
+  "seq": 1,
+  "raw": "**최재영, 김경태**. 의류 사이즈 및 신체 사이즈를 고려한 가상 의류 착용 이미지 생성방법, 컴퓨팅 장치 및 컴퓨터프로그램 {METHOD, COMPUTING DEVICE AND COMPUTER PROGRAM FOR GENERATING VIRTUAL CLOTHING TRY-ON IMAGES CONSIDERING CLOTHING SIZE AND BODY SIZE} (출원번호: 10-2024-0175132, 2024년 11월 29일)",
+  "text": "최재영, 김경태. 의류 사이즈 및 신체 사이즈를 고려한 가상 의류 착용 이미지 생성방법, 컴퓨팅 장치 및 컴퓨터프로그램 {METHOD, COMPUTING DEVICE AND COMPUTER PROGRAM FOR GENERATING VIRTUAL CLOTHING TRY-ON IMAGES CONSIDERING CLOTHING SIZE AND BODY SIZE} (출원번호: 10-2024-0175132, 2024년 11월 29일)",
+  "year": 2024,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "patent",
+  "kind_label": "Patents",
+  "seq": 2,
+  "raw": "**최재영, 김경태, 이강인, 전용권, 이지은**. 차량 탑승자의 표정인식 장치 및 방법 (출원번호: US 18/908,443, 2024년 10월 07일)",
+  "text": "최재영, 김경태, 이강인, 전용권, 이지은. 차량 탑승자의 표정인식 장치 및 방법 (출원번호: US 18/908,443, 2024년 10월 07일)",
+  "year": 2024,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "patent",
+  "kind_label": "Patents",
+  "seq": 4,
+  "raw": "**최재영, 김경태**. 수면부족으로 인한 피로도 분석 시스템 및 방법{SYSTEM FOR ANALYSISING FATIGUE DUE TO LACK OF SLEEP AND METHOD THEREOF}. (출원번호: 10-2022-0118826, 2022년 9월 20일) (등록번호: 10-2886450, 2025년 11월 11일)",
+  "text": "최재영, 김경태. 수면부족으로 인한 피로도 분석 시스템 및 방법{SYSTEM FOR ANALYSISING FATIGUE DUE TO LACK OF SLEEP AND METHOD THEREOF}. (출원번호: 10-2022-0118826, 2022년 9월 20일) (등록번호: 10-2886450, 2025년 11월 11일)",
+  "year": 2022,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "patent",
+  "kind_label": "Patents",
+  "seq": 5,
+  "raw": "**최재영, 곽민호** . 피부 병변 분류 장치 및 방법{Apparatus and method for skin lesion classification}. Korea Patent (Application number: P210111, Mar., 2022) (특허 등록번호: 10-2381763, 2022년 12월 22일).",
+  "text": "최재영, 곽민호 . 피부 병변 분류 장치 및 방법{Apparatus and method for skin lesion classification}. Korea Patent (Application number: P210111, Mar., 2022) (특허 등록번호: 10-2381763, 2022년 12월 22일).",
+  "year": 2022,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "patent",
+  "kind_label": "Patents",
+  "seq": 6,
+  "raw": "**최재영, 곽민호.** 고속 연산이 가능한 딥러닝 신경망 장치{CONVOLUTION NEURAL NETWORK SYSTEM CAPABLE OF HIGH SPEED COMPUTATION}. Korea Patent (Application number: P20210061346), May, 2021) (특허 등록번호: 10-2507855, 2023년 3월 3일).",
+  "text": "최재영, 곽민호. 고속 연산이 가능한 딥러닝 신경망 장치{CONVOLUTION NEURAL NETWORK SYSTEM CAPABLE OF HIGH SPEED COMPUTATION}. Korea Patent (Application number: P20210061346), May, 2021) (특허 등록번호: 10-2507855, 2023년 3월 3일).",
+  "year": 2021,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "patent",
+  "kind_label": "Patents",
+  "seq": 7,
+  "raw": "Youngjin Choi, **Jae Young Choi**, and JinWook Lim. 해수면 온도 영상 복원 시스템 및 장치{SEA SURFACE TEMPERATURE IMAGES REGENERATING SYSTEM AND METHOD USIGN GAN DEEP LEARNING}. Korea Patent (Registration number: 10-2016977), , 2019.",
+  "text": "Youngjin Choi, Jae Young Choi, and JinWook Lim. 해수면 온도 영상 복원 시스템 및 장치{SEA SURFACE TEMPERATURE IMAGES REGENERATING SYSTEM AND METHOD USIGN GAN DEEP LEARNING}. Korea Patent (Registration number: 10-2016977), , 2019.",
+  "year": 2019,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "patent",
+  "kind_label": "Patents",
+  "seq": 8,
+  "raw": "Youngjin Choi, **Jae Young Choi**, and Songhee Kang. 시계열 데이터 예측 시스템{*Time-series data predicting system}.* Korea Patent (Registration number: 10-1919076), , 2018.",
+  "text": "Youngjin Choi, Jae Young Choi, and Songhee Kang. 시계열 데이터 예측 시스템{Time-series data predicting system}. Korea Patent (Registration number: 10-1919076), , 2018.",
+  "year": 2018,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "patent",
+  "kind_label": "Patents",
+  "seq": 9,
+  "raw": "**Jae Young Choi**. 컬러 얼굴인식을 위한 컬러 보상장치{*Color compensation device for color face recognition}.* Korea Patent (Registration number: 10-1713293), June, 2017.",
+  "text": "Jae Young Choi. 컬러 얼굴인식을 위한 컬러 보상장치{Color compensation device for color face recognition}. Korea Patent (Registration number: 10-1713293), June, 2017.",
+  "year": 2017,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "patent",
+  "kind_label": "Patents",
+  "seq": 10,
+  "raw": "**Jae Young Choi** and Kiwon Sohn. *ULTRASOUND APPARATUS AND CONTROL METHOD FOR THE SAME*. US Patent (Registration No: US14/844,505), 2017.",
+  "text": "Jae Young Choi and Kiwon Sohn. ULTRASOUND APPARATUS AND CONTROL METHOD FOR THE SAME. US Patent (Registration No: US14/844,505), 2017.",
+  "year": 2017,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "patent",
+  "kind_label": "Patents",
+  "seq": 11,
+  "raw": "Minsu Cheon, Kiwon Son, Hokyung Kang, and **Jae Young Choi**. *A method of recognition and extraction of cardiac ultrasound image view planes*. Korea Patent (Application number: P20140035379), Feb., 2014.",
+  "text": "Minsu Cheon, Kiwon Son, Hokyung Kang, and Jae Young Choi. A method of recognition and extraction of cardiac ultrasound image view planes. Korea Patent (Application number: P20140035379), Feb., 2014.",
+  "year": 2014,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "patent",
+  "kind_label": "Patents",
+  "seq": 12,
+  "raw": "Choong Hwan Choi, Yong Man Ro, Dokwan Oh, Dae Hoe Kim, **Jae Young Choi**, Woosup Han. *APPARATUS AND METHOD FOR ESTIMATING WHETHER MALIGNANT TUMOR IS IN OBJECT BY USING MEDICAL IMAGE*. Korea Patent (Registration number: P20130007095), July, 2014.",
+  "text": "Choong Hwan Choi, Yong Man Ro, Dokwan Oh, Dae Hoe Kim, Jae Young Choi, Woosup Han. APPARATUS AND METHOD FOR ESTIMATING WHETHER MALIGNANT TUMOR IS IN OBJECT BY USING MEDICAL IMAGE. Korea Patent (Registration number: P20130007095), July, 2014.",
+  "year": 2014,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "patent",
+  "kind_label": "Patents",
+  "seq": 13,
+  "raw": "Minsu Cheon, Kiwon Son, Hokyung Kang, **Jae Young Choi**. *A method of recognition and extraction of cardiac ultrasound image view planes*. Korea Patent (Application number: P20140035379), Feb., 2014.",
+  "text": "Minsu Cheon, Kiwon Son, Hokyung Kang, Jae Young Choi. A method of recognition and extraction of cardiac ultrasound image view planes. Korea Patent (Application number: P20140035379), Feb., 2014.",
+  "year": 2014,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "patent",
+  "kind_label": "Patents",
+  "seq": 14,
+  "raw": "Choong Hwan Choi, Yong Man Ro, Dokwan Oh, Dae Hoe Kim, **Jae Young Choi**, Woosup Han. *Apparatus and Method for Estimating Malignant Tumor*. Korea Patent (P20130005120), Jan., 2013. Also filed in EP(13188108.8) and US(US14/031093).",
+  "text": "Choong Hwan Choi, Yong Man Ro, Dokwan Oh, Dae Hoe Kim, Jae Young Choi, Woosup Han. Apparatus and Method for Estimating Malignant Tumor. Korea Patent (P20130005120), Jan., 2013. Also filed in EP(13188108.8) and US(US14/031093).",
+  "year": 2013,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "patent",
+  "kind_label": "Patents",
+  "seq": 15,
+  "raw": "Yong Man Ro and **Jae Young Choi**. *Face annotation for personal photos using collaborative face recognition in online social networks*. Korea patent (Registration number: 10-1089288), Dec., 2011.",
+  "text": "Yong Man Ro and Jae Young Choi. Face annotation for personal photos using collaborative face recognition in online social networks. Korea patent (Registration number: 10-1089288), Dec., 2011.",
+  "year": 2011,
+  "pdf": "",
+  "doi": ""
+ },
+ {
+  "kind": "patent",
+  "kind_label": "Patents",
+  "seq": 16,
+  "raw": "Yong Man Ro and **Jae Young Choi**. *Automatic face recognition apparatus and method based on multiple face information fusion*. Korea patent (Registration number: 10-1089287), Dec., 2011.",
+  "text": "Yong Man Ro and Jae Young Choi. Automatic face recognition apparatus and method based on multiple face information fusion. Korea patent (Registration number: 10-1089287), Dec., 2011.",
+  "year": 2011,
+  "pdf": "",
+  "doi": ""
+ }
+]

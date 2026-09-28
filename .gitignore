@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Django 런타임
+*.sqlite3
+/media/
+/staticfiles/
+.env
+local_settings.py
+
+# 이동 후 남은 빈 폴더 (내용은 seed/ 로 이동)
+/data/
+
+# OS · 편집기
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

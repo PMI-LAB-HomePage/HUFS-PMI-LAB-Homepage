@@ -1,0 +1,596 @@
+[
+ {
+  "name": "Prof. Jae Young, Choi",
+  "emails": [
+   "https://app.notion.comjychoi@hufs.ac.kr"
+  ],
+  "status": [
+   "PMI Lab Director"
+  ],
+  "research_interest": [
+   "Deep Learning",
+   "Machine Learning",
+   "Pattern Recognition"
+  ],
+  "career_after": "",
+  "is_current": true,
+  "sources": [
+   "home_inline",
+   "members_page"
+  ],
+  "name_variants": [
+   "Prof. Jae Young, Choi"
+  ],
+  "order": 0
+ },
+ {
+  "name": "Kyung Tae, Kim",
+  "emails": [
+   "rudxo9251@gmail.com"
+  ],
+  "status": [
+   "Ph.D Student",
+   "MS. Graduate"
+  ],
+  "research_interest": [
+   "CNN",
+   "Deep Face Recognition"
+  ],
+  "career_after": "PMI 연구실 박사과정",
+  "is_current": true,
+  "sources": [
+   "home_inline",
+   "members_page",
+   "alumni"
+  ],
+  "name_variants": [
+   "Kyung Tae, Kim",
+   "Kyung-Tae, Kim"
+  ],
+  "order": 1
+ },
+ {
+  "name": "Hyun Jun, Yun",
+  "emails": [
+   "mailto:guswns3108@naver.com"
+  ],
+  "status": [
+   "Master Student"
+  ],
+  "research_interest": [
+   "Computer Vision",
+   "Deep Learning"
+  ],
+  "career_after": "",
+  "is_current": true,
+  "sources": [
+   "home_inline"
+  ],
+  "name_variants": [
+   "Hyun Jun, Yun"
+  ],
+  "order": 2
+ },
+ {
+  "name": "Jun Yong, Lee",
+  "emails": [
+   "mailto:diziyong@hufs.ac.kr"
+  ],
+  "status": [
+   "Master Student"
+  ],
+  "research_interest": [
+   "Computer Vision",
+   "Deep Learning"
+  ],
+  "career_after": "",
+  "is_current": true,
+  "sources": [
+   "home_inline"
+  ],
+  "name_variants": [
+   "Jun Yong, Lee"
+  ],
+  "order": 3
+ },
+ {
+  "name": "Min Su, Jo",
+  "emails": [
+   "alstn59v@naver.com"
+  ],
+  "status": [
+   "Master Student"
+  ],
+  "research_interest": [
+   "Image restoration",
+   "Medical Image"
+  ],
+  "career_after": "",
+  "is_current": true,
+  "sources": [
+   "members_page",
+   "alumni"
+  ],
+  "name_variants": [
+   "Min Su, Jo"
+  ],
+  "order": 4
+ },
+ {
+  "name": "고천우(GAO TIANYU)",
+  "emails": [
+   "mailto:gty9228@naver.com"
+  ],
+  "status": [
+   "Master Student"
+  ],
+  "research_interest": [
+   "Computer Vision",
+   "Deep Learning"
+  ],
+  "career_after": "",
+  "is_current": true,
+  "sources": [
+   "home_inline"
+  ],
+  "name_variants": [
+   "고천우(GAO TIANYU)"
+  ],
+  "order": 5
+ },
+ {
+  "name": "조건욱",
+  "emails": [
+   "mailto:geonugjo@gmail.com"
+  ],
+  "status": [
+   "Master Student"
+  ],
+  "research_interest": [
+   "Cross Modal Vision",
+   "Deep Learning",
+   "Hyperspectral Reconstruction"
+  ],
+  "career_after": "",
+  "is_current": true,
+  "sources": [
+   "home_inline"
+  ],
+  "name_variants": [
+   "조건욱"
+  ],
+  "order": 6
+ },
+ {
+  "name": "Mi Young, Kim",
+  "emails": [
+   "mailto:aldud146@naver.com"
+  ],
+  "status": [
+   "학부생연구원"
+  ],
+  "research_interest": [
+   "Deep Learning",
+   "Machine Learning"
+  ],
+  "career_after": "",
+  "is_current": true,
+  "sources": [
+   "members_page",
+   "alumni"
+  ],
+  "name_variants": [
+   "Mi Young, Kim"
+  ],
+  "order": 7
+ },
+ {
+  "name": "YUJIN, LEE",
+  "emails": [
+   "mailto:yujin0909@hufs.ac.kr"
+  ],
+  "status": [
+   "연구실 연구원"
+  ],
+  "research_interest": [
+   "Deep Learning"
+  ],
+  "career_after": "",
+  "is_current": true,
+  "sources": [
+   "home_inline"
+  ],
+  "name_variants": [
+   "YUJIN, LEE"
+  ],
+  "order": 8
+ },
+ {
+  "name": "Heungbae, Choi",
+  "emails": [
+   "mailto:hbchoi@geosr.com"
+  ],
+  "status": [
+   "Ph.D Student"
+  ],
+  "research_interest": [
+   "Image restoration"
+  ],
+  "career_after": "",
+  "is_current": false,
+  "sources": [
+   "alumni"
+  ],
+  "name_variants": [
+   "Heungbae, Choi"
+  ],
+  "order": 9
+ },
+ {
+  "name": "Joon Min Lee",
+  "emails": [],
+  "status": [
+   "Master Student"
+  ],
+  "research_interest": [],
+  "career_after": "병특회사 취업",
+  "is_current": false,
+  "sources": [
+   "alumni"
+  ],
+  "name_variants": [
+   "Joon Min Lee"
+  ],
+  "order": 10
+ },
+ {
+  "name": "Min-Ho, Kwak",
+  "emails": [
+   "sonic1704@gmail.com"
+  ],
+  "status": [
+   "Master Student"
+  ],
+  "research_interest": [
+   "ADAS",
+   "Image Translation",
+   "Lightweight Deep Learning",
+   "Object Detection"
+  ],
+  "career_after": "",
+  "is_current": false,
+  "sources": [
+   "alumni"
+  ],
+  "name_variants": [
+   "Min-Ho, Kwak"
+  ],
+  "order": 11
+ },
+ {
+  "name": "Seong-Joo, Kim",
+  "emails": [
+   "seongjbee1110@gmail.com"
+  ],
+  "status": [
+   "Master Student",
+   "취업"
+  ],
+  "research_interest": [
+   "Image Translation",
+   "Super-resolution Image"
+  ],
+  "career_after": "",
+  "is_current": false,
+  "sources": [
+   "alumni"
+  ],
+  "name_variants": [
+   "Seong-Joo, Kim"
+  ],
+  "order": 12
+ },
+ {
+  "name": "한아영",
+  "emails": [],
+  "status": [
+   "Master Student",
+   "취업"
+  ],
+  "research_interest": [],
+  "career_after": "",
+  "is_current": false,
+  "sources": [
+   "alumni"
+  ],
+  "name_variants": [
+   "한아영"
+  ],
+  "order": 13
+ },
+ {
+  "name": "Changhee Hong",
+  "emails": [
+   "mailto:changhi9701@gmail.com"
+  ],
+  "status": [
+   "학부생연구원"
+  ],
+  "research_interest": [],
+  "career_after": "",
+  "is_current": false,
+  "sources": [
+   "alumni"
+  ],
+  "name_variants": [
+   "Changhee Hong"
+  ],
+  "order": 14
+ },
+ {
+  "name": "Chanseon, Park",
+  "emails": [
+   "mailto:tina0529@naver.com"
+  ],
+  "status": [
+   "학부생연구원"
+  ],
+  "research_interest": [],
+  "career_after": "",
+  "is_current": false,
+  "sources": [
+   "alumni"
+  ],
+  "name_variants": [
+   "Chanseon, Park"
+  ],
+  "order": 15
+ },
+ {
+  "name": "Dohyeon, Kim",
+  "emails": [
+   "mailto:ehgus6158@hufs.ac.kr"
+  ],
+  "status": [
+   "학부생연구원"
+  ],
+  "research_interest": [
+   "Machine Learning",
+   "Pattern Recognition"
+  ],
+  "career_after": "",
+  "is_current": false,
+  "sources": [
+   "alumni"
+  ],
+  "name_variants": [
+   "Dohyeon, Kim"
+  ],
+  "order": 16
+ },
+ {
+  "name": "Jimin, Jung",
+  "emails": [
+   "mailto:stopmin02@hufs.ac.kr"
+  ],
+  "status": [
+   "고려대학교 대학원",
+   "학부생연구원"
+  ],
+  "research_interest": [
+   "Pattern Recognition"
+  ],
+  "career_after": "",
+  "is_current": false,
+  "sources": [
+   "alumni"
+  ],
+  "name_variants": [
+   "Jimin, Jung"
+  ],
+  "order": 17
+ },
+ {
+  "name": "SEOYOUNG, LEE",
+  "emails": [
+   "mailto:e_seoyoung@naver.com"
+  ],
+  "status": [
+   "학부생연구원"
+  ],
+  "research_interest": [],
+  "career_after": "",
+  "is_current": false,
+  "sources": [
+   "alumni"
+  ],
+  "name_variants": [
+   "SEOYOUNG, LEE"
+  ],
+  "order": 18
+ },
+ {
+  "name": "YERYEONG, JANG",
+  "emails": [
+   "mailto:yenimal0103@naver.com"
+  ],
+  "status": [
+   "학부생연구원"
+  ],
+  "research_interest": [
+   "Machine Learning"
+  ],
+  "career_after": "",
+  "is_current": false,
+  "sources": [
+   "alumni"
+  ],
+  "name_variants": [
+   "YERYEONG, JANG"
+  ],
+  "order": 19
+ },
+ {
+  "name": "한승균",
+  "emails": [
+   "mailto:mashan120@hufs.ac.kr"
+  ],
+  "status": [
+   "학부생연구원"
+  ],
+  "research_interest": [
+   "Pattern Recognition"
+  ],
+  "career_after": "",
+  "is_current": false,
+  "sources": [
+   "alumni"
+  ],
+  "name_variants": [
+   "한승균"
+  ],
+  "order": 20
+ },
+ {
+  "name": "Jae-Hyun Kim",
+  "emails": [],
+  "status": [
+   "MS. Graduate"
+  ],
+  "research_interest": [],
+  "career_after": "병특회사 취업",
+  "is_current": false,
+  "sources": [
+   "alumni"
+  ],
+  "name_variants": [
+   "Jae-Hyun Kim"
+  ],
+  "order": 21
+ },
+ {
+  "name": "Ji-Soo, Lee",
+  "emails": [],
+  "status": [
+   "MS. Graduate"
+  ],
+  "research_interest": [],
+  "career_after": "병특회사 취업",
+  "is_current": false,
+  "sources": [
+   "alumni"
+  ],
+  "name_variants": [
+   "Ji-Soo, Lee"
+  ],
+  "order": 22
+ },
+ {
+  "name": "Jin-Wook, Lim",
+  "emails": [],
+  "status": [
+   "BS. Graduate"
+  ],
+  "research_interest": [],
+  "career_after": "고려대학교 대학원",
+  "is_current": false,
+  "sources": [
+   "alumni"
+  ],
+  "name_variants": [
+   "Jin-Wook, Lim"
+  ],
+  "order": 23
+ },
+ {
+  "name": "Joo-Hyung, Son",
+  "emails": [],
+  "status": [
+   "MS. Graduate"
+  ],
+  "research_interest": [],
+  "career_after": "(주)인터파크",
+  "is_current": false,
+  "sources": [
+   "alumni"
+  ],
+  "name_variants": [
+   "Joo-Hyung, Son"
+  ],
+  "order": 24
+ },
+ {
+  "name": "Joo-Young, Yoon",
+  "emails": [],
+  "status": [
+   "MS. Graduate"
+  ],
+  "research_interest": [],
+  "career_after": "아산병원 AI 연구소",
+  "is_current": false,
+  "sources": [
+   "alumni"
+  ],
+  "name_variants": [
+   "Joo-Young, Yoon"
+  ],
+  "order": 25
+ },
+ {
+  "name": "Kyung-Shin, Yoon",
+  "emails": [],
+  "status": [
+   "MS. Graduate"
+  ],
+  "research_interest": [],
+  "career_after": "병특회사 취업",
+  "is_current": false,
+  "sources": [
+   "alumni"
+  ],
+  "name_variants": [
+   "Kyung-Shin, Yoon"
+  ],
+  "order": 26
+ },
+ {
+  "name": "Moon-Up, Kim",
+  "emails": [
+   "mailto:hub99op@gmail.com"
+  ],
+  "status": [
+   "MS. Graduate"
+  ],
+  "research_interest": [
+   "GAN",
+   "LSTM",
+   "Time Series Prediction"
+  ],
+  "career_after": "(주)블록체인랩스",
+  "is_current": false,
+  "sources": [
+   "alumni"
+  ],
+  "name_variants": [
+   "Moon-Up, Kim"
+  ],
+  "order": 27
+ },
+ {
+  "name": "Song-Hee, Kang",
+  "emails": [],
+  "status": [
+   "MS. Graduate"
+  ],
+  "research_interest": [],
+  "career_after": "(주)스트라드비젼",
+  "is_current": false,
+  "sources": [
+   "alumni"
+  ],
+  "name_variants": [
+   "Song-Hee, Kang"
+  ],
+  "order": 28
+ }
+]

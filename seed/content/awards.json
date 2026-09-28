@@ -1,0 +1,82 @@
+[
+ {
+  "title": "[Korea Multimedia 2023] Best Paper Award(최우수논문상)",
+  "date": "2023년 5월 21일",
+  "tags": [
+   "Master Student",
+   "Ph.D Student",
+   "Professor"
+  ],
+  "images": [
+   "assets/img/awards/korea-multimedia-2023-best-paper-award/01.webp",
+   "assets/img/awards/korea-multimedia-2023-best-paper-award/02.webp"
+  ]
+ },
+ {
+  "title": "[Korea Multimedia 2022] Outstanding Paper Award",
+  "date": "2022년 11월 17일",
+  "tags": [
+   "Undergraduate",
+   "학부생연구원"
+  ],
+  "images": [
+   "assets/img/awards/korea-multimedia-2022-outstanding-paper-award/01.webp",
+   "assets/img/awards/korea-multimedia-2022-outstanding-paper-award/02.webp",
+   "assets/img/awards/korea-multimedia-2022-outstanding-paper-award/03.webp"
+  ]
+ },
+ {
+  "title": "[Korea Multimedia 2021] Best Paper Award",
+  "date": "2021년 4월 30일",
+  "tags": [
+   "Ph.D Student",
+   "Professor"
+  ],
+  "images": [
+   "assets/img/awards/korea-multimedia-2021-best-paper-award/01.webp",
+   "assets/img/awards/korea-multimedia-2021-best-paper-award/02.webp",
+   "assets/img/awards/korea-multimedia-2021-best-paper-award/03.webp"
+  ]
+ },
+ {
+  "title": "[IPIU 2021] Outstanding Paper Award",
+  "date": "2021년 2월 5일",
+  "tags": [
+   "Master Student"
+  ],
+  "images": [
+   "assets/img/awards/ipiu-2021-outstanding-paper-award/01.webp"
+  ]
+ },
+ {
+  "title": "[MDPI 2020] Outstanding Paper Award",
+  "date": "2020년 6월 7일",
+  "tags": [
+   "Professor"
+  ],
+  "images": [
+   "assets/img/awards/mdpi-2020-outstanding-paper-award/01.webp"
+  ]
+ },
+ {
+  "title": "[IPIU 2019] Outstanding Paper Award",
+  "date": "2019년 2월 15일",
+  "tags": [
+   "Master Student",
+   "Professor"
+  ],
+  "images": [
+   "assets/img/awards/ipiu-2019-outstanding-paper-award/01.webp"
+  ]
+ },
+ {
+  "title": "[IPIU 2018] Outstanding Poster Award",
+  "date": "2018년 2월 9일",
+  "tags": [
+   "Master Student"
+  ],
+  "images": [
+   "assets/img/awards/ipiu-2018-outstanding-poster-award/01.webp"
+  ]
+ }
+]

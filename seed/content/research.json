@@ -1,0 +1,106 @@
+[
+ {
+  "title": "Deep Attention Learning",
+  "subtitle": "",
+  "images": [
+   "assets/img/research/deep-attention-learning/01.webp"
+  ],
+  "order": 0
+ },
+ {
+  "title": "Deep Image Restoration",
+  "subtitle": "",
+  "images": [
+   "assets/img/research/deep-image-restoration/01.webp",
+   "assets/img/research/deep-image-restoration/02.webp"
+  ],
+  "order": 1
+ },
+ {
+  "title": "Object Re-Identification",
+  "subtitle": "",
+  "images": [
+   "assets/img/research/object-re-identification/01.webp"
+  ],
+  "order": 2
+ },
+ {
+  "title": "Deep Domain Adaptation",
+  "subtitle": "",
+  "images": [
+   "assets/img/research/deep-domain-adaptation/01.webp"
+  ],
+  "order": 3
+ },
+ {
+  "title": "Object Detection and Tracking",
+  "subtitle": "",
+  "images": [
+   "assets/img/research/object-detection-and-tracking/01.webp",
+   "assets/img/research/object-detection-and-tracking/02.webp",
+   "assets/img/research/object-detection-and-tracking/03.webp",
+   "assets/video/research/seoul-afternoon-detection_and_tracking_.mp4",
+   "assets/video/research/seoul-night-detection_and_tracking_.mp4",
+   "assets/video/research/ua-car-detection_and_tracking_.mp4"
+  ],
+  "order": 4
+ },
+ {
+  "title": "3D DCNN and ConvLSTM for Predicting fine dust",
+  "subtitle": "미세먼지 예측 딥러닝 모델 개발",
+  "images": [
+   "assets/img/research/3d-dcnn-and-convlstm-for-predicting-fine-dust/01.webp",
+   "assets/img/research/3d-dcnn-and-convlstm-for-predicting-fine-dust/02.webp",
+   "assets/img/research/3d-dcnn-and-convlstm-for-predicting-fine-dust/03.webp",
+   "assets/img/research/3d-dcnn-and-convlstm-for-predicting-fine-dust/04.webp"
+  ],
+  "order": 5
+ },
+ {
+  "title": "3D-2D Cascaded Deep Networks for Video Face Recognition",
+  "subtitle": "",
+  "images": [
+   "assets/img/research/3d-2d-cascaded-deep-networks-for-video-face-recogn/01.webp"
+  ],
+  "order": 6
+ },
+ {
+  "title": "LSTM Ensemble for Time-series Forecasting",
+  "subtitle": "",
+  "images": [
+   "assets/img/research/lstm-ensemble-for-time-series-forecasting/01.webp"
+  ],
+  "order": 7
+ },
+ {
+  "title": "Deep Image Translation",
+  "subtitle": "",
+  "images": [
+   "assets/img/research/deep-image-translation/01.webp",
+   "assets/img/research/deep-image-translation/02.webp"
+  ],
+  "order": 8
+ },
+ {
+  "title": "Facial Emotion Recognition",
+  "subtitle": "",
+  "images": [
+   "assets/img/research/facial-emotion-recognition/01.webp",
+   "assets/img/research/facial-emotion-recognition/02.webp",
+   "assets/img/research/facial-emotion-recognition/03.webp",
+   "assets/img/research/facial-emotion-recognition/04.webp",
+   "assets/video/research/facial-emotion-recogniti-1.mp4",
+   "assets/video/research/facial-emotion-recogniti-2.mp4",
+   "assets/video/research/facial-emotion-recogniti-3.mp4"
+  ],
+  "order": 9
+ },
+ {
+  "title": "Deep Ensemble Network",
+  "subtitle": "",
+  "images": [
+   "assets/img/research/deep-ensemble-network/01.webp"
+  ],
+  "order": 10
+ }
+]

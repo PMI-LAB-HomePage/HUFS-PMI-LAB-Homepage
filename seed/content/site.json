@@ -1,0 +1,61 @@
+{
+ "site": {
+  "lab_name_ko": "패턴인식 및 기계지능 연구실",
+  "lab_name_en": "Pattern Recognition & Machine Intelligence Lab",
+  "lab_short": "PMI Lab @ HUFS",
+  "email": "jychoi@hufs.ac.kr",
+  "address_ko": "경기도 용인시 처인구 모현읍 외대로 81, 한국외국어대학교 글로벌캠퍼스 공학관 423호",
+  "address_en": "Unit 423, Engineering Building, 81, Oedae-ro, Mohyeon-eup, Cheoin-gu, Yongin-si, Gyeonggi-do, Republic of Korea",
+  "recruit_notice_ko": "PMI Lab에서는 열정 넘치는 '대학원생 연구원'을 모집하고 있습니다. PMI Lab에 관심 있으신 지원자 분들은 입학 및 연구참여 담당자(jychoi@hufs.ac.kr)에게 석차가 표기된 공식 성적증명서와 본인의 CV를 첨부해 먼저 연락해주세요.",
+  "recruit_notice_en": "PMI Lab is looking for self-motivated prospective 'Grad Students'. If you are interested in joining PMI Lab, please send an official transcript (including ranking information) and CV to jychoi@hufs.ac.kr"
+ },
+ "professor": {
+  "name_ko": "최재영",
+  "name_en": "Jae Young Choi",
+  "email": "jychoi@hufs.ac.kr",
+  "title_en": "Associate Professor, Division of Computer Engineering, HUFS / Director, PMI Lab",
+  "bio_en": [
+   "Prof. Jae Young Choi received the M.S. and Ph.D. degrees from the Korea Advanced Institute of Science and Technology (KAIST), Daejeon, South Korea, in 2008 and 2011, respectively. In 2008, he was a visiting scholar at the University of Toronto and from 2011 to 2012, he was a Post-Doctoral Researcher with the University of Toronto. He was a Postdoc Fellow with the University of Pennsylvania (UPenn) from 2012 to 2013. He was a Senior Engineer with SAMSUNG ELECTRONICS from 2013 to 2014. He is currently an Associate Professor with Division of Computer Engineering, Hankuk University of Foreign Studies and Director of Pattern Recognition and Machine Intelligence (PMI) Lab.",
+   "His research interests include deep learning, ensemble machine learning, pattern recognition, and computer vision. Especially, he has developed several pioneering algorithms for automatic face recognition using facial color information. He is the author or co-author of over 100 refereed research publications in the aforementioned research areas. Prof. Choi was the recipient of the best paper award of Korea Multimedia Society in 2021. He was also the recipient of Samsung HumanTech Thesis Prize in 2010."
+  ],
+  "_note": "원문의 'Associated Professor'를 'Associate Professor'로 교정함"
+ },
+ "research_groups": [
+  {
+   "title": "Deep Face Recognition",
+   "items": [
+    "Deep Domain Adaptation",
+    "Deep Attention Learning",
+    "Cascaded Deep Network",
+    "Deep Ensemble Network"
+   ]
+  },
+  {
+   "title": "Deep Learning for Image Generation",
+   "items": [
+    "Supervised, Unsupervised Image Inpainting",
+    "Face Image Translation"
+   ]
+  },
+  {
+   "title": "Deep Object Detection and Tracking",
+   "items": [
+    "Object Detection, Object Tracking",
+    "Re-identification"
+   ]
+  },
+  {
+   "title": "Deep Learning for Time-series Prediction",
+   "items": [
+    "Ensemble of LSTMs",
+    "3D DCNN and ConvLSTM for predicting fine dust"
+   ]
+  },
+  {
+   "title": "Demo Videos",
+   "items": [
+    "Emotion Recognition Using Deep Face Analysis"
+   ]
+  }
+ ]
+}
