@@ -56,7 +56,9 @@ def gallery_detail(request, pk):
 
 
 def news(request):
-    return render(request, "lab/news.html", {"items": News.objects.filter(is_public=True)})
+    return render(request, "lab/news.html", {
+        "items": News.objects.filter(is_public=True).prefetch_related("images"),
+    })
 
 
 def awards(request):

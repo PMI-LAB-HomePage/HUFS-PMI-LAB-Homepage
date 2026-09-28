@@ -8,6 +8,7 @@
   {% if professor.photo %}<img src="{{ professor.photo.url }}" alt="" width="160">{% endif %}
   <p>{{ professor|tr:"bio"|hide_emails }}</p>
   <p>{{ professor.email|email }}</p>
+  {% if professor.cv %}<p><a href="{{ professor.cv.url }}">CV (PDF)</a></p>{% endif %}
 </section>
 {% endif %}
 {% if site.recruit_notice_ko or site.recruit_notice_en %}

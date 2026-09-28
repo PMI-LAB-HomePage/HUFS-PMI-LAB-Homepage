@@ -22,6 +22,7 @@ def ascii_upload(folder):
 upload_site = ascii_upload("site")
 upload_members = ascii_upload("members")
 upload_publications = ascii_upload("publications")
+upload_news = ascii_upload("news")
 upload_gallery = ascii_upload("gallery")
 upload_research = ascii_upload("research")
 upload_resources = ascii_upload("resources")
@@ -79,6 +80,7 @@ class Member(Listed):
     email = models.EmailField("이메일", blank=True)
     research_interests = models.CharField("연구 분야", max_length=300, blank=True)
     photo = models.ImageField("사진", upload_to=upload_members, blank=True)
+    cv = models.FileField("CV", upload_to=upload_members, blank=True)
     bio_ko = models.TextField("소개(국문)", blank=True)
     bio_en = models.TextField("소개(영문)", blank=True)
     is_current = models.BooleanField("현재 멤버", default=True)
@@ -138,6 +140,16 @@ class News(models.Model):
 
     def __str__(self):
         return self.title_ko or self.title_en
+
+
+class NewsImage(models.Model):
+    news = models.ForeignKey(News, on_delete=models.CASCADE, related_name="images")
+    image = models.ImageField("사진", upload_to=upload_news)
+    order = models.IntegerField("순서", default=0)
+
+    class Meta:
+        ordering = ["order", "id"]
+        verbose_name = verbose_name_plural = "사진"
 
 
 class GalleryEvent(Listed):

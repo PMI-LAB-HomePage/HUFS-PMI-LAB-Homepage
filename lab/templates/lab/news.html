@@ -8,6 +8,7 @@
   <p>{{ n.date|date:"Y-m-d" }} · {{ n.get_tag_display }}</p>
   {% with body=n|tr:"body" %}{% if body %}<p>{{ body|hide_emails }}</p>{% endif %}{% endwith %}
   {% if n.link %}<a href="{{ n.link }}">{{ n.link }}</a>{% endif %}
+  {% for i in n.images.all %}<img src="{{ i.image.url }}" alt="" loading="lazy" width="300">{% endfor %}
 </article>
 {% endfor %}
 {% endblock %}

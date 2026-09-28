@@ -9,7 +9,7 @@
   {% if m.photo %}<img src="{{ m.photo.url }}" alt="" width="120">{% endif %}
   <h4>{{ m.name_ko }} {{ m.name_en }}</h4>
   <p>{{ m.status_text }}{% if m.research_interests %} · {{ m.research_interests }}{% endif %}</p>
-  <p>{{ m.email|email }}</p>
+  <p>{{ m.email|email }}{% if m.cv %} · <a href="{{ m.cv.url }}">CV (PDF)</a>{% endif %}</p>
 </article>
 {% endfor %}
 {% endfor %}

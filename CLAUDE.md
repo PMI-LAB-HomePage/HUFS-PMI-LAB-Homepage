@@ -55,7 +55,7 @@
 
 ```
 config/     Django 설정 (settings는 환경변수로 분기)
-lab/        모델 · 관리자 · 뷰 · 템플릿 · 적재 명령(management/commands/load_notion.py)
+lab/        모델 · 관리자 · 뷰 · 템플릿 · 명령(management/commands/{load_notion,enrich_notion}.py)
 seed/       노션 원본 — content/*.json, asset_map.csv, assets/{img,pdf,video}
 deploy/     Caddyfile · systemd unit · 백업 스크립트 · DEPLOY.md
 docs/       PROJECT.md · DATA.md · SERVER.md
@@ -68,36 +68,26 @@ media/      런타임 업로드 (gitignore)
 - ✓ 전산실 승인: `pmi.hufs.ac.kr`, 공인 IP·80/443. 연결 전환은 전산실이 처리(반나절)
 - ✓ 연구실 회의 완료, 디자인 시안 확정 (**시안 파일은 아직 저장소에 없음 — 받아야 함**)
 - ✓ 저장소 연결·첫 push 완료
-- ✓ 1단계 뼈대: 설정·모델·관리자·`load_notion`·최소 공개 페이지·`deploy/` 초안. 적재 건수 전부 기대값과 일치,
-  `python manage.py test lab` 통과. **남은 것: 5번 보강(논문 PDF 13+1건·교수 CV·본문 텍스트)**, 관리자 실사용 점검
+- ✓ **1단계 완료.** 설정·모델·관리자·`load_notion`·`enrich_notion`·공개 페이지 9개·`deploy/` 초안.
+  적재 건수 전부 기대값과 일치. 관리자 화면에서 목록·사진·수정·저장 확인함. `python manage.py test lab` 통과
+- ✓ 보강 완료(32건): 논문 PDF 13 · 특허증 1 · 교수 CV 1 · 소식 본문 12/사진 2 · 연구 2 · 자료실 1
 - … 공인 IP 신청서: 배포 담당자가 작성·회신 중 (MAC `88:D7:F6:D5:C6:9D`)
 
 ## 다음 할 일
 
-### 0. 저장소 연결 (최초 1회)
-원격: `https://github.com/chest-press-man/HUFS-PMI-LAB-Homepage` (private).
-원격에 README 등이 이미 있으면 `--allow-unrelated-histories`로 합친다. 빈 `data/` 폴더가 남아
-있으면 지워도 된다(내용은 `seed/`로 이동 완료).
+### 0~1단계 — 끝남 (2026-09-28)
 
-### 1단계 — Django 뼈대 + 관리자 (지금)
-1. `config/` 설정: `LANGUAGE_CODE=ko-kr`, `TIME_ZONE=Asia/Seoul`, env 기반 `SECRET_KEY/DEBUG/ALLOWED_HOSTS`,
-   `MEDIA_ROOT`, `STATIC_ROOT`. 의존성은 최소(Django, Pillow, gunicorn).
-2. `lab/models.py` — `docs/DATA.md`의 모델 정의대로. `SiteSetting`은 단일 레코드.
-3. `lab/admin.py` — 목록 컬럼·검색·필터·정렬, 이미지·미디어는 inline, 공개/비공개 토글.
-   `SiteSetting`은 추가·삭제 불가, 수정만.
-4. `load_notion` 적재 명령 — `seed/content/*.json` + `seed/assets` → DB + `media/`.
-   규칙 6 준수. 적재 후 건수 출력해서 `docs/DATA.md`의 기대 건수와 대조.
-5. 보강(선택, 원본은 `../04_노션Export/` 로컬에만 있음 — 저장소 밖):
-   논문별 PDF 연결, 멤버 사진, 연구·자료실 본문 텍스트. 자세한 건 `docs/DATA.md`.
-6. 최소 공개 페이지(디자인 없이): 홈·멤버·논문·연구·갤러리·소식·프로젝트. 뷰/URL은 지금 확정하고
-   2단계에서는 템플릿·CSS만 바꾼다.
-7. `deploy/` 초안: Caddyfile, gunicorn systemd unit, 백업 스크립트, `DEPLOY.md`.
+저장소 연결·첫 push, Django 뼈대, 관리자, 노션 데이터 적재·보강, 최소 공개 페이지, `deploy/` 초안까지 완료.
+로컬에서 확인하는 법은 `README.md`, 데이터·명령은 `docs/DATA.md` 4·6절.
 
-**1단계 완료 기준:** 로컬에서 `load_notion` → `/admin` 로그인 → 멤버 29 · 논문 119 · 소식 24 ·
-갤러리 38 · 연구 11 · 자료실 5 · 수상 7 · 프로젝트 16이 사진·PDF와 함께 보이고 추가·수정·삭제 가능.
+**아직 안 한 것 (1단계 범위였으나 미룸)**
+- 상단 메뉴를 관리자에서 관리 — 2단계에서 판단 (`docs/DATA.md` 3절에 사유)
+- 멤버 명단 정리 — 손성원이 관리자 화면에서 직접 (규칙 5)
+- 논문 오탈자·문장 잘림 — 교수님 확인 후 (`docs/DATA.md` 7절)
 
-### 2단계 — 시안 적용
-시안 파일을 받아 템플릿·CSS 작성. 반응형. 뷰 로직은 건드리지 않는 것이 원칙.
+### 2단계 — 시안 적용 (다음)
+**시안 파일을 받아야 시작할 수 있다.** 템플릿·CSS 작성, 반응형. 뷰 로직은 건드리지 않는 것이 원칙.
+상단 메뉴를 관리자에서 바꿀 수 있게 할지도 이때 판단한다(지금은 `base.html` 고정 — 사유는 `docs/DATA.md` 3절).
 
 ### 3단계 — 배포 (배포 담당자)
 `docs/SERVER.md` 순서대로. **보안 설정이 웹서버 설치보다 먼저.**

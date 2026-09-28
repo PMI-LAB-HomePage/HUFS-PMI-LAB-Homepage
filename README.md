@@ -34,6 +34,7 @@ pip install -r requirements.txt
 cp .env.example .env
 python manage.py migrate
 python manage.py load_notion        # seed/ 데이터 최초 적재 (데이터가 있으면 거부)
+python manage.py enrich_notion      # 노션 Export로 PDF·본문 보강 (로컬 전용, 빈 값만 채움)
 python manage.py createsuperuser
 python manage.py runserver          # http://localhost:8000/admin
 python manage.py test lab           # 적재·페이지·관리자 스모크 테스트

@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.utils.html import format_html
 
 from .models import (
-    Award, AwardImage, GalleryEvent, GalleryImage, Member, News, Project, Publication,
+    Award, AwardImage, GalleryEvent, GalleryImage, Member, News, NewsImage, Project, Publication,
     Research, ResearchMedia, Resource, ResourceMedia, SiteSetting,
 )
 
@@ -47,6 +47,10 @@ class AwardImageInline(ImageInline):
     model = AwardImage
 
 
+class NewsImageInline(ImageInline):
+    model = NewsImage
+
+
 class ResearchMediaInline(MediaInline):
     model = ResearchMedia
 
@@ -73,8 +77,8 @@ class MemberAdmin(admin.ModelAdmin):
     readonly_fields = ["photo_preview"]
     fieldsets = [
         (None, {"fields": ["name_ko", "name_en", "role", "status_text", "is_current", "career_after",
-                           "email", "research_interests", "photo_preview", "photo", "bio_ko", "bio_en",
-                           "order", "is_public"]}),
+                           "email", "research_interests", "photo_preview", "photo", "cv",
+                           "bio_ko", "bio_en", "order", "is_public"]}),
         ("노션 적재 메모", {"classes": ["collapse"], "fields": ["import_note"]}),
     ]
 
@@ -102,6 +106,7 @@ class NewsAdmin(admin.ModelAdmin):
     list_filter = ["tag", "is_public"]
     search_fields = ["title_ko", "title_en", "body_ko", "body_en"]
     date_hierarchy = "date"
+    inlines = [NewsImageInline]
 
 
 @admin.register(GalleryEvent)

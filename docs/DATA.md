@@ -78,14 +78,14 @@ SiteSetting    (단일 레코드)
 Member
   name_ko · name_en · role (professor|phd|ms|undergrad|researcher|other)
   status_text (노션 직함 원문) · email · research_interests
-  photo · bio_ko/en · is_current · career_after
+  photo · cv(PDF) · bio_ko/en · is_current · career_after
   order · is_public · import_note (출처·표기 변형·이메일 전체 — 손실 방지용, 관리자에서 접어둠)
 
 Publication
   kind · text · raw · year · pdf · doi_url · order · is_public
   ※ 저자·제목·학술지 분리는 2차 작업. 지금은 만들지 않는다
 
-News
+News + NewsImage(news, image, order)
   title_ko/en · date · tag (academic|recruit|patent|news) · body_ko/en · link · is_public
 
 GalleryEvent + GalleryImage(event, image, order)
@@ -158,21 +158,49 @@ GalleryEvent 38 (이미지 있는 것 35) · Research 11 · Resource 5 · Award 
 Publication 종류별: intl_journal 43 · intl_conference 37 · dom_journal 18 · dom_conference 5 · patent 16
 ```
 
-## 6. 보강 작업 (선택 — 원본은 `../04_노션Export/`)
+## 6. 보강 작업 (`enrich_notion`) — 완료 2026-09-28
 
-적재만으로는 비어 있는 것들. 노션 Export 원본을 읽어 채운다. `asset_map.csv`로 원본↔seed 경로를 찾는다.
+`load_notion`만으로는 비는 것들을 노션 Export 원본에서 채운다. **Export(458MB)는 저장소 밖
+`../04_노션Export/`에 있으므로 이 명령은 손성원 로컬에서 1회만 돌린다. 서버에서는 쓰지 않는다.**
 
-**논문 PDF 연결 (13건 + 특허증 1)**
-Export의 `Publication/<종류>/*.md`에서 번호 항목 바로 다음 줄의 `[파일명.pdf](...)` 링크가 그 항목의
-첨부다. 파일명으로 `asset_map.csv`의 `제목`(원본 파일명)을 찾아 `새경로`를 연결한다.
-`10-2507855-특허증.pdf`는 특허 "고속 연산이 가능한 딥러닝 신경망 장치(등록번호 10-2507855)"의 것.
+```bash
+python manage.py enrich_notion --dry-run     # 무엇이 바뀔지만 출력
+python manage.py enrich_notion               # 적용
+python manage.py enrich_notion --export <경로>   # Export 위치가 다를 때
+```
 
-**멤버 사진** — ✓ `load_notion`이 처리함 (4절). 한 사람에게 사진이 여러 장이면 첫 장만 연결.
+**빈 값만 채운다.** 이미 값이 있으면 건너뛴다 — 관리자가 고친 내용을 덮어쓰지 않기 위해서다(규칙 6과 같은 취지).
+그래서 여러 번 돌려도 안전하다(2회차는 "채움 0 · 건너뜀 32").
 
-**교수 CV:** `assets/pdf/home/jae-young-choi-cv-23-02.pdf`.
+### 채운 것 (합계 32)
 
-**본문 텍스트:** 소식·연구·자료실 각 항목의 노션 페이지 본문(`*.md`)을 `body`/`description`으로.
-맨 위 제목 줄과 `속성: 값` 줄은 제외.
+| 대상 | 건수 | 방법 |
+|---|---|---|
+| 논문 PDF | 13 | `Publication/<종류>/*.md`의 번호 항목 다음 줄 PDF 링크 → `asset_map.csv` |
+| 특허증 | 1 | `10-2507855.pdf` → 본문에 등록번호가 든 특허 |
+| 교수 CV | 1 | `jae-young-choi-cv-23-02.pdf` → `Member.cv` |
+| 소식 본문 | 12 | `Lab News/*.md` 본문 |
+| 소식 사진 | 2 | `asset_map.csv`의 `home` 섹션에서 제목이 같은 것 |
+| 연구 설명 | 2 | `Research/*.md` 본문 |
+| 자료실 본문 | 1 | `Resources/*.md` 본문 |
+
+### 파싱하며 걸린 함정 — 고쳐 둠
+
+1. **PDF 링크 파일명에 괄호가 있다** (`02_(5-2024-067).pdf`). `\(([^)]*)\)` 로 잡으면 5건을 놓친다.
+   비탐욕 매칭(`\]\((.+?\.pdf)\)`)을 쓴다.
+2. **소식 제목이 겹친다** (`[논문게재] 한국멀티미디어학회` 등 4쌍). 제목만으로 짝지으면 엉뚱한 본문이
+   붙는다(17건 매칭 → 실제는 13건). **제목 + 날짜**로 맞춰야 한다.
+3. **노션 Export 경로는 두 번 인코딩된 것이 섞여 있다.** `unquote`를 더 이상 안 바뀔 때까지 반복한다.
+4. **본문에 첨부 파일 링크가 텍스트로 남는다** (`[10-2507855-특허증.pdf](...)`, `1.mp4`).
+   링크 문구가 파일명 꼴이면 문구까지 버린다. 남는 글자가 없으면 본문 없음으로 친다.
+5. **국제학회 md만 번호 형식이 다르다** (`[2]      ` — 첫 항목만 `1. `). 두 형식 다 인식한다.
+   이 파일엔 PDF가 없어서 결과에는 영향이 없다.
+6. **연구·자료실 페이지 대부분은 본문이 이미지뿐**이다. 그래서 11건 중 2건, 5건 중 1건만 텍스트가 있다.
+   정상이다.
+
+### 검증
+
+논문 PDF는 파일명 속 연·월(`05_(2023-8-124)` → 2023년 8월)이 논문 서지의 연·월과 모두 일치했다.
 
 ## 7. 알려진 데이터 문제 — 임의 수정 금지, 교수님 확인 후
 
