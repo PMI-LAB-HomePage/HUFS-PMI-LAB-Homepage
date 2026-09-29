@@ -30,6 +30,19 @@ data/
 
 `staticfiles`는 백업 대상이 아니다 — 기동할 때마다 `collectstatic`이 다시 만든다.
 
+## `manage.py check --deploy` 경고 3개는 정상이다
+
+```
+W009 SECRET_KEY 짧음      → .env에 50자로 새로 생성했으면 안 나온다
+W008 SECURE_SSL_REDIRECT  → Caddy가 http를 https로 자동 리다이렉트한다. Django에서 또 할 필요 없다
+W004 SECURE_HSTS_SECONDS  → 일부러 안 켰다
+```
+
+**HSTS를 켜지 않은 이유:** 한 번 켜면 브라우저가 그 기간 동안 이 도메인의 http 접속을 거부한다.
+전환 직후 문제가 생겨 노션으로 되돌려야 할 수도 있어서, 안정적으로 운영되는 것을 확인한 뒤
+켜는 편이 안전하다. 켤 때는 `config/settings.py`의 `if not DEBUG:` 안에
+`SECURE_HSTS_SECONDS`를 짧게(예: 3600) 시작해서 늘린다.
+
 ## 주의
 
 - **`.env`는 커밋하지 않는다.** `.env.example`을 복사해서 서버에서 만든다.

@@ -4,9 +4,7 @@
 <div class="container section stack stack--lg">
   <div class="section-head" style="align-items:flex-end">
     <h1 class="title-2">갤러리 <span class="count">{{ total }}</span></h1>
-    <nav class="year-jump" aria-label="연도">
-      {% for year, events in years %}<a href="#g{{ year|default:'x' }}">{{ year|default:"연도 미상" }}</a>{% endfor %}
-    </nav>
+    {% include "lab/_year_pick.html" with prefix="g" years=years %}
   </div>
 
   {% for year, events in years %}

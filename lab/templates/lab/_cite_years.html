@@ -1,7 +1,5 @@
 {% load lab %}{# 연도별 서지 목록 — 논문·과제 공통 (.year-block / .cite) #}
-<nav class="year-jump" aria-label="연도">
-  {% for year, items in years %}<a href="#y{{ year }}">{{ year }}</a>{% endfor %}
-</nav>
+{% include "lab/_year_pick.html" with prefix="y" %}
 <div>
   {% for year, items in years %}
   <div class="year-block" id="y{{ year }}">

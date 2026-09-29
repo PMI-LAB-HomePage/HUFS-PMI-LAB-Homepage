@@ -86,6 +86,13 @@ MEDIA_ROOT = os.environ.get("MEDIA_ROOT") or BASE_DIR / "media"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 if not DEBUG:
+    # 파일 이름에 내용 해시를 붙인다(site.css → site.a1b2c3.css).
+    # 안 붙이면 CSS를 고쳐 배포해도 재방문자 브라우저는 옛 파일을 계속 쓴다.
+    STORAGES = {
+        "default": {"BACKEND": "django.core.files.storage.FileSystemStorage"},
+        "staticfiles": {"BACKEND": "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"},
+    }
+
     # Caddy가 HTTPS를 종료하고 X-Forwarded-Proto를 넘긴다
     SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
     SESSION_COOKIE_SECURE = True

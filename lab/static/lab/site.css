@@ -145,9 +145,23 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .search { display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--ink); min-width: min(100%, 300px); }
 .search input { flex: 1; min-width: 0; border: 0; background: transparent; font: inherit; font-size: 14px; padding: 8px 0; color: var(--ink); outline: none; }
 .search__icon { font-family: var(--font-mono); color: var(--muted); }
-.year-jump { display: flex; flex-wrap: wrap; gap: 4px 14px; font-family: var(--font-mono); font-size: 12px; }
-.year-jump a { color: var(--muted); }
-.year-jump a.is-active { color: var(--accent); }
+/* 연도 선택 — 논문은 19개 연도라 전부 깔면 줄을 먹는다. 접어 두고 목록 안에서 스크롤 */
+.year-pick { position: relative; align-self: flex-start; }
+.year-pick__toggle { list-style: none; cursor: pointer; display: inline-flex; align-items: center; gap: 10px;
+  min-height: 44px; padding: 0 14px; border: 1px solid var(--line-strong);
+  font-family: var(--font-mono); font-size: 12px; letter-spacing: .06em; color: var(--body); }
+.year-pick__toggle::-webkit-details-marker { display: none; }
+.year-pick__toggle::after { content: "▾"; color: var(--muted); }
+.year-pick[open] .year-pick__toggle { border-color: var(--ink); color: var(--ink); }
+.year-pick[open] .year-pick__toggle::after { content: "▴"; }
+.year-pick__panel { position: absolute; left: 0; z-index: 20; min-width: 170px;
+  max-height: 300px; overflow-y: auto; background: var(--paper);
+  border: 1px solid var(--ink); display: flex; flex-direction: column; }
+.year-pick__panel a { display: flex; justify-content: space-between; gap: 18px; padding: 11px 14px;
+  font-family: var(--font-mono); font-size: 12.5px; color: var(--body); }
+.year-pick__panel a + a { border-top: 1px solid var(--line); }
+.year-pick__panel a:hover { background: var(--paper-2); color: var(--ink); text-decoration: none; }
+.year-pick__panel a span { color: var(--muted); }
 
 /* ---------- citation list (논문·특허·Projects 공통) ---------- */
 .year-block { display: grid; grid-template-columns: minmax(0, 110px) minmax(0, 1fr); gap: 0 var(--sp-6); border-top: 1px solid var(--ink); }

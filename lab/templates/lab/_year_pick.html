@@ -1,0 +1,10 @@
+{# 연도 선택. 논문은 연도가 19개라 전부 깔면 줄을 먹는다 — 접어 두고 목록 안에서 스크롤. #}
+{# <details>라 자바스크립트 없이도 열리고 닫힌다. 링크라 주소 공유도 된다. #}
+<details class="year-pick">
+  <summary class="year-pick__toggle">연도</summary>
+  <nav class="year-pick__panel" aria-label="연도">
+    {% for year, items in years %}
+      <a href="#{{ prefix }}{{ year|default:'x' }}">{{ year|default:"연도 미상" }}<span>{{ items|length }}</span></a>
+    {% endfor %}
+  </nav>
+</details>

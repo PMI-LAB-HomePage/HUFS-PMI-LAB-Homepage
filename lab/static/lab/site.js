@@ -17,6 +17,11 @@
     });
   });
 
+  // 연도 선택: 고르면 닫는다
+  document.querySelectorAll('.year-pick').forEach(function (d) {
+    d.addEventListener('click', function (e) { if (e.target.closest('a')) d.open = false; });
+  });
+
   // 라이트박스
   var lb = document.querySelector('.lightbox');
   if (!lb) return;
