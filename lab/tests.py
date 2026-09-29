@@ -110,16 +110,11 @@ class ListPageLogicTest(TestCase):
         self.assertEqual(shown, all_tab)
         self.assertLess(all_tab, Publication.objects.count())
 
-    def test_publication_number_survives_filtering(self):
-        # 번호는 그 종류 안에서의 고유 번호다. 검색·탭으로 걸러져도 다시 매기면 안 된다
-        pub = Publication.objects.filter(kind="intl_journal").order_by("order").first()
-        total = Publication.objects.filter(kind="intl_journal").count()
-        expected = f'cite__num">{total - pub.order + 1}<'
-
-        self.assertContains(self.client.get(reverse("publications")), expected)
-        self.assertContains(self.client.get(reverse("publications"), {"type": "intl_journal"}), expected)
-        res = self.client.get(reverse("publications"), {"q": pub.text.split()[-1]})
-        self.assertContains(res, expected)
+    def test_project_years_are_marked_as_end_years(self):
+        # 과제 연도는 끝나는 해다. 그냥 "2027"이면 미래 연도 과제처럼 보인다
+        res = self.client.get(reverse("projects"))
+        self.assertContains(res, "~2027")
+        self.assertNotContains(res, '__year">2027<')
 
     def test_gallery_pager_points_backwards_in_time(self):
         events = list(GalleryEvent.objects.filter(is_public=True, date__isnull=False)[:3])

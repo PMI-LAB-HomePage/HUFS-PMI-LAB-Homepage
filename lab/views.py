@@ -24,13 +24,6 @@ def by_year(items):
     return [(year, list(group)) for year, group in groupby(items, key=lambda o: o.year)]
 
 
-def numbered(items, total):
-    """시안 규칙: 번호는 종류 안에서 역순. seed의 order(=노션 순번)는 최신이 1번이다."""
-    for obj in items:
-        obj.num = total - obj.order + 1
-    return items
-
-
 def home(request):
     return render(request, "lab/home.html", {
         "professor": Member.objects.filter(is_public=True, role=Member.Role.PROFESSOR).first(),
@@ -60,8 +53,6 @@ def members(request):
 
 def publications(request):
     public = Publication.objects.filter(is_public=True)
-    # 번호는 종류 전체를 기준으로 매긴다. 검색으로 걸러져도 그 논문의 번호는 그대로여야 한다
-    totals = {row["kind"]: row["n"] for row in public.values("kind").annotate(n=Count("id"))}
 
     q = request.GET.get("q", "").strip()
     found = public.filter(text__icontains=q) if q else public
@@ -76,9 +67,6 @@ def publications(request):
         kind = "all"
 
     items = list(found if kind == "all" else found.filter(kind=kind))
-    for kind_value in {o.kind for o in items}:
-        numbered([o for o in items if o.kind == kind_value], totals.get(kind_value, 0))
-
     return render(request, "lab/publications.html", {
         "tabs": tabs, "active": kind, "q": q,
         "total": len(items), "years": by_year(items), "show_kind": kind == "all",
@@ -91,7 +79,6 @@ def projects(request):
     if q:
         qs = qs.filter(text__icontains=q)
     items = list(qs)
-    numbered(items, Project.objects.filter(is_public=True).count())
     return render(request, "lab/projects.html", {"years": by_year(items), "total": len(items), "q": q})
 
 

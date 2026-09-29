@@ -3,11 +3,10 @@
 <div>
   {% for year, items in years %}
   <div class="year-block" id="y{{ year }}">
-    <div class="year-block__year">{{ year|default:"연도 미상" }}<small>{{ items|length }}건</small></div>
+    <div class="year-block__year">{{ year_prefix|default:"" }}{{ year|default:"연도 미상" }}<small>{{ items|length }}건</small></div>
     <ol class="cite-list">
       {% for p in items %}
       <li class="cite">
-        <span class="cite__num">{{ p.num }}</span>
         <p class="cite__text">{{ p.text|highlight:q }}</p>
         {% if p.pdf or show_kind %}
         <div class="cite__meta">
