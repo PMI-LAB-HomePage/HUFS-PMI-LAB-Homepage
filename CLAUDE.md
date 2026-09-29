@@ -23,6 +23,7 @@
 | 앱 구성 | **`lab` 앱 하나** | 쪼개면 후임·AI가 유지보수하기 어려움 |
 | DB | SQLite (파일 1개) | 데이터 소량(멤버 29 · 논문 119). 백업 = 파일 복사 |
 | 웹서버 | Caddy → Gunicorn → Django | Caddy가 HTTPS 자동 발급·갱신 |
+| 배포 | **Docker Compose** (컨테이너 2개: `caddy`·`web`) | 2026-09-29 변경. 배포 담당자가 Docker로 구성. 데이터는 호스트 `./data` 하나 |
 | 서버 | 연구실 PC 1대, Ubuntu, 공인 IP | 학교가 서버를 제공하지 않음. 공인 IP·80/443 승인받음 |
 | 도메인 | `pmi.hufs.ac.kr` (신규, 승인됨) | 기존 `lab.hufs.ac.kr/pmi`는 전환 시 여기로 리다이렉트 |
 
@@ -57,7 +58,8 @@
 config/     Django 설정 (settings는 환경변수로 분기)
 lab/        모델 · 관리자 · 뷰 · 템플릿 · 명령(management/commands/{load_notion,enrich_notion}.py)
 seed/       노션 원본 — content/*.json, asset_map.csv, assets/{img,pdf,video}
-deploy/     Caddyfile · systemd unit · 백업 스크립트 · DEPLOY.md
+compose.yaml · Dockerfile · .dockerignore   운영 구성 (컨테이너 2개)
+deploy/     Caddyfile · entrypoint.sh · backup.sh · DEPLOY.md
 docs/       PROJECT.md · DATA.md · SERVER.md
 media/      런타임 업로드 (gitignore)
 ```
@@ -113,7 +115,16 @@ media/      런타임 업로드 (gitignore)
   `base.html`을 상속하지 않고 CSS도 인라인**이다. 상속으로 바꾸면 진짜 500일 때 같이 죽는다.
 
 ### 3단계 — 배포 (배포 담당자)
-`docs/SERVER.md` 순서대로. **보안 설정이 웹서버 설치보다 먼저.**
+`docs/SERVER.md` 순서대로. **보안 설정이 Docker 설치보다 먼저.**
+
+**Docker Compose 구성 (2026-09-29)**
+- 컨테이너 2개뿐 — `caddy`(80·443) → `web`(gunicorn 8000, 호스트 비공개).
+- **데이터는 전부 호스트의 `./data`** (db.sqlite3 + media). 백업 = 이 폴더 복사.
+  `SQLITE_PATH`·`MEDIA_ROOT` 환경변수로 코드와 분리했다. `.env`에 넣지 말 것 — compose가 넣는다.
+- 기동할 때마다 `migrate`·`collectstatic`이 자동 실행(`deploy/entrypoint.sh`).
+  `load_notion`·`createsuperuser`는 사람이 최초 1회만.
+- **ufw는 Docker가 공개한 포트를 막지 못한다.** 호스트 노출은 `compose.yaml`의 `ports:`로만 정한다.
+- 로컬 개발은 Docker 없이 venv 그대로 된다(`README.md`). 환경변수가 없으면 예전 경로를 쓴다.
 
 ### 4단계 — 전환
 정보전략팀에 연락 → `lab.hufs.ac.kr/pmi`를 `pmi.hufs.ac.kr`로 연결. 노션은 1~2개월 유지.

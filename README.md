@@ -5,7 +5,7 @@
 직접 등록·수정할 수 있게 하는 것이 목적이다.
 
 - 주소: https://pmi.hufs.ac.kr (예정) · 기존 `lab.hufs.ac.kr/pmi`는 여기로 연결
-- 구성: Caddy → Gunicorn → Django(서버 렌더링) → SQLite
+- 구성: Docker Compose — Caddy → Gunicorn → Django(서버 렌더링) → SQLite
 
 ## 문서
 
@@ -19,12 +19,17 @@
 ## 구조
 
 ```
-config/   Django 설정
-lab/      모델 · 관리자 · 뷰 · 템플릿 · 적재 명령
-seed/     노션에서 옮긴 초기 데이터 (JSON + 이미지·PDF·영상)
-deploy/   Caddyfile · systemd · 백업 스크립트
-docs/     문서
+config/        Django 설정
+lab/           모델 · 관리자 · 뷰 · 템플릿 · 정적 파일 · 적재 명령
+seed/          노션에서 옮긴 초기 데이터 (JSON + 이미지·PDF·영상)
+compose.yaml   운영 구성 (caddy · web 컨테이너 2개)
+Dockerfile     web 컨테이너 이미지
+deploy/        Caddyfile · entrypoint.sh · backup.sh · DEPLOY.md
+docs/          문서
 ```
+
+로컬 개발은 Docker 없이 venv로 한다. 아래 그대로 하면 된다.
+서버 배포만 Docker Compose를 쓴다 (`docs/SERVER.md`).
 
 ## 로컬 실행
 

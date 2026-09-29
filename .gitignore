@@ -12,8 +12,9 @@ venv/
 .env
 local_settings.py
 
-# 이동 후 남은 빈 폴더 (내용은 seed/ 로 이동)
+# Docker 운영 데이터 (SQLite + 업로드 파일) · 백업
 /data/
+/backup/
 
 # OS · 편집기
 .DS_Store

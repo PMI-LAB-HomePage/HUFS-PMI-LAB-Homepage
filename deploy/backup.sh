@@ -1,16 +1,20 @@
 #!/bin/sh
-# SQLite + media/ 를 날짜별 폴더로 백업하고 30일 지난 것은 지운다.
-# cron (pmilab 사용자):  0 4 * * *  /srv/pmilab/app/deploy/backup.sh
-# 서버 밖 사본은 별도로: 이 스크립트 뒤에 rsync 등으로 BACKUP_DIR 을 외부로 복사할 것.
+# ./data (SQLite + media) 를 날짜별로 백업하고 30일 지난 것은 지운다.
+#   cron:  0 4 * * *  /srv/pmilab/app/deploy/backup.sh
+#
+# ⚠ 이 스크립트는 서버 안에만 복사한다. 디스크가 죽으면 백업도 같이 사라진다.
+#    최소 한 곳은 서버 밖으로 보낼 것 (rsync·클라우드 등 — 방법 미정, docs/SERVER.md 4-7).
 set -eu
-APP=/srv/pmilab/app
-BACKUP_DIR=${BACKUP_DIR:-/srv/pmilab/backup}
+APP=$(cd "$(dirname "$0")/.." && pwd)
+BACKUP_DIR=${BACKUP_DIR:-$APP/backup}
 DEST="$BACKUP_DIR/$(date +%F)"
 mkdir -p "$DEST"
 
-# 실행 중인 DB도 안전하게 복사 (sqlite3 CLI 없이 파이썬 표준 라이브러리 사용)
-python3 -c 'import sqlite3, sys; sqlite3.connect(sys.argv[1]).backup(sqlite3.connect(sys.argv[2]))' \
-  "$APP/db.sqlite3" "$DEST/db.sqlite3"
-tar -czf "$DEST/media.tar.gz" -C "$APP" media
+# 실행 중에도 안전하게 복사한다. 컨테이너 안에서 sqlite3 백업 API를 쓴다
+docker compose -f "$APP/compose.yaml" exec -T web \
+  python -c 'import sqlite3; sqlite3.connect("/data/db.sqlite3").backup(sqlite3.connect("/data/backup.tmp"))'
+mv "$APP/data/backup.tmp" "$DEST/db.sqlite3"
+
+tar -czf "$DEST/media.tar.gz" -C "$APP/data" media
 
 find "$BACKUP_DIR" -mindepth 1 -maxdepth 1 -type d -mtime +30 -exec rm -rf {} +

@@ -13,11 +13,14 @@
   └─▶ https://pmi.hufs.ac.kr
               │ A 레코드 (전산실이 등록)
               ▼
-        연구실 서버 PC (Ubuntu, 공인 IP)
-          Caddy :80 :443        HTTPS 자동 발급·갱신, /static /media 직접 서빙
-            └▶ Gunicorn :8000   (localhost만)
-                 └▶ Django  →  SQLite 파일 + media/
+        연구실 서버 PC (Ubuntu, 공인 IP) — Docker Compose
+          caddy 컨테이너 :80 :443     HTTPS 자동 발급·갱신, /static /media 직접 서빙
+            └▶ web 컨테이너 :8000     Gunicorn → Django (호스트에 열지 않음)
+                 └▶ ./data/           db.sqlite3 + media/   ← 백업 대상은 이 폴더 하나
 ```
+
+**컨테이너 두 개가 전부다.** `compose.yaml` · `Dockerfile` · `deploy/` 만 보면 된다.
+데이터는 이미지 안에 없다. 전부 호스트의 `./data`에 있고, 그래서 **백업은 폴더 복사**다.
 
 - `lab.hufs.ac.kr`은 **공대 연구실 공용 도메인**이다. 여기의 DNS 변경은 절대 요청하지 않는다.
 - 공인 IP만으로는 HTTPS 인증서를 받을 수 없어서 `pmi.hufs.ac.kr`이 필요하다.
@@ -83,9 +86,12 @@ Docker 컨테이너 2개(tensorflow-gpu, ultralytics) — 모두 중지 상태. 
 ### 4-1. 공개 전 정리
 ```bash
 sudo systemctl disable --now anydesk        # 원격 접속은 SSH(15232)로 대체
-docker ps -a                                 # 중지된 컨테이너 확인 후
-docker rm 2f2906ab1ad0 9406bd292658          # 필요 없으면 제거
+docker ps -a                                 # 연구용으로 남아 있던 컨테이너 확인
+docker rm 2f2906ab1ad0 9406bd292658          # tensorflow-gpu · ultralytics. 필요 없으면 제거
 ```
+> ⚠ 이건 **이 프로젝트를 올리기 전에** 남아 있던 옛 컨테이너를 치우는 단계다.
+> 배포 후에는 `docker rm`을 함부로 쓰지 말 것 — 우리 `web`·`caddy`가 같이 지워진다.
+> 정지는 `docker compose down`, 정리는 `docker system prune -f`를 쓴다.
 
 ### 4-2. 보안 설정 — 웹서버 설치보다 먼저
 ```bash
@@ -109,6 +115,14 @@ sudo dpkg-reconfigure -plow unattended-upgrades
 ```
 fail2ban의 sshd jail 포트를 15232로 맞출 것 (`/etc/fail2ban/jail.local`의 `[sshd] port = 15232`).
 
+> ⚠ **ufw는 Docker가 공개한 포트를 막지 못한다.** Docker가 iptables의 `DOCKER` 체인에 직접
+> 규칙을 넣어서 ufw를 건너뛴다. 즉 `compose.yaml`의 `ports:`에 적은 포트는 ufw 설정과 **무관하게**
+> 밖에서 열린다. 우리는 80·443만 공개하므로 결과는 같지만, 이 사실을 모르면
+> "ufw로 막았으니 안전하다"고 잘못 판단하게 된다.
+> **규칙: 호스트에 노출할 포트는 `compose.yaml`의 `ports:`로만 결정한다.**
+> `web`을 `ports:`가 아니라 `expose:`로 둔 것도 이 때문이다 — 8000번은 밖에서 안 보인다.
+> 확인: `sudo ss -tlnp | grep -E ':(80|443|8000)\b'` 와 학교 밖 네트워크에서 `curl`.
+
 ### 4-3. 외부 접속 확인
 전산실 방화벽이 열렸는지 **학교 밖 네트워크**(휴대폰 데이터 등)에서 확인한다.
 80/443에 아직 아무것도 안 떠 있으면 "연결 거부"가 정상이고, "시간 초과"면 학교 방화벽이 아직 막혀 있는 것.
@@ -116,38 +130,67 @@ fail2ban의 sshd jail 포트를 15232로 맞출 것 (`/etc/fail2ban/jail.local`�
 ### 4-4. DNS 요청
 전산실에 `pmi.hufs.ac.kr  A  <확정된 공인 IP>` 등록 요청. 확인: `dig +short pmi.hufs.ac.kr`
 
-### 4-5. 애플리케이션
+### 4-5. Docker 설치
 ```bash
-sudo apt install -y python3-venv git
-sudo useradd -r -m -d /srv/pmilab pmilab
-sudo -u pmilab git clone <저장소 주소> /srv/pmilab/app
-cd /srv/pmilab/app
-sudo -u pmilab python3 -m venv /srv/pmilab/venv
-sudo -u pmilab /srv/pmilab/venv/bin/pip install -r requirements.txt
-sudo -u pmilab cp .env.example .env        # SECRET_KEY 새로 생성, DEBUG=0, ALLOWED_HOSTS=pmi.hufs.ac.kr
-sudo -u pmilab /srv/pmilab/venv/bin/python manage.py migrate
-sudo -u pmilab /srv/pmilab/venv/bin/python manage.py collectstatic --noinput
-sudo -u pmilab /srv/pmilab/venv/bin/python manage.py load_notion     # 최초 1회만
-sudo -u pmilab /srv/pmilab/venv/bin/python manage.py createsuperuser
+sudo apt install -y git ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] \
+  https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo $VERSION_CODENAME) stable" \
+  | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt update
+sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo docker compose version        # v2가 나와야 한다
 ```
-이후 `deploy/`의 systemd unit 설치 → `systemctl enable --now` → 재부팅 후 자동 기동 확인.
 
-### 4-6. 웹서버
-Caddy 설치 후 `deploy/Caddyfile`을 `/etc/caddy/Caddyfile`로. 인증서 자동 발급 확인
-(`journalctl -u caddy`). 브라우저에서 `https://pmi.hufs.ac.kr` 자물쇠 확인.
+> ⚠ **`docker-compose`(하이픈)가 아니라 `docker compose`(공백)** 다. 예전 v1 문법은 쓰지 않는다.
 
-### 4-6-1. 확인
+### 4-6. 애플리케이션 기동
+```bash
+sudo git clone <저장소 주소> /srv/pmilab/app
+cd /srv/pmilab/app
+
+cp .env.example .env
+# .env 를 열어 SECRET_KEY 새로 생성, DEBUG=0, ALLOWED_HOSTS=pmi.hufs.ac.kr 로 고친다
+#   SECRET_KEY 생성:  docker run --rm python:3.13-slim python -c "import secrets;print(secrets.token_urlsafe(50))"
+# SQLITE_PATH·MEDIA_ROOT 는 건드리지 않는다 — compose.yaml이 넣어 준다
+
+sudo docker compose up -d --build
+sudo docker compose ps             # web·caddy 둘 다 running
+sudo docker compose logs -f web    # migrate·collectstatic 후 gunicorn 기동 확인
+```
+컨테이너가 뜰 때마다 `migrate`와 `collectstatic`이 자동으로 돈다(`deploy/entrypoint.sh`).
+여러 번 돌려도 안전하다.
+
+### 4-6-1. 최초 1회만 — 데이터 적재와 관리자 계정
+```bash
+sudo docker compose exec web python manage.py load_notion
+sudo docker compose exec web python manage.py createsuperuser
+```
+`load_notion`은 **데이터가 있으면 스스로 거부한다.** 재배포·재시작 때 다시 돌리지 않는다.
+적재 후 출력되는 건수를 `docs/DATA.md` 5절의 기대 건수와 대조할 것.
+
+### 4-6-2. 확인
 ```bash
 curl -I https://pmi.hufs.ac.kr/                    # 200
 curl -s https://pmi.hufs.ac.kr/robots.txt          # Sitemap 주소가 https://pmi.hufs.ac.kr 인지
 curl -s https://pmi.hufs.ac.kr/sitemap.xml | head  # <loc>가 https://pmi.hufs.ac.kr/... 인지
+sudo docker compose logs caddy                     # 인증서 발급 로그
 ```
+브라우저에서 `https://pmi.hufs.ac.kr` 자물쇠와 `/admin` 로그인을 확인한다.
+
 robots.txt·sitemap.xml의 주소는 **요청의 Host 헤더로 만들어진다.** Caddy가 Host를 그대로
-넘기므로 보통 맞지만, 여기서 `127.0.0.1`이나 `localhost`가 보이면 리버스 프록시 설정을 확인할 것.
+넘기므로 보통 맞지만, 여기서 `127.0.0.1`이나 `localhost`가 보이면 프록시 설정을 확인할 것.
 
 ### 4-7. 운영 설정
 ```
-백업       SQLite 파일 + media/ 를 매일 복사 (deploy/backup.sh + cron). 최소 1곳은 서버 밖으로
+백업       ./data 폴더 하나가 전부다. deploy/backup.sh + cron (매일 04:00)
+             0 4 * * *  /srv/pmilab/app/deploy/backup.sh
+           ⚠ 이 스크립트는 서버 안에만 복사한다. 최소 1곳은 서버 밖으로 — 방법 미정, 담당자 결정
+자동 기동   compose의 restart: unless-stopped + docker 서비스 자동 시작이면 재부팅 후 자동으로 뜬다
+             sudo systemctl enable docker
+             재부팅해서 실제로 뜨는지 한 번 확인할 것
 모니터링    UptimeRobot 등 무료 서비스로 5분 간격 점검, 다운 시 담당자 알림
 정전        UPS · BIOS "전원 복구 시 자동 켜짐" 설정
 ```
@@ -158,10 +201,30 @@ robots.txt·sitemap.xml의 주소는 **요청의 Host 헤더로 만들어진다.
 
 ## 5. 업데이트 (배포 이후)
 ```bash
-cd /srv/pmilab/app && sudo -u pmilab git pull
-sudo -u pmilab /srv/pmilab/venv/bin/pip install -r requirements.txt
-sudo -u pmilab /srv/pmilab/venv/bin/python manage.py migrate
-sudo -u pmilab /srv/pmilab/venv/bin/python manage.py collectstatic --noinput
-sudo systemctl restart pmilab
+cd /srv/pmilab/app
+sudo git pull
+sudo docker compose up -d --build     # migrate·collectstatic은 컨테이너가 알아서 한다
+sudo docker compose logs -f web
 ```
 `load_notion`은 다시 돌리지 않는다 — 관리자에서 고친 내용이 날아갈 수 있다(명령 자체도 데이터가 있으면 거부함).
+
+## 6. 자주 쓰는 명령
+```bash
+sudo docker compose ps                                  # 상태
+sudo docker compose logs -f web                         # 앱 로그
+sudo docker compose logs -f caddy                       # 인증서·프록시 로그
+sudo docker compose restart caddy                       # Caddyfile 고친 뒤
+sudo docker compose exec web python manage.py shell     # Django 셸
+sudo docker compose down                                # 정지 (데이터는 ./data에 남는다)
+sudo docker system prune -f                             # 안 쓰는 이미지 정리
+```
+
+## 7. 문제가 생기면
+| 증상 | 확인할 것 |
+|---|---|
+| 502 Bad Gateway | `docker compose logs web` — 앱이 죽었거나 아직 뜨는 중 |
+| 인증서 발급 실패 | 80번이 밖에서 열려 있는지. `docker compose logs caddy` |
+| 정적 파일 404 | `docker compose exec web ls /app/staticfiles` — collectstatic이 돌았는지 |
+| 업로드한 사진이 안 보임 | `ls ./data/media` — 권한(컨테이너 uid 10001)이 맞는지 |
+| DB가 비어 보임 | `ls -l ./data/db.sqlite3` — 볼륨이 제대로 붙었는지 |
+| 재부팅 후 안 뜸 | `systemctl is-enabled docker` |
