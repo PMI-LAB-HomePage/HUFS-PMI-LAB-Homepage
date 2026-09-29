@@ -1,9 +1,12 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.contrib.sitemaps.views import sitemap
 from django.urls import path
+from django.views.generic import TemplateView
 
 from lab import views
+from lab.sitemaps import SITEMAPS
 
 urlpatterns = [
     path("", views.home, name="home"),
@@ -17,5 +20,7 @@ urlpatterns = [
     path("news/<int:pk>/", views.news_detail, name="news_detail"),
     path("awards/", views.awards, name="awards"),
     path("resources/", views.resources, name="resources"),
+    path("sitemap.xml", sitemap, {"sitemaps": SITEMAPS}, name="django.contrib.sitemaps.views.sitemap"),
+    path("robots.txt", TemplateView.as_view(template_name="lab/robots.txt", content_type="text/plain")),
     path("admin/", admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)  # DEBUG일 때만 동작. 서버는 Caddy가 서빙

@@ -6,6 +6,7 @@ import uuid
 from pathlib import Path
 
 from django.db import models
+from django.urls import reverse
 
 
 def ascii_upload(folder):
@@ -141,6 +142,10 @@ class News(models.Model):
     def __str__(self):
         return self.title_ko or self.title_en
 
+    def get_absolute_url(self):
+        """관리자의 "사이트에서 보기"와 sitemap.xml이 쓴다."""
+        return reverse("news_detail", args=[self.pk])
+
 
 class NewsImage(models.Model):
     news = models.ForeignKey(News, on_delete=models.CASCADE, related_name="images")
@@ -167,6 +172,10 @@ class GalleryEvent(Listed):
 
     def __str__(self):
         return self.title_ko or self.title_en
+
+    def get_absolute_url(self):
+        """관리자의 "사이트에서 보기"와 sitemap.xml이 쓴다."""
+        return reverse("gallery_detail", args=[self.pk])
 
 
 class GalleryImage(models.Model):

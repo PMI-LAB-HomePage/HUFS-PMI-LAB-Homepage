@@ -136,6 +136,15 @@ sudo -u pmilab /srv/pmilab/venv/bin/python manage.py createsuperuser
 Caddy 설치 후 `deploy/Caddyfile`을 `/etc/caddy/Caddyfile`로. 인증서 자동 발급 확인
 (`journalctl -u caddy`). 브라우저에서 `https://pmi.hufs.ac.kr` 자물쇠 확인.
 
+### 4-6-1. 확인
+```bash
+curl -I https://pmi.hufs.ac.kr/                    # 200
+curl -s https://pmi.hufs.ac.kr/robots.txt          # Sitemap 주소가 https://pmi.hufs.ac.kr 인지
+curl -s https://pmi.hufs.ac.kr/sitemap.xml | head  # <loc>가 https://pmi.hufs.ac.kr/... 인지
+```
+robots.txt·sitemap.xml의 주소는 **요청의 Host 헤더로 만들어진다.** Caddy가 Host를 그대로
+넘기므로 보통 맞지만, 여기서 `127.0.0.1`이나 `localhost`가 보이면 리버스 프록시 설정을 확인할 것.
+
 ### 4-7. 운영 설정
 ```
 백업       SQLite 파일 + media/ 를 매일 복사 (deploy/backup.sh + cron). 최소 1곳은 서버 밖으로

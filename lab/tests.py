@@ -5,7 +5,7 @@ from django.core.management import CommandError, call_command
 from django.test import TestCase, override_settings
 from django.urls import reverse
 
-from .models import Member
+from .models import Member, News
 
 PAGES = ["home", "members", "publications", "research", "projects", "gallery", "news", "awards", "resources"]
 
@@ -48,3 +48,44 @@ class StripMarkdownTest(TestCase):
         self.assertEqual(strip_markdown("![Untitled](a.png)\n\n1.mp4 형식이 아닌 문장"), "1.mp4 형식이 아닌 문장")
         # 일반 링크는 문구를 남긴다
         self.assertEqual(strip_markdown("자세한 내용은 [여기](http://x)"), "자세한 내용은 여기")
+
+
+@override_settings(MEDIA_ROOT=tempfile.mkdtemp())
+class SeoAndErrorPageTest(TestCase):
+    """검색 노출이 주 유입 경로라 sitemap·robots는 동작해야 한다."""
+
+    @classmethod
+    def setUpTestData(cls):
+        call_command("load_notion", stdout=open("/dev/null", "w"))
+
+    def test_sitemap_lists_every_public_page(self):
+        body = self.client.get("/sitemap.xml").content.decode()
+        self.assertEqual(self.client.get("/sitemap.xml").status_code, 200)
+        for name in PAGES:
+            self.assertIn(f"<loc>http://testserver{reverse(name)}</loc>", body, name)
+        # 갤러리 목록 1 + 사진 있는 행사 35 (사진 없는 3건은 상세가 없다)
+        self.assertEqual(body.count("<loc>http://testserver/gallery/"), 36)
+        # 소식 상세는 본문이나 사진이 있는 것만. 여기선 enrich_notion을 돌리지 않아 목록 1개뿐이다
+        self.assertEqual(body.count("<loc>http://testserver/news/"), 1)
+        News.objects.filter(pk=News.objects.first().pk).update(body_ko="본문")
+        body = self.client.get("/sitemap.xml").content.decode()
+        self.assertEqual(body.count("<loc>http://testserver/news/"), 2)
+
+    def test_robots_allows_site_and_blocks_admin(self):
+        res = self.client.get("/robots.txt")
+        self.assertEqual(res["Content-Type"], "text/plain")
+        self.assertIn("Disallow: /admin/", res.content.decode())
+        self.assertIn("Sitemap: http://testserver/sitemap.xml", res.content.decode())
+
+    def test_404_uses_site_design(self):
+        res = self.client.get("/no-such-page/")
+        self.assertEqual(res.status_code, 404)
+        self.assertContains(res, "페이지를 찾을 수 없습니다", status_code=404)
+
+    def test_500_renders_without_request_or_context(self):
+        # 실제 500은 컨텍스트 프로세서·DB 없이 렌더된다. base.html을 상속하면 여기서 깨진다.
+        from django.template.loader import render_to_string
+
+        html = render_to_string("500.html")
+        self.assertIn("일시적인 오류", html)
+        self.assertNotIn("{{", html)

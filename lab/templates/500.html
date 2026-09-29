@@ -1,0 +1,27 @@
+{# 500은 컨텍스트 프로세서·DB 없이 렌더된다. base.html을 상속하지 않고 CSS도 인라인으로 둔다. #}
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>일시적인 오류 · PMI Lab @ HUFS</title>
+<style>
+  body { margin:0; background:#faf8f3; color:#23211c; font-family:system-ui, sans-serif; line-height:1.85;
+         display:flex; align-items:center; justify-content:center; min-height:100vh; padding:24px; }
+  .box { max-width:520px; }
+  h1 { font-family:Georgia, serif; font-size:clamp(26px,5vw,34px); font-weight:500; line-height:1.35; margin:12px 0; }
+  p { color:#5c584d; margin:0 0 24px; }
+  .eyebrow { font-family:ui-monospace, monospace; font-size:11px; letter-spacing:.14em; color:#2f5d43; }
+  a { display:inline-flex; align-items:center; min-height:44px; padding:0 20px;
+      background:#23211c; color:#faf8f3; text-decoration:none; font-size:13.5px; }
+</style>
+</head>
+<body>
+<div class="box">
+  <span class="eyebrow">500</span>
+  <h1>일시적인 오류가 발생했습니다.</h1>
+  <p>잠시 후 다시 시도해 주세요. 문제가 계속되면 연구실로 알려 주세요.</p>
+  <a href="/">홈으로</a>
+</div>
+</body>
+</html>

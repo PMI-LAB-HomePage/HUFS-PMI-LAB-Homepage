@@ -1,5 +1,6 @@
 {% extends "lab/base.html" %}{% load lab %}
 {% block title %}{{ item|tr:"title" }} · {{ block.super }}{% endblock %}
+{% block og_title %}{{ item|tr:"title" }}{% endblock %}
 {% block content %}
 <div class="container section stack stack--lg">
   <a class="link-arrow" href="{% url 'gallery' %}" style="align-self:flex-start">← 갤러리</a>

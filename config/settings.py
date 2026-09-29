@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.sitemaps",   # sitemap.xml — 검색 노출이 주 유입 경로
     "lab",
 ]
 

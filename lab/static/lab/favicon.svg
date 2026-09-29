@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- 시안 토큰과 같은 색: paper #faf8f3 / ink #23211c / accent #2f5d43 (XML 주석에는 하이픈 두 개를 쓸 수 없다) -->
+  <rect width="64" height="64" fill="#faf8f3"/>
+  <rect x="4" y="4" width="56" height="56" fill="none" stroke="#23211c" stroke-width="2"/>
+  <text x="32" y="44" text-anchor="middle"
+        font-family="Noto Serif KR, Times New Roman, serif" font-size="34" font-weight="500" fill="#23211c">P</text>
+  <rect x="14" y="50" width="36" height="2" fill="#2f5d43"/>
+</svg>

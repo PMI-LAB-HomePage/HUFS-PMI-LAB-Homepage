@@ -4,7 +4,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{% block title %}{{ site.lab_short|default:"PMI Lab @ HUFS" }}{% endblock %}</title>
-<meta name="description" content="{% block description %}{{ site|tr:"lab_name" }} — 한국외국어대학교 컴퓨터공학부{% endblock %}">
+{% block meta %}<meta name="description" content="{{ site|tr:"lab_name" }} — 한국외국어대학교 컴퓨터공학부 {{ site.lab_short }}. 딥러닝 얼굴인식 · 이미지 생성 · 객체 검출과 추적 · 시계열 예측을 연구합니다.">{% endblock %}
+<link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
+<link rel="icon" href="{% static 'lab/favicon.svg' %}" type="image/svg+xml">
+
+{# 카카오톡·슬랙 등에 링크를 붙였을 때의 미리보기. 대표 이미지는 관리자에서 바꾼 홈 사진을 쓴다 #}
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{{ site.lab_short|default:"PMI Lab @ HUFS" }}">
+<meta property="og:title" content="{% block og_title %}{{ site.lab_short|default:"PMI Lab @ HUFS" }}{% endblock %}">
+<meta property="og:description" content="{{ site|tr:"lab_name" }} — 한국외국어대학교 컴퓨터공학부">
+<meta property="og:url" content="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
+{% if site.home_image %}<meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{{ site.home_image.url }}">{% endif %}
+<meta name="twitter:card" content="summary_large_image">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600&family=IBM+Plex+Sans+KR:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
