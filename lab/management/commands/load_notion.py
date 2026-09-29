@@ -229,7 +229,8 @@ class Command(BaseCommand):
 
     def load_media_items(self, name, model, media_model, fk):
         for r in self.seed_json(name):
-            obj = model.objects.create(subtitle=r["subtitle"], order=r["order"], **ko_en("title", r["title"]))
+            obj = model.objects.create(subtitle=r["subtitle"], order=r["order"],
+                                       is_public=r.get("is_public", True), **ko_en("title", r["title"]))
             for j, path in enumerate(r["images"]):
                 med = media_model(order=j, kind="video" if path.lower().endswith(".mp4") else "image", **{fk: obj})
                 self.attach(med.file, path)
@@ -260,9 +261,10 @@ class Command(BaseCommand):
             ok &= got == want
             self.stdout.write(f"{'OK ' if got == want else 'XX '} {model._meta.verbose_name}: {got} (기대 {want})")
         extra = {
-            "현재 멤버 (기대 9)": Member.objects.filter(is_current=True).count(),
+            "현재 멤버 (기대 6)": Member.objects.filter(is_current=True).count(),
             "사진 있는 멤버": Member.objects.exclude(photo="").count(),
             "사진 있는 갤러리 (기대 35)": GalleryEvent.objects.filter(images__isnull=False).distinct().count(),
+            "비공개 (갤러리 1 · 자료실 3)": GalleryEvent.objects.filter(is_public=False).count() + Resource.objects.filter(is_public=False).count(),
             "갤러리 사진": GalleryImage.objects.count(),
             "연구 영상": ResearchMedia.objects.filter(kind="video").count(),
             "연구 분야 미배정 (기대 0)": Research.objects.filter(group=None).count(),

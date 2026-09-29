@@ -158,8 +158,8 @@ research·resources의 `images`는 확장자가 `.mp4`면 `kind=video`.
 ## 5. 기대 건수 (적재 후 대조)
 
 ```
-SiteSetting 1 · Member 29 (현재 9) · Publication 119 · News 24 · ResearchGroup 5
-GalleryEvent 38 (이미지 있는 것 35) · Research 11 · Resource 5 · Award 7 · Project 16
+SiteSetting 1 · Member 29 (현재 6 · 동문 23) · Publication 119 · News 24 · ResearchGroup 5
+GalleryEvent 38 (이미지 있는 것 35 · 공개 37) · Research 11 · Resource 5 (공개 2) · Award 7 · Project 16
 
 Publication 종류별: intl_journal 43 · intl_conference 37 · dom_journal 18 · dom_conference 5 · patent 16
 ```
@@ -208,19 +208,33 @@ python manage.py enrich_notion --export <경로>   # Export 위치가 다를 때
 
 논문 PDF는 파일명 속 연·월(`05_(2023-8-124)` → 2023년 8월)이 논문 서지의 연·월과 모두 일치했다.
 
-## 7. 알려진 데이터 문제 — 임의 수정 금지, 교수님 확인 후
+## 7. 사람이 판단해서 seed에 반영한 것 (2026-09-29)
+
+노션 원본 그대로는 공개할 수 없는 것들. **지우지 않고 `is_current`·`is_public`만 바꿨다.**
+되돌리려면 관리자 화면에서 켜면 된다. seed에도 같이 반영해서 서버에 배포해도 같은 상태로 뜬다.
+
+| 대상 | 조치 | 근거 |
+|---|---|---|
+| Kyung Tae, Kim · Min Su, Jo · Mi Young, Kim | 현재 → **동문** | 노션 동문 목록에도 중복으로 있었고, 갤러리에 졸업식·환송회 기록이 있다. 손성원 확인 |
+| 갤러리 `24년 정지민 감사편지` | **비공개** | 개인에게 온 편지 사진이고 제목에 실명이 있다. 날짜도 없다 |
+| 자료실 `PMI 연구분야` · `Prof. Choi's Short Introduction` · `Recruit: 대학원 및 학부연구생 모집` | **비공개** | 각각 연구·구성원 페이지와 모집 공지에 같은 내용이 이미 있다 |
+
+`resources.json`에는 원래 `is_public` 필드가 없어서 새로 넣었다. `load_notion`은 없으면 True로 읽는다.
+
+**현재 멤버 6명** = 교수 1 · 석사과정 4 · 연구원 1. 박사과정은 0명이라 화면에서 그룹째 숨겨진다.
+
+## 8. 아직 남은 데이터 문제 — 임의 수정 금지, 교수님 확인 후
 
 ```
 논문 오탈자     Improvnig→Improving · Setp.→Sept. · fro robust→for robust
                Cdoing→Coding · PLUS ONE→PLOS ONE · IEEE ACESS→ACCESS
 문장 잘림       국제저널 43번 항목 끝이 "Citation: .pdf"로 끊김
 번호 오류       노션 국내저널 페이지 번호가 3번 뒤 1번으로 되돌아감 (seq는 1~18로 재부여됨)
-멤버           현재 9명은 세 목록의 합집합 — 실제와 다름. 손성원이 관리자에서 정리 예정
-               조민수: 2024-12 환송회 기록 있음 → 재학 여부 확인
-               이유진: 직함 "연구실 연구원" — 다른 표기와 불일치
+멤버           이유진: 직함 "연구실 연구원" — 다른 표기와 불일치 (손성원 확인: 구분은 "연구원"이 맞음)
+               ※ 현재 멤버 정리는 7절에서 끝났다
 갤러리          사진 없는 항목 3건 (ACM KDD 2024 · 2021 Sung-Tae Kim 세미나 · 2017 Prof. Choi 튜토리얼)
-               내부 성격 항목("24년 정지민 감사편지" 등) — 공개 여부 판단 필요
-               날짜 없는 항목 1건
+               — 화면은 빈 커버로 처리한다. 사진을 찾으면 관리자에서 올리면 된다
+               ※ 내부 성격 항목과 날짜 없는 항목은 7절에서 처리했다
 수상            노션 원본의 빈 행 1개는 제외함 (8 → 7)
 ```
 

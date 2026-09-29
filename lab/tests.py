@@ -66,8 +66,9 @@ class SeoAndErrorPageTest(TestCase):
         self.assertEqual(self.client.get("/sitemap.xml").status_code, 200)
         for name in PAGES:
             self.assertIn(f"<loc>http://testserver{reverse(name)}</loc>", body, name)
-        # 갤러리 목록 1 + 사진 있는 행사 35 (사진 없는 3건은 상세가 없다)
-        self.assertEqual(body.count("<loc>http://testserver/gallery/"), 36)
+        # 갤러리 목록 1 + 공개·사진 있는 행사 34
+        # (사진 없는 3건은 상세가 없고, 감사편지 1건은 비공개다 — docs/DATA.md 7절)
+        self.assertEqual(body.count("<loc>http://testserver/gallery/"), 35)
         # 소식 상세는 본문이나 사진이 있는 것만. 여기선 enrich_notion을 돌리지 않아 목록 1개뿐이다
         self.assertEqual(body.count("<loc>http://testserver/news/"), 1)
         News.objects.filter(pk=News.objects.first().pk).update(body_ko="본문")

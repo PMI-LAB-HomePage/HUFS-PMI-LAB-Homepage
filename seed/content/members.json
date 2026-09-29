@@ -37,7 +37,7 @@
    "Deep Face Recognition"
   ],
   "career_after": "PMI 연구실 박사과정",
-  "is_current": true,
+  "is_current": false,
   "sources": [
    "home_inline",
    "members_page",
@@ -106,7 +106,7 @@
    "Medical Image"
   ],
   "career_after": "",
-  "is_current": true,
+  "is_current": false,
   "sources": [
    "members_page",
    "alumni"
@@ -174,7 +174,7 @@
    "Machine Learning"
   ],
   "career_after": "",
-  "is_current": true,
+  "is_current": false,
   "sources": [
    "members_page",
    "alumni"
