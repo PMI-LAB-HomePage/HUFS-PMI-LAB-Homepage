@@ -1,11 +1,14 @@
+import re
 import tempfile
+
+from django.utils.html import escape
 
 from django.contrib.auth.models import User
 from django.core.management import CommandError, call_command
 from django.test import TestCase, override_settings
 from django.urls import reverse
 
-from .models import Member, News
+from .models import GalleryEvent, Member, News, Publication
 
 PAGES = ["home", "members", "publications", "research", "projects", "gallery", "news", "awards", "resources"]
 
@@ -89,3 +92,40 @@ class SeoAndErrorPageTest(TestCase):
         html = render_to_string("500.html")
         self.assertIn("일시적인 오류", html)
         self.assertNotIn("{{", html)
+
+
+@override_settings(MEDIA_ROOT=tempfile.mkdtemp())
+class ListPageLogicTest(TestCase):
+    """목록 화면이 사용자에게 거짓말하지 않는지."""
+
+    @classmethod
+    def setUpTestData(cls):
+        call_command("load_notion", stdout=open("/dev/null", "w"))
+
+    def test_tab_counts_follow_the_search(self):
+        # 검색 중인데 전체 건수를 보여주면, 탭을 눌렀을 때 그 숫자만큼 안 나온다
+        res = self.client.get(reverse("publications"), {"q": "Ensemble"})
+        shown = int(re.search(r'논문 · 특허 <span class="count">(\d+)', res.content.decode())[1])
+        all_tab = int(re.search(r'>전체<span class="tab__count">(\d+)', res.content.decode())[1])
+        self.assertEqual(shown, all_tab)
+        self.assertLess(all_tab, Publication.objects.count())
+
+    def test_publication_number_survives_filtering(self):
+        # 번호는 그 종류 안에서의 고유 번호다. 검색·탭으로 걸러져도 다시 매기면 안 된다
+        pub = Publication.objects.filter(kind="intl_journal").order_by("order").first()
+        total = Publication.objects.filter(kind="intl_journal").count()
+        expected = f'cite__num">{total - pub.order + 1}<'
+
+        self.assertContains(self.client.get(reverse("publications")), expected)
+        self.assertContains(self.client.get(reverse("publications"), {"type": "intl_journal"}), expected)
+        res = self.client.get(reverse("publications"), {"q": pub.text.split()[-1]})
+        self.assertContains(res, expected)
+
+    def test_gallery_pager_points_backwards_in_time(self):
+        events = list(GalleryEvent.objects.filter(is_public=True, date__isnull=False)[:3])
+        body = self.client.get(reverse("gallery_detail", args=[events[1].pk])).content.decode()
+        prev_url = re.search(r'<a href="([^"]+)"><span>← 이전</span>', body)[1]
+        next_url = re.search(r'<a href="([^"]+)"><span>다음 →</span>', body)[1]
+        self.assertEqual(prev_url, reverse("gallery_detail", args=[events[2].pk]))  # 더 과거
+        self.assertEqual(next_url, reverse("gallery_detail", args=[events[0].pk]))  # 더 최신
+        self.assertLess(events[2].date, events[1].date)

@@ -59,24 +59,25 @@ def members(request):
 
 
 def publications(request):
-    qs = Publication.objects.filter(is_public=True)
-    counts = {row["kind"]: row["n"] for row in qs.values("kind").annotate(n=Count("id"))}
-    tabs = [("all", "전체", sum(counts.values()))]
-    tabs += [(value, label, counts.get(value, 0)) for value, label in Publication.Kind.choices if counts.get(value)]
-
-    kind = request.GET.get("type", "all")
-    if kind not in dict((t[0], t) for t in tabs):
-        kind = "all"
-    if kind != "all":
-        qs = qs.filter(kind=kind)
+    public = Publication.objects.filter(is_public=True)
+    # 번호는 종류 전체를 기준으로 매긴다. 검색으로 걸러져도 그 논문의 번호는 그대로여야 한다
+    totals = {row["kind"]: row["n"] for row in public.values("kind").annotate(n=Count("id"))}
 
     q = request.GET.get("q", "").strip()
-    if q:
-        qs = qs.filter(text__icontains=q)
+    found = public.filter(text__icontains=q) if q else public
 
-    items = list(qs)
+    # 탭 건수는 검색 결과 기준이어야 한다. 전체 건수를 보여주면 눌렀을 때 그만큼 안 나온다
+    counts = {row["kind"]: row["n"] for row in found.values("kind").annotate(n=Count("id"))}
+    tabs = [("all", "전체", sum(counts.values()))]
+    tabs += [(value, label, counts.get(value, 0)) for value, label in Publication.Kind.choices]
+
+    kind = request.GET.get("type", "all")
+    if kind not in dict(Publication.Kind.choices):
+        kind = "all"
+
+    items = list(found if kind == "all" else found.filter(kind=kind))
     for kind_value in {o.kind for o in items}:
-        numbered([o for o in items if o.kind == kind_value], counts.get(kind_value, 0))
+        numbered([o for o in items if o.kind == kind_value], totals.get(kind_value, 0))
 
     return render(request, "lab/publications.html", {
         "tabs": tabs, "active": kind, "q": q,
@@ -112,11 +113,12 @@ def gallery_detail(request, pk):
     events = list(GalleryEvent.objects.filter(is_public=True))
     item = get_object_or_404(GalleryEvent, pk=pk, is_public=True)
     i = next(n for n, ev in enumerate(events) if ev.pk == item.pk)
+    # 목록이 최신순이라 배열의 다음 칸이 더 과거다. "이전 행사" = 더 과거여야 말이 된다
     return render(request, "lab/gallery_detail.html", {
         "item": item,
         "images": item.images.all(),
-        "prev": events[i - 1] if i else None,
-        "next": events[i + 1] if i + 1 < len(events) else None,
+        "prev": events[i + 1] if i + 1 < len(events) else None,
+        "next": events[i - 1] if i else None,
     })
 
 
