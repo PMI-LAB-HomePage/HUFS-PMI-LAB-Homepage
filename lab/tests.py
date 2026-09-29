@@ -125,3 +125,18 @@ class ListPageLogicTest(TestCase):
         self.assertEqual(prev_url, reverse("gallery_detail", args=[events[2].pk]))  # 더 과거
         self.assertEqual(next_url, reverse("gallery_detail", args=[events[0].pk]))  # 더 최신
         self.assertLess(events[2].date, events[1].date)
+
+
+@override_settings(MEDIA_ROOT=tempfile.mkdtemp())
+class TypoCorrectionTest(TestCase):
+    """오탈자는 화면용 text만 고쳤다. 원문 raw는 그대로여야 한다 (CLAUDE.md 규칙 4)."""
+
+    @classmethod
+    def setUpTestData(cls):
+        call_command("load_notion", stdout=open("/dev/null", "w"))
+
+    def test_display_text_is_corrected_but_raw_keeps_the_original(self):
+        for typo in ["Improvnig", "Setp.", "fro robust", "Cdoing", "PLUS ONE", "IEEE ACESS",
+                     "Neual", "Citation: .pdf"]:
+            self.assertFalse(Publication.objects.filter(text__contains=typo).exists(), typo)
+            self.assertTrue(Publication.objects.filter(raw__contains=typo).exists(), typo)

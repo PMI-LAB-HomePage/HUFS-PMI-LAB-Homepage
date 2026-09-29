@@ -221,14 +221,34 @@ python manage.py enrich_notion --export <경로>   # Export 위치가 다를 때
 
 `resources.json`에는 원래 `is_public` 필드가 없어서 새로 넣었다. `load_notion`은 없으면 True로 읽는다.
 
+### 논문 오탈자 교정 (2026-09-29)
+
+**`text`(화면에 보이는 것)만 고쳤다. `raw`(원문)는 손대지 않았다.** 규칙 4의 "원문 보존"은 `raw`가 지킨다.
+뭘 고쳤는지는 `git log -- seed/content/publications.json` 으로 언제든 확인된다.
+
+| 종류·번호 | 고치기 전 | 고친 뒤 |
+|---|---|---|
+| 국내저널 2 | `Improvnig` | `Improving` |
+| 국내저널 5 · 국제저널 24 | `Setp.` | `Sept.` |
+| 국내저널 14 | `Neual` | `Neural` |
+| 국제저널 2 | `IEEE ACESS` | `IEEE ACCESS` |
+| 국제저널 12 | `fro robust` | `for robust` |
+| 국제저널 14 | `PLUS ONE` | `PLOS ONE` |
+| 국제저널 20 | `Video Cdoing HEVC` | `Video Coding HEVC` |
+| 국제저널 43 | `..., Citation: .pdf` | `...)` |
+
+**국제저널 43번만 성격이 다르다.** 오탈자가 아니라 **인용수가 통째로 날아간 것**이다.
+다른 항목은 전부 `Citation: 32)` 꼴인데 이 항목만 숫자 자리에 첨부 링크 흔적(`.pdf`)이 남았다.
+숫자를 지어낼 수 없어서 깨진 조각만 덜어내고 괄호를 닫았다.
+**인용수는 교수님께 확인해서 관리자 화면에서 채워야 한다** (아래 8절).
+
 **현재 멤버 6명** = 교수 1 · 석사과정 4 · 연구원 1. 박사과정은 0명이라 화면에서 그룹째 숨겨진다.
 
 ## 8. 아직 남은 데이터 문제 — 임의 수정 금지, 교수님 확인 후
 
 ```
-논문 오탈자     Improvnig→Improving · Setp.→Sept. · fro robust→for robust
-               Cdoing→Coding · PLUS ONE→PLOS ONE · IEEE ACESS→ACCESS
-문장 잘림       국제저널 43번 항목 끝이 "Citation: .pdf"로 끊김
+논문 인용수     국제저널 43번의 인용수가 원본에서 날아갔다. 숫자를 받아 관리자에서 채울 것
+               (오탈자 8건은 7절에서 text만 교정 완료. raw는 원문 그대로)
 번호 오류       노션 국내저널 페이지 번호가 3번 뒤 1번으로 되돌아감 (seq는 1~18로 재부여됨)
 멤버           이유진: 직함 "연구실 연구원" — 다른 표기와 불일치 (손성원 확인: 구분은 "연구원"이 맞음)
                ※ 현재 멤버 정리는 7절에서 끝났다
