@@ -231,6 +231,24 @@ sudo docker compose logs -f web
 ```
 `load_notion`은 다시 돌리지 않는다 — 관리자에서 고친 내용이 날아갈 수 있다(명령 자체도 데이터가 있으면 거부함).
 
+### 5-1. 코드만이 아니라 데이터도 바뀐 업데이트
+
+`git pull`은 **코드만** 바꾼다. seed(초기 데이터)를 고친 커밋은 이미 데이터가 들어 있는 서버 DB에 저절로 반영되지 않는다.
+그런 업데이트에는 반영 명령이 따로 있고, 아래에 기록한다. **한 번만 돌리면 되고, 여러 번 돌려도 안전하다.**
+
+| 날짜 | 무엇 | 명령 |
+|---|---|---|
+| 2026-10-14 | 논문 링크 83건 · Improvnig 출판 제목 | `sync_publications` |
+
+```bash
+cd /srv/pmilab/app
+sudo ./deploy/backup.sh                                                   # 먼저 백업
+sudo docker compose exec web python manage.py sync_publications --dry-run   # 무엇이 바뀌는지만 본다
+sudo docker compose exec web python manage.py sync_publications             # 반영
+```
+`sync_publications`는 **비어 있는 링크 칸에만** 넣고, 관리자가 고친 서지는 건드리지 않는다.
+마지막 줄의 "현재 링크 있는 논문"이 83 근처면 정상이다(관리자가 링크를 더 넣었으면 그보다 많다).
+
 ## 6. 자주 쓰는 명령
 ```bash
 sudo docker compose ps                                  # 상태

@@ -1,6 +1,9 @@
+import os
 import re
 
 from django import template
+from django.contrib.staticfiles import finders
+from django.templatetags.static import static
 from django.template.defaultfilters import linebreaksbr
 from django.utils.html import conditional_escape, format_html
 from django.utils.safestring import mark_safe
@@ -47,3 +50,14 @@ def highlight(text, term, autoescape=True):
     return mark_safe("".join(
         f"<mark>{p}</mark>" if i % 2 else p for i, p in enumerate(parts)
     ))
+
+
+@register.simple_tag
+def asset(path):
+    """정적 파일 주소 뒤에 수정 시각을 붙인다 (site.css?v=1791...).
+
+    로컬 개발 서버는 파일 이름이 늘 같아서, CSS를 고쳐도 브라우저가 옛 파일을 계속 쓴다.
+    운영은 ManifestStaticFilesStorage가 이름에 해시를 붙이므로 ?v= 는 붙어도 해가 없다.
+    """
+    found = finders.find(path)
+    return f"{static(path)}?v={int(os.path.getmtime(found)) if found else 0}"

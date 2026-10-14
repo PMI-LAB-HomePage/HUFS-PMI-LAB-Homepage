@@ -172,3 +172,43 @@ class PublicationLinkTest(TestCase):
         body = self.client.get("/admin/lab/publication/", {"link": "no", "all": ""}).content.decode()
         self.assertEqual(body.count('class="action-select"'), 36)
         self.assertIn('-doi_url"', body)  # 목록에서 바로 붙여넣을 수 있는 입력칸
+
+
+@override_settings(MEDIA_ROOT=tempfile.mkdtemp())
+class SyncPublicationsTest(TestCase):
+    """운영 서버 반영용 sync_publications — 관리자가 고친 것은 절대 덮어쓰지 않는다."""
+
+    @classmethod
+    def setUpTestData(cls):
+        call_command("load_notion", stdout=open("/dev/null", "w"))
+
+    def _as_on_server(self):
+        # 2026-10 서버 상태를 재현: 링크 없음 + 예전 교정본(Improving) + 관리자가 손댄 칸 두 개
+        Publication.objects.update(doi_url="")
+        p = Publication.objects.get(text__contains="Improvnig MOT")
+        p.text = p.text.replace("Improvnig MOT", "Improving MOT"); p.save()
+        first, second = Publication.objects.filter(kind="intl_journal").order_by("order")[:2]
+        first.doi_url = "https://example.org/admin-set"; first.save()
+        second.text = "관리자가 고친 서지"; second.save()
+        return first.pk, second.pk, p.pk
+
+    def test_fills_only_empty_links_and_keeps_admin_edits(self):
+        admin_link_pk, admin_text_pk, typo_pk = self._as_on_server()
+        call_command("sync_publications", stdout=open("/dev/null", "w"), stderr=open("/dev/null", "w"))
+
+        self.assertEqual(Publication.objects.get(pk=admin_link_pk).doi_url, "https://example.org/admin-set")
+        self.assertEqual(Publication.objects.get(pk=admin_text_pk).text, "관리자가 고친 서지")
+        self.assertIn("Improvnig MOT", Publication.objects.get(pk=typo_pk).text)
+        self.assertEqual(Publication.objects.exclude(doi_url="").count(), 83)  # 82 채움 + 관리자 것 1
+
+    def test_is_idempotent(self):
+        self._as_on_server()
+        call_command("sync_publications", stdout=open("/dev/null", "w"), stderr=open("/dev/null", "w"))
+        before = list(Publication.objects.values_list("doi_url", "text"))
+        call_command("sync_publications", stdout=open("/dev/null", "w"), stderr=open("/dev/null", "w"))
+        self.assertEqual(before, list(Publication.objects.values_list("doi_url", "text")))
+
+    def test_dry_run_changes_nothing(self):
+        self._as_on_server()
+        call_command("sync_publications", "--dry-run", stdout=open("/dev/null", "w"), stderr=open("/dev/null", "w"))
+        self.assertEqual(Publication.objects.exclude(doi_url="").count(), 1)
