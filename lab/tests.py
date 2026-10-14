@@ -212,3 +212,15 @@ class SyncPublicationsTest(TestCase):
         self._as_on_server()
         call_command("sync_publications", "--dry-run", stdout=open("/dev/null", "w"), stderr=open("/dev/null", "w"))
         self.assertEqual(Publication.objects.exclude(doi_url="").count(), 1)
+
+    def test_data_migration_applies_the_same_sync_on_deploy(self):
+        # 배포 때 migrate가 0005를 돌린다 — 서버 상태에서 링크가 채워지고 관리자 수정분은 남아야 한다
+        import importlib
+        from django.apps import apps
+
+        admin_link_pk, admin_text_pk, typo_pk = self._as_on_server()
+        importlib.import_module("lab.migrations.0005_sync_publication_links").forward(apps, None)
+        self.assertEqual(Publication.objects.get(pk=admin_link_pk).doi_url, "https://example.org/admin-set")
+        self.assertEqual(Publication.objects.get(pk=admin_text_pk).text, "관리자가 고친 서지")
+        self.assertIn("Improvnig MOT", Publication.objects.get(pk=typo_pk).text)
+        self.assertEqual(Publication.objects.exclude(doi_url="").count(), 83)

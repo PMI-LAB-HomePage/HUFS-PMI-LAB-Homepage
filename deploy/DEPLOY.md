@@ -16,6 +16,7 @@ caddy 컨테이너  :80 :443   HTTPS 자동 발급·갱신 · /static /media 직
 | `Caddyfile` | 도메인 · HTTPS · 정적 파일 · 프록시 | 고친 뒤 `docker compose restart caddy` (읽기 전용 마운트라 재빌드 불필요) |
 | `entrypoint.sh` | 컨테이너 기동마다 `migrate` + `collectstatic` | 고친 뒤 `docker compose up -d --build` |
 | `backup.sh` | `./data`를 날짜별로 복사, 30일 보관 | cron 등록: `0 4 * * * /srv/pmilab/app/deploy/backup.sh` |
+| `auto-update.sh` | 10분마다 GitHub 확인 → 새 커밋이면 백업·빌드·점검, 실패 시 자동 복구 | 설치·로그 보는 법은 `docs/SERVER.md` 5절 |
 
 ## 데이터는 전부 `./data` 안에 있다
 

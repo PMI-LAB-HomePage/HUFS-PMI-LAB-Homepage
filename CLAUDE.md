@@ -129,9 +129,12 @@ media/      런타임 업로드 (gitignore)
   `base.html`을 상속하지 않고 CSS도 인라인**이다. 상속으로 바꾸면 진짜 500일 때 같이 죽는다.
 
 ### 운영 중 (2026-10-14 개설 — https://pmi.hufs.ac.kr)
+- **`main`에 push하면 10분 안에 실서버에 나간다** (`deploy/auto-update.sh`, `docs/SERVER.md` 5절).
+  push 전에 `python manage.py test lab`을 반드시 돌릴 것. 깨진 코드는 자동으로 되돌려지지만 그동안 약 2분 사이트가 내려간다.
 - **서버 DB에는 관리자가 고친 내용이 있다. `load_notion`·`--reset`은 절대 쓰지 않는다.**
-- seed를 고친 커밋은 `git pull`만으로 서버에 안 들어간다. 반영 명령을 만들고 `docs/SERVER.md` 5-1 표에 적는다
-  (예: `sync_publications` — 빈 칸만 채우고 관리자 수정분 보존).
+- 운영 DB의 데이터를 고쳐야 하면 **데이터 마이그레이션**으로 만든다 → 배포 때 DB마다 한 번 자동 실행.
+  관리자 수정분은 건드리지 않게 짤 것(빈 칸만 채우기 등). 예: `0005_sync_publication_links`.
+  만들면 `docs/SERVER.md` 5-3 표에 적는다.
 
 ### 3단계 — 배포 (배포 담당자)
 `docs/SERVER.md` 순서대로. **보안 설정이 Docker 설치보다 먼저.**

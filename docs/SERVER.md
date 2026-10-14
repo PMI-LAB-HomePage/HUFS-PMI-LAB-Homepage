@@ -222,32 +222,65 @@ GitHub에도 올라가 있다. `load_notion`으로 다시 넣으면 **2026-09 �
 내부 검토 끝나면 정보전략팀에 연락 → `lab.hufs.ac.kr/pmi`를 `https://pmi.hufs.ac.kr`로 연결(반나절).
 노션 사이트는 1~2개월 유지 후 정리 — 문제 생기면 연결을 되돌릴 수 있게.
 
-## 5. 업데이트 (배포 이후)
+## 5. 업데이트 — 자동 (2026-10-14부터)
+
+**GitHub `main`에 push하면 10분 안에 실서버에 반영된다.** 서버가 10분마다 GitHub를 확인해서
+새 커밋이 있을 때만 백업 → 받기 → 다시 빌드 → 점검을 한다 (`deploy/auto-update.sh`).
+
+### 5-1. 처음 한 번만 설치
+
 ```bash
 cd /srv/pmilab/app
-sudo git pull
-sudo docker compose up -d --build     # migrate·collectstatic은 컨테이너가 알아서 한다
-sudo docker compose logs -f web
+
+# ① 서버가 비밀번호 없이 GitHub에서 받을 수 있는지 확인 (cron은 사람 없이 돈다)
+sudo git fetch origin main && echo OK
+#    비밀번호를 묻거나 실패하면 → 배포 키(SSH)를 쓰도록 원격 주소를 바꾼다
+#    sudo git remote set-url origin git@github.com:PMI-LAB-HomePage/HUFS-PMI-LAB-Homepage.git
+#    "dubious ownership" 오류가 나면 → sudo git config --global --add safe.directory /srv/pmilab/app
+
+# ② 스크립트 받기 (이 단계에서는 사이트가 아직 안 바뀐다)
+sudo git pull --ff-only
+
+# ③ 첫 실행 — 지금 커밋까지 배포된다
+sudo ./deploy/auto-update.sh
+#    "배포 완료"가 나오면 성공. 브라우저에서 https://pmi.hufs.ac.kr 확인
+
+# ④ 10분마다 자동으로
+sudo crontab -e
+#    맨 아래에 한 줄 추가:
+#    */10 * * * * flock -n /tmp/pmilab-update.lock /srv/pmilab/app/deploy/auto-update.sh >> /srv/pmilab/auto-update.log 2>&1
 ```
-`load_notion`은 다시 돌리지 않는다 — 관리자에서 고친 내용이 날아갈 수 있다(명령 자체도 데이터가 있으면 거부함).
 
-### 5-1. 코드만이 아니라 데이터도 바뀐 업데이트
+### 5-2. 평소에 볼 것
 
-`git pull`은 **코드만** 바꾼다. seed(초기 데이터)를 고친 커밋은 이미 데이터가 들어 있는 서버 DB에 저절로 반영되지 않는다.
-그런 업데이트에는 반영 명령이 따로 있고, 아래에 기록한다. **한 번만 돌리면 되고, 여러 번 돌려도 안전하다.**
+```bash
+tail -n 20 /srv/pmilab/auto-update.log      # 배포한 기록만 남는다 (새 커밋이 없으면 아무것도 안 쓴다)
+cat /srv/pmilab/app/.deployed               # 지금 운영 중인 커밋
+```
 
-| 날짜 | 무엇 | 명령 |
+| 로그에 이게 보이면 | 뜻 | 할 일 |
 |---|---|---|
-| 2026-10-14 | 논문 링크 83건 · Improvnig 출판 제목 | `sync_publications` |
+| `배포 완료` | 정상 | 없음 |
+| `실패 … 되돌림 완료` | 새 코드가 안 떠서 **이전 버전으로 자동 복구**됨 | 코드 담당에게 알림. 같은 커밋은 다시 시도하지 않고, 다음 커밋이 오면 다시 시도한다 |
+| `중단: 서버의 로컬 변경과 충돌` | 서버에서 직접 고친 파일이 있다 | `git status`로 확인 후 정리. 스크립트는 덮어쓰지 않는다 |
+| `경고: 되돌린 뒤에도 응답하지 않음` | 사람이 봐야 함 | `docker compose logs web` |
 
-```bash
-cd /srv/pmilab/app
-sudo ./deploy/backup.sh                                                   # 먼저 백업
-sudo docker compose exec web python manage.py sync_publications --dry-run   # 무엇이 바뀌는지만 본다
-sudo docker compose exec web python manage.py sync_publications             # 반영
-```
-`sync_publications`는 **비어 있는 링크 칸에만** 넣고, 관리자가 고친 서지는 건드리지 않는다.
-마지막 줄의 "현재 링크 있는 논문"이 83 근처면 정상이다(관리자가 링크를 더 넣었으면 그보다 많다).
+- 깨진 코드가 올라가면 **최대 약 2분** 사이트가 내려갔다가 이전 버전으로 돌아온다(점검을 기다리는 시간).
+- 배포할 때마다 `deploy/backup.sh`로 먼저 백업한다.
+- 잠시 멈추려면 crontab의 그 줄 앞에 `#`. 손으로 바로 반영하려면 `sudo ./deploy/auto-update.sh`.
+- 2026-10-14 로컬 Docker에서 시험함: 첫 설치 · 새 커밋 없음 · 깨진 커밋(자동 복구) · 같은 커밋 재시도 안 함 · 고친 커밋 재배포.
+
+### 5-3. 데이터도 바뀌는 업데이트
+
+`git pull`은 코드만 바꾼다. 이미 데이터가 들어 있는 서버 DB를 고쳐야 할 때는 **데이터 마이그레이션**으로 만든다.
+컨테이너가 뜰 때 `migrate`가 돌아서 **DB마다 정확히 한 번** 자동으로 반영되므로 따로 할 일이 없다.
+`load_notion`은 절대 다시 돌리지 않는다 — 관리자가 고친 내용이 날아간다(명령도 거부한다).
+
+| 날짜 | 마이그레이션 | 무엇 |
+|---|---|---|
+| 2026-10-14 | `0005_sync_publication_links` | 논문 링크 83건 · Improvnig 출판 제목. 빈 칸만 채우고 관리자 수정분 보존 |
+
+미리 보고 싶으면: `sudo docker compose exec web python manage.py sync_publications --dry-run`
 
 ## 6. 자주 쓰는 명령
 ```bash

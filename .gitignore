@@ -15,6 +15,10 @@ local_settings.py
 # 로컬 개발용 관리자 계정 메모 (서버 계정 아님)
 .admin-local.txt
 
+# 자동 업데이트 기록 (deploy/auto-update.sh)
+.deployed
+.deploy-failed
+
 # Docker 운영 데이터 (SQLite + 업로드 파일) · 백업
 /data/
 /backup/
