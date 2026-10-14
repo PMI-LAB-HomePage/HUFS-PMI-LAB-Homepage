@@ -29,7 +29,7 @@
   {% for label, short, people in groups %}
   <div class="stack">
     <div class="group-head"><b class="title-3">{{ label }}</b><span class="meta">{{ people|length }}</span></div>
-    <div class="grid-auto" style="--min:170px">
+    <div class="grid-auto person-grid">
       {% for m in people %}
       <div class="person-card">
         {% if m.photo %}<div class="media media--4x5"><img src="{{ m.photo.url }}" alt="{{ m }}" loading="lazy"></div>{% endif %}
@@ -49,10 +49,9 @@
     <ul class="alumni-list">
       {% for m in alumni %}
       <li class="alumni-row">
-        {% if m.photo %}<div class="media media--1x1"><img src="{{ m.photo.url }}" alt="" loading="lazy"></div>{% else %}<span></span>{% endif %}
+        {% if m.photo %}<div class="media media--1x1"><img src="{{ m.photo.url }}" alt="" loading="lazy"></div>{% else %}<span class="media media--1x1" aria-hidden="true"></span>{% endif %}
         <span>{{ m.name_ko|default:m.name_en }}</span>
-        <span class="alumni-row__role">{{ m.get_role_display }}</span>
-        <span class="alumni-row__career">{{ m.career_after }}</span>
+        <span class="alumni-row__info"><span class="alumni-row__role">{{ m.get_role_display }}</span><span class="alumni-row__career">{{ m.career_after }}</span></span>
       </li>
       {% endfor %}
     </ul>
