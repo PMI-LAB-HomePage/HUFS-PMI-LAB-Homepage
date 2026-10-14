@@ -87,12 +87,29 @@ class MemberAdmin(admin.ModelAdmin):
         return thumb(obj.photo)
 
 
+class HasLinkFilter(admin.SimpleListFilter):
+    """링크 없는 논문만 골라 채울 수 있게."""
+    title = "논문 링크"
+    parameter_name = "link"
+
+    def lookups(self, request, model_admin):
+        return [("yes", "있음"), ("no", "없음")]
+
+    def queryset(self, request, queryset):
+        if self.value() == "yes":
+            return queryset.exclude(doi_url="")
+        if self.value() == "no":
+            return queryset.filter(doi_url="")
+        return queryset
+
+
 @admin.register(Publication)
 class PublicationAdmin(admin.ModelAdmin):
-    list_display = ["__str__", "kind", "year", "has_pdf", "is_public", "order"]
-    list_editable = ["is_public", "order"]
-    list_filter = ["kind", "year", "is_public"]
-    search_fields = ["text"]
+    # 링크는 목록에서 바로 붙여넣고 맨 아래 "저장" 한 번이면 된다 — 하나씩 들어갈 필요 없음
+    list_display = ["__str__", "kind", "year", "doi_url", "has_pdf", "is_public", "order"]
+    list_editable = ["doi_url", "is_public", "order"]
+    list_filter = [HasLinkFilter, "kind", "year", "is_public"]
+    search_fields = ["text", "doi_url"]
 
     @admin.display(description="PDF", boolean=True)
     def has_pdf(self, obj):

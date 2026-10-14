@@ -8,9 +8,10 @@
       {% for p in items %}
       <li class="cite">
         <p class="cite__text">{{ p.text|highlight:q }}</p>
-        {% if p.pdf or show_kind %}
+        {% if p.pdf or p.doi_url or show_kind %}
         <div class="cite__meta">
           {% if show_kind %}<span class="tag">{{ p.get_kind_display }}</span>{% endif %}
+          {% if p.doi_url %}<a class="pdf-link" href="{{ p.doi_url }}" target="_blank" rel="noopener">{% if "doi.org" in p.doi_url %}DOI{% else %}LINK{% endif %} ↗</a>{% endif %}
           {% if p.pdf %}<a class="pdf-link" href="{{ p.pdf.url }}">PDF</a>{% endif %}
         </div>
         {% endif %}

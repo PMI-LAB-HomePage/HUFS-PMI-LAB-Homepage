@@ -183,7 +183,8 @@ class Command(BaseCommand):
 
     def load_publications(self):
         Publication.objects.bulk_create(
-            Publication(kind=p["kind"], text=p["text"], raw=p["raw"], year=p["year"], order=p["seq"])
+            Publication(kind=p["kind"], text=p["text"], raw=p["raw"], year=p["year"], order=p["seq"],
+                        doi_url=p.get("link", ""))
             for p in self.seed_json("publications"))
 
     def load_news(self):
@@ -268,6 +269,7 @@ class Command(BaseCommand):
             "갤러리 사진": GalleryImage.objects.count(),
             "연구 영상": ResearchMedia.objects.filter(kind="video").count(),
             "연구 분야 미배정 (기대 0)": Research.objects.filter(group=None).count(),
+            "논문 링크 (기대 83)": Publication.objects.exclude(doi_url="").count(),
         }
         for kind, label in Publication.Kind.choices:
             extra[f"논문 {kind}"] = Publication.objects.filter(kind=kind).count()

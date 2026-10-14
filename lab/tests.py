@@ -136,7 +136,39 @@ class TypoCorrectionTest(TestCase):
         call_command("load_notion", stdout=open("/dev/null", "w"))
 
     def test_display_text_is_corrected_but_raw_keeps_the_original(self):
-        for typo in ["Improvnig", "Setp.", "fro robust", "Cdoing", "PLUS ONE", "IEEE ACESS",
+        for typo in ["Setp.", "fro robust", "Cdoing", "PLUS ONE", "IEEE ACESS",
                      "Neual", "Citation: .pdf"]:
             self.assertFalse(Publication.objects.filter(text__contains=typo).exists(), typo)
             self.assertTrue(Publication.objects.filter(raw__contains=typo).exists(), typo)
+
+    def test_published_title_typo_is_kept(self):
+        # 학술지에 "Improvnig"로 출판됐다(DOI 10.9717/kmms.2024.27.12.1567).
+        # 인용은 출판 기록과 같아야 하므로 고치지 않는다
+        self.assertTrue(Publication.objects.filter(text__contains="Improvnig MOT").exists())
+
+
+@override_settings(MEDIA_ROOT=tempfile.mkdtemp())
+class PublicationLinkTest(TestCase):
+    """논문 링크: seed에서 적재되고, 화면에 나오고, 관리자에서 없는 것만 골라 채울 수 있어야 한다."""
+
+    @classmethod
+    def setUpTestData(cls):
+        call_command("load_notion", stdout=open("/dev/null", "w"))
+
+    def test_links_are_loaded_and_rendered(self):
+        linked = Publication.objects.exclude(doi_url="")
+        self.assertEqual(linked.count(), 83)  # DOI 76 + 특허 7 (docs/DATA.md 7절)
+        body = self.client.get(reverse("publications")).content.decode()
+        self.assertEqual(body.count("DOI ↗"), 76)
+        self.assertEqual(body.count("LINK ↗"), 7)
+        self.assertIn(f'href="{linked.first().doi_url}"', body)
+
+    def test_unverified_patent_number_is_not_linked(self):
+        # 5번 특허의 등록번호는 다른 사람의 특허를 가리킨다 — 링크를 걸면 안 된다
+        self.assertEqual(Publication.objects.get(kind="patent", order=5).doi_url, "")
+
+    def test_admin_can_list_papers_without_links(self):
+        self.client.force_login(User.objects.create_superuser("admin", "", "pw"))
+        body = self.client.get("/admin/lab/publication/", {"link": "no", "all": ""}).content.decode()
+        self.assertEqual(body.count('class="action-select"'), 36)
+        self.assertIn('-doi_url"', body)  # 목록에서 바로 붙여넣을 수 있는 입력칸

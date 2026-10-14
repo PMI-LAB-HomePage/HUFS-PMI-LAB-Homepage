@@ -109,7 +109,11 @@ class Publication(Listed):
     raw = models.TextField("원문", blank=True, help_text="노션 마크다운 원문. 수정하지 말 것")
     year = models.PositiveSmallIntegerField("연도", null=True, blank=True)
     pdf = models.FileField("PDF", upload_to=upload_publications, blank=True)
-    doi_url = models.URLField("DOI/링크", blank=True)
+    doi_url = models.URLField(
+        "논문 링크", blank=True, max_length=500,
+        help_text="논문 페이지 주소. DOI가 있으면 https://doi.org/10.xxxx/... 형태를 권장. "
+                  "특허는 Google Patents 주소. 비우면 사이트에 링크가 안 나온다",
+    )
 
     class Meta:
         ordering = ["kind", "order", "id"]
