@@ -75,7 +75,7 @@ media/ · db.sqlite3 · .env · .admin-local.txt   로컬 전용 (gitignore)
 - **계획을 먼저 보여 주고, 단계마다 보고하면서 진행한다.** 확인 없이 범위를 넓히지 않는다.
   계획은 추측이 아니라 실제로 확인한 숫자(건수·크기·화면)로 세운다.
 - 사용자가 고르게 할 것: 되돌리기 어려운 것, 디자인 취향, 데이터의 사실 여부(누가 재학 중인지 등).
-- **`main`에 push하면 10분 안에 실서버에 나간다**(자동 배포를 설치했다면 — 아래 현재 상태 참고).
+- **`main`에 push하면 10분 안에 실서버에 나간다**(자동 배포).
   push 전에 반드시 테스트를 돌린다.
 - 화면을 고쳤으면 **360px(휴대폰)·768px·데스크톱 폭에서 실제로 열어 확인**한다. 이전에 확인한 기준:
   가로 밀림 0 · 12px 미만 글씨 0 · 잘린 버튼/태그 0. 글씨를 키우면 모바일 상단(MENU 버튼)이 줄바꿈되기 쉽다.
@@ -108,9 +108,9 @@ for c in $(git log --format=%h -- lab/static/lab/site.css | head -5); do
 
 - ✓ **실서버 운영 중 — https://pmi.hufs.ac.kr** (2026-10-14 개설). 10/19 전후로 `7b57c2a` 이상이 배포됨
   (주아체·글씨 크기·모바일 수정·논문 링크 76건 표시 확인).
-- **? 자동 배포(`deploy/auto-update.sh` + cron) 설치 여부 미확인.** 서버 담당자(GitHub `yuseungyeol-823`)에게
-  설치를 부탁했다(`docs/SERVER.md` 5-1). 배포 키를 10/19 이후로 안 써서 아직 안 걸렸을 가능성이 있다.
-  설치 전이면 push해도 실서버에 안 나간다 — 위 "실서버가 어느 커밋인지"로 확인할 것.
+- ✓ **자동 배포 설치됨** (`deploy/auto-update.sh` + cron 10분, 2026-10-27 손성원 확인).
+  **`main`에 push하면 10분 안에 실서버에 나간다.** 서버 담당자는 GitHub `yuseungyeol-823`.
+  배포 기록은 서버의 `/srv/pmilab/auto-update.log` (서버 접근이 필요하면 담당자에게 요청).
 - **? 4단계 전환 전.** 기존 주소 `lab.hufs.ac.kr/pmi`는 아직 노션으로 간다(2026-10-27 확인).
 - ✓ 데이터: 멤버 29(현재 6 — 실서버는 관리자가 고쳐 5) · 논문 119(링크 83) · 소식 24 · 갤러리 38 · 연구 11 · 수상 7 · 과제 16.
 - 저장소: `github.com/PMI-LAB-HomePage/HUFS-PMI-LAB-Homepage` (private, 연구실 조직). 조직 멤버 `chest-press-man`(손성원) · `yuseungyeol-823`(서버).
@@ -172,7 +172,7 @@ for c in $(git log --format=%h -- lab/static/lab/site.css | head -5); do
   `base.html`을 상속하지 않고 CSS도 인라인**이다. 상속으로 바꾸면 진짜 500일 때 같이 죽는다.
 
 ### 운영 중 (2026-10-14 개설 — https://pmi.hufs.ac.kr)
-- **`main`에 push하면 10분 안에 실서버에 나간다** — 자동 배포가 설치돼 있을 때 (`deploy/auto-update.sh`, `docs/SERVER.md` 5절).
+- **`main`에 push하면 10분 안에 실서버에 나간다** (`deploy/auto-update.sh`, `docs/SERVER.md` 5절).
   push 전에 `python manage.py test lab`을 반드시 돌릴 것. 깨진 코드는 자동으로 되돌려지지만 그동안 약 2분 사이트가 내려간다.
 - **서버 DB에는 관리자가 고친 내용이 있다. `load_notion`·`--reset`은 절대 쓰지 않는다.**
 - 운영 DB의 데이터를 고쳐야 하면 **데이터 마이그레이션**으로 만든다 → 배포 때 DB마다 한 번 자동 실행.
