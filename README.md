@@ -11,7 +11,7 @@
 
 | 문서 | 내용 |
 |---|---|
-| [CLAUDE.md](CLAUDE.md) | 작업 규칙 · 현재 상태 · 다음 할 일 (AI 작업자는 이것부터) |
+| [AGENTS.md](AGENTS.md) | 작업 규칙 · 현재 상태 · 다음 할 일 (AI 작업자는 이것부터) |
 | [docs/PROJECT.md](docs/PROJECT.md) | 배경 · 결정 이력 · 회의 결과 |
 | [docs/DATA.md](docs/DATA.md) | 데이터 구조 · 적재 규칙 · 알려진 오류 |
 | [docs/SERVER.md](docs/SERVER.md) | 서버 정보 · 배포 절차 (배포 담당자용) |

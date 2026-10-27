@@ -1,8 +1,11 @@
-# CLAUDE.md — PMI Lab 홈페이지
+# AGENTS.md — PMI Lab 홈페이지
 
 한국외대 PMI Lab(지도교수 최재영) 홈페이지를 Notion에서 **Django 자체 서버**로 옮기는 프로젝트.
 이 파일은 작업 규칙과 현재 상태만 담는다. 배경·이력은 `docs/PROJECT.md`, 데이터는 `docs/DATA.md`,
 서버·배포는 `docs/SERVER.md`.
+
+> 2026-09 ~ 10-14는 Claude Code로 작업했고, 2026-10-27부터 **Codex**로 이어서 작업한다.
+> 그동안의 결정과 함정은 이 파일과 `docs/`에 전부 옮겨 두었다. 대화 기록에만 있는 정보는 없다.
 
 **목적은 디자인 개선이 아니라 "관리자가 웹 화면에서 직접 갱신할 수 있는 상태"를 만드는 것이다.**
 기존 노션 사이트는 먹통이 되면서 갱신이 멈췄다(소식 2025-09, 갤러리 2026-02 이후 없음).
@@ -56,24 +59,64 @@
 
 ```
 config/     Django 설정 (settings는 환경변수로 분기)
-lab/        모델 · 관리자 · 뷰 · 템플릿 · 명령(management/commands/{load_notion,enrich_notion}.py)
+lab/        모델 · 관리자 · 뷰 · 템플릿 · 정적 파일(static/lab/site.css·site.js)
+  management/commands/   load_notion(최초 적재) · enrich_notion(노션 Export 보강) · sync_publications(운영 DB 반영 미리보기)
+  seed_sync.py           운영 DB에 seed 변경을 반영하는 로직 (데이터 마이그레이션 0005가 사용)
+  tests.py               python manage.py test lab — 20개
 seed/       노션 원본 — content/*.json, asset_map.csv, assets/{img,pdf,video}
 compose.yaml · Dockerfile · .dockerignore   운영 구성 (컨테이너 2개)
-deploy/     Caddyfile · entrypoint.sh · backup.sh · DEPLOY.md
+deploy/     Caddyfile · entrypoint.sh · backup.sh · auto-update.sh(자동 배포) · DEPLOY.md
 docs/       PROJECT.md · DATA.md · SERVER.md
-media/      런타임 업로드 (gitignore)
+media/ · db.sqlite3 · .env · .admin-local.txt   로컬 전용 (gitignore)
 ```
 
-## 현재 상태 (2026-09-28)
+## 작업 방식 (사용자 손성원의 요청)
 
-- ✓ 노션 전수 조사, Export 확보, 자산 최적화(458MB → 97MB), 데이터 통합(`seed/content/`)
-- ✓ 전산실 승인: `pmi.hufs.ac.kr`, 공인 IP·80/443. 연결 전환은 전산실이 처리(반나절)
-- ✓ 연구실 회의 완료, 디자인 시안 확정 (**시안 파일은 아직 저장소에 없음 — 받아야 함**)
-- ✓ 저장소 연결·첫 push 완료
-- ✓ **1단계 완료.** 설정·모델·관리자·`load_notion`·`enrich_notion`·공개 페이지 9개·`deploy/` 초안.
-  적재 건수 전부 기대값과 일치. 관리자 화면에서 목록·사진·수정·저장 확인함. `python manage.py test lab` 통과
-- ✓ 보강 완료(32건): 논문 PDF 13 · 특허증 1 · 교수 CV 1 · 소식 본문 12/사진 2 · 연구 2 · 자료실 1
-- … 공인 IP 신청서: 배포 담당자가 작성·회신 중 (MAC `88:D7:F6:D5:C6:9D`)
+- **계획을 먼저 보여 주고, 단계마다 보고하면서 진행한다.** 확인 없이 범위를 넓히지 않는다.
+  계획은 추측이 아니라 실제로 확인한 숫자(건수·크기·화면)로 세운다.
+- 사용자가 고르게 할 것: 되돌리기 어려운 것, 디자인 취향, 데이터의 사실 여부(누가 재학 중인지 등).
+- **`main`에 push하면 10분 안에 실서버에 나간다**(자동 배포를 설치했다면 — 아래 현재 상태 참고).
+  push 전에 반드시 테스트를 돌린다.
+- 화면을 고쳤으면 **360px(휴대폰)·768px·데스크톱 폭에서 실제로 열어 확인**한다. 이전에 확인한 기준:
+  가로 밀림 0 · 12px 미만 글씨 0 · 잘린 버튼/태그 0. 글씨를 키우면 모바일 상단(MENU 버튼)이 줄바꿈되기 쉽다.
+
+## 확인하는 법
+
+```bash
+.venv/bin/python manage.py test lab                  # 테스트 (push 전 필수)
+.venv/bin/python manage.py runserver 8765            # 로컬 → http://127.0.0.1:8765  관리자 계정은 .admin-local.txt
+```
+
+**실서버가 어느 커밋인지** — 운영은 CSS 파일 이름에 내용 해시가 붙으므로 커밋별 해시와 맞춰 보면 된다.
+(서버 접근 권한이 없어도 확인된다. CSS를 안 바꾼 커밋끼리는 구분되지 않는다.)
+```bash
+LIVE=$(curl -s https://pmi.hufs.ac.kr/ | grep -oE 'site\.[0-9a-f]{12}\.css' | head -1); echo "$LIVE"
+for c in $(git log --format=%h -- lab/static/lab/site.css | head -5); do
+  if [ "site.$(git show "${c}:lab/static/lab/site.css" | md5 | cut -c1-12).css" = "$LIVE" ]; then git log -1 --oneline "$c"; fi; done
+```
+
+## 저장소 밖 자료 (손성원 맥 `~/Desktop/PMI 홈페이지 재구축/`)
+
+| 위치 | 내용 |
+|---|---|
+| `00_프로젝트_개요.md` | 초기 개요 (옛 버전 — `docs/PROJECT.md`가 최신) |
+| `03_작업메모/` | 전산실 회신, 서버 정보, 디자인 시안 프롬프트(`10_`·`11_`)·시안 원본(`12_디자인시안_1a_v2.html`), **논문 링크 목록(`13_`)** |
+| `04_노션Export/` | 노션 원본 458MB — `enrich_notion` 보강용 |
+| `~/Documents/Portfolio-Logs/PMI 홈페이지 재구축/` | 개인 작업 기록 (포트폴리오용, 저장소와 무관) |
+
+## 현재 상태 (2026-10-27)
+
+- ✓ **실서버 운영 중 — https://pmi.hufs.ac.kr** (2026-10-14 개설). 10/19 전후로 `7b57c2a` 이상이 배포됨
+  (주아체·글씨 크기·모바일 수정·논문 링크 76건 표시 확인).
+- **? 자동 배포(`deploy/auto-update.sh` + cron) 설치 여부 미확인.** 서버 담당자(GitHub `yuseungyeol-823`)에게
+  설치를 부탁했다(`docs/SERVER.md` 5-1). 배포 키를 10/19 이후로 안 써서 아직 안 걸렸을 가능성이 있다.
+  설치 전이면 push해도 실서버에 안 나간다 — 위 "실서버가 어느 커밋인지"로 확인할 것.
+- **? 4단계 전환 전.** 기존 주소 `lab.hufs.ac.kr/pmi`는 아직 노션으로 간다(2026-10-27 확인).
+- ✓ 데이터: 멤버 29(현재 6 — 실서버는 관리자가 고쳐 5) · 논문 119(링크 83) · 소식 24 · 갤러리 38 · 연구 11 · 수상 7 · 과제 16.
+- 저장소: `github.com/PMI-LAB-HomePage/HUFS-PMI-LAB-Homepage` (private, 연구실 조직). 조직 멤버 `chest-press-man`(손성원) · `yuseungyeol-823`(서버).
+
+**교수님 확인이 필요한 데이터** (`docs/DATA.md` 8절): 국제저널 43번 인용수 · 특허 5번 등록번호(남의 특허를 가리킴) ·
+특허 7·8번 공동발명자 뒤바뀜 · 링크 못 찾은 논문 36건.
 
 ## 다음 할 일
 
@@ -129,7 +172,7 @@ media/      런타임 업로드 (gitignore)
   `base.html`을 상속하지 않고 CSS도 인라인**이다. 상속으로 바꾸면 진짜 500일 때 같이 죽는다.
 
 ### 운영 중 (2026-10-14 개설 — https://pmi.hufs.ac.kr)
-- **`main`에 push하면 10분 안에 실서버에 나간다** (`deploy/auto-update.sh`, `docs/SERVER.md` 5절).
+- **`main`에 push하면 10분 안에 실서버에 나간다** — 자동 배포가 설치돼 있을 때 (`deploy/auto-update.sh`, `docs/SERVER.md` 5절).
   push 전에 `python manage.py test lab`을 반드시 돌릴 것. 깨진 코드는 자동으로 되돌려지지만 그동안 약 2분 사이트가 내려간다.
 - **서버 DB에는 관리자가 고친 내용이 있다. `load_notion`·`--reset`은 절대 쓰지 않는다.**
 - 운영 DB의 데이터를 고쳐야 하면 **데이터 마이그레이션**으로 만든다 → 배포 때 DB마다 한 번 자동 실행.
@@ -148,5 +191,5 @@ media/      런타임 업로드 (gitignore)
 - **ufw는 Docker가 공개한 포트를 막지 못한다.** 호스트 노출은 `compose.yaml`의 `ports:`로만 정한다.
 - 로컬 개발은 Docker 없이 venv 그대로 된다(`README.md`). 환경변수가 없으면 예전 경로를 쓴다.
 
-### 4단계 — 전환
+### 4단계 — 전환 (아직 안 함)
 정보전략팀에 연락 → `lab.hufs.ac.kr/pmi`를 `pmi.hufs.ac.kr`로 연결. 노션은 1~2개월 유지.

@@ -10,7 +10,7 @@ from django.urls import reverse
 
 
 def ascii_upload(folder):
-    """업로드 파일명을 무작위 ASCII로 바꾼다. 한글 파일명은 macOS(NFD)/Linux(NFC)에서 깨진다 (CLAUDE.md 규칙 1)."""
+    """업로드 파일명을 무작위 ASCII로 바꾼다. 한글 파일명은 macOS(NFD)/Linux(NFC)에서 깨진다 (AGENTS.md 규칙 1)."""
 
     def upload_to(instance, filename):
         return f"{folder}/{uuid.uuid4().hex[:16]}{Path(filename).suffix.lower()}"

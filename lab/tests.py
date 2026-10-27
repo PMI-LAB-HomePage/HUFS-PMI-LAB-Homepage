@@ -129,7 +129,7 @@ class ListPageLogicTest(TestCase):
 
 @override_settings(MEDIA_ROOT=tempfile.mkdtemp())
 class TypoCorrectionTest(TestCase):
-    """오탈자는 화면용 text만 고쳤다. 원문 raw는 그대로여야 한다 (CLAUDE.md 규칙 4)."""
+    """오탈자는 화면용 text만 고쳤다. 원문 raw는 그대로여야 한다 (AGENTS.md 규칙 4)."""
 
     @classmethod
     def setUpTestData(cls):

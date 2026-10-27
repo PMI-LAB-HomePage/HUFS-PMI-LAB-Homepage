@@ -1,6 +1,6 @@
 # PROJECT.md — 프로젝트 배경과 결정 이력
 
-규칙은 `CLAUDE.md`, 데이터는 `DATA.md`, 서버는 `SERVER.md`. 이 문서는 **왜 이렇게 됐는지**를 남긴다.
+규칙은 `AGENTS.md`, 데이터는 `DATA.md`, 서버는 `SERVER.md`. 이 문서는 **왜 이렇게 됐는지**를 남긴다.
 
 - 담당: 손성원(코드) · 배포 담당자(서버) / 지도교수: 최재영
 - 저장소: `github.com/PMI-LAB-HomePage/HUFS-PMI-LAB-Homepage` (private)

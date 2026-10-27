@@ -13,7 +13,7 @@ register = template.Library()
 
 @register.filter
 def tr(obj, field):
-    """{{ obj|tr:"title" }} → title_ko, 없으면 title_en (CLAUDE.md 규칙 2)."""
+    """{{ obj|tr:"title" }} → title_ko, 없으면 title_en (AGENTS.md 규칙 2)."""
     return getattr(obj, f"{field}_ko", "") or getattr(obj, f"{field}_en", "")
 
 

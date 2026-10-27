@@ -1,6 +1,6 @@
 """seed/ → DB + media/ 최초 적재. 규칙은 docs/DATA.md 4절.
 
-데이터가 이미 있으면 거부한다. --reset을 줬을 때만 비우고 다시 넣는다 (CLAUDE.md 규칙 6).
+데이터가 이미 있으면 거부한다. --reset을 줬을 때만 비우고 다시 넣는다 (AGENTS.md 규칙 6).
 """
 import csv
 import json
