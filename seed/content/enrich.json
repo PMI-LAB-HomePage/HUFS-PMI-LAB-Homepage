@@ -1,0 +1,285 @@
+{
+ "news": [
+  {
+   "title": "[논문게재] PATTERN RECOGNITION",
+   "date": "2025-09-03",
+   "body": {
+    "field": "body_ko",
+    "value": "저자:  Kyeong Tae Kim and Jae Young Choi\n\n출판지: PATTERN RECOGNITION\n\n논문제목:  Triple-branch Attention Network with Multiscale Facial Region Feature Selection for Facial Emotion Recognition\n\nAbstract\n\nThis paper proposes new and novel “Triple-branch attention network (TriBAN)”, which selects and integrates key attention features based on multiple-scale facial regions for improved facial expression recognition (FER). The proposed TriBAN consists of three main branches: global branch, large local branch, and small local branch. The aim of global branch is to capture the overall characteristics of facial image. In addition, the large local branch is equipped with attention components within each regional area to filter out irrelevant regions, addressing occlusion and pose variations, and simultaneously capturing discriminant attention features, while the small local branch enhances the robustness of edge information and upscales feature size through pixel shuffling, enabling it to capture subtle expression changes in the generated small regions. In each aforementioned branch, discriminative features are adaptively chosen, and graph convolutional network is effectively used for integrating the selected features by considering their structural relationships. Extensive and comparative experiments on three wild FER datasets, namely RAF-DB, AffectNet, and FERplus, showed that the proposed TriBAN achieves better or comparable FER performances, compared to other recently developed FER methods. Our method outperformed FER approaches using ResNet18 as the backbone and showed slightly lower performance than ViT-based algorithms but achieved more than twice the inference speed."
+   }
+  },
+  {
+   "title": "[논문게재] IEEE ACCESS",
+   "date": "2025-01-15",
+   "body": {
+    "field": "body_ko",
+    "value": "저자: A. Yeong Han; Kwang Moo Yi; Kyeong Tae Kim; Jae Young Choi\n\n출판지: IEEE ACCESS\n\n논문제목:  Hierarchical Feature Attention Learning Network for Detecting Object and Discriminative Parts in Fine-Grained Visual Classification\n\n논문링크: https://ieeexplore.ieee.org/document/10854460\n\nAbstract\n\nThis paper proposes a novel hierarchical feature attention learning network for improved fine-grained visual classification (FGVC). Existing fine-grained classification methods rely heavily on attention mechanisms to differentiate minute details of similar objects. These mechanisms often assume that critical locations have a similar scale and are uniquely localizable, which is not always accurate. For instance, the size of a bird may vary across images, and the color of its beak might only be significant for species identification when its wing and tail colors are specific. This paper addresses this limitation by proposing a so-called hierarchical feature attention learning network, which initially focuses on the target object within the image, followed by multi-headed attention to identify key discriminative locations (patches). Especially, we develop a novel hierarchical attention approach that appropriately reduces misleading attentions by considering the object’s size for capturing correct attention parts. In addition, the proposed multi-headed attention allows for examining more complementary attention parts to identify the most discriminative features. Further, our framework is implemented as an architectural constraint, eliminating the need for object or part-level annotations in a weakly supervised detection manner. We conducted extensive and comparative experiments on three benchmark datasets: NABirds, CUB-200, and Oxford 102 Flower. The results demonstrate that our proposed hierarchical attention approach provides a robust and efficient solution for improved FGVC. Specifically, our method achieved a top-1 accuracy increase of approximately 93.0%, 92.7%, and 99.4% on the CUB-200-2011, NABirds, and Oxford 102 Flower benchmarks, respectively."
+   }
+  },
+  {
+   "title": "🏅[논문게재] 멀티미디어학회논문지",
+   "date": "2025-01-07",
+   "body": {
+    "field": "body_ko",
+    "value": "게재 논문지: 멀티미디어학회논문지 2024년 12월호 (Vol. 27, No. 12)\n\n논문제목: 다중 객체 추적 성능의 향상을 위한 학습 가능한 칼만 필터 최적화: 객체 궤적의 시각적 접근에 따른 데이터 증강 및 손실 함수 개발\n\n논문저자: 조민수, 최재영"
+   }
+  },
+  {
+   "title": "[논문게재]한국멀티미디어학회",
+   "date": "2024-12-18",
+   "body": {
+    "field": "body_ko",
+    "value": "게재 논문지: 멀티미디어학회논문지 2024년 12월호 (Vol. 27, No. 12)\n\n논문제목:  학습 가능한 칼만 필터 최적화 기반 다중 객체 추적 향상: 궤적의 시각화 정보 활용 데이터 증강 및 손실 함수 개발\n\n논문저자: 조민수, 최재영"
+   }
+  },
+  {
+   "title": "[논문게재]한국멀티미디어학회",
+   "date": "2024-05-01",
+   "body": {
+    "field": "body_ko",
+    "value": "게재 논문지: 멀티미디어학회논문지 2024년 5월호 (Vol. 27, No. 5)\n\n논문제목: 애니메이션 얼굴 변환을 위한 적응형 특징 융합 연동 다중 스케일 어텐션 활용 비지도 GAN 모델 개발\n\n논문저자: 한아영, 김경태, 최재영"
+   }
+  },
+  {
+   "title": "😊Jun Yong Lee joined PMI Lab as MS. student, Welcome!",
+   "date": "2024-03-01",
+   "body": {
+    "field": "body_en",
+    "value": "Jun Yong Lee joined PMI Lab as MS. student, Welcome!"
+   }
+  },
+  {
+   "title": "[논문게재]한국차세대컴퓨팅학회",
+   "date": "2023-09-20",
+   "body": {
+    "field": "body_ko",
+    "value": "저자: 이준민, 김경태, 최재영\n\n제목: 서울시 대기 중 미세먼지 농도 예측을 위한 3D 심층 합성곱 신경망 앙상블 예측\n\n출판지: 한국차세대컴퓨팅학회, vol. 7, no. 9, pp. 1-15, Setp., 2023."
+   }
+  },
+  {
+   "title": "[논문게재] 한국멀티미디어학회",
+   "date": "2023-08-16",
+   "body": {
+    "field": "body_ko",
+    "value": "저자: 이준민, 김경태, 최재영\n\n제목: 미세먼지 농도 예측을 위한 어텐션 기반 합성곱 장단기 메모리 모델\n\n출판지: 한국멀티미디어학회, vol. 26, no. 8, pp. 911-924, Aug., 2023."
+   }
+  },
+  {
+   "title": "[논문게재] IEICE Trans. on Information and Systems 국제저널",
+   "date": "2023-05-01",
+   "body": {
+    "field": "body_ko",
+    "value": "게재 논문지: IEICE TRANSACTIONS on Information and Systems, Vol.E106-D,No.5,May. 2023.\n\n논문제목: Convolution Block Feature Addition Module (CBFAM) for Lightweight and Fast Object Detection on Non-GPU Devices\n\n논문저자: Min Ho Kwak, Youngwoo Kim, Kangin Lee, and Jae Young Choi\n\nCongratulation !"
+   }
+  },
+  {
+   "title": "[특허등록]고속 연산이 가능한 딥러닝 신경망 장치",
+   "date": "2023-03-04",
+   "images": [
+    "assets/img/home/home-48/01.webp"
+   ],
+   "body": {
+    "field": "body_ko",
+    "value": "명칭: 고속 연산이 가능한 딥러닝 신경망 장치\n\n등록번호:  제 10-2507855 호 \n\n출원일: 2021년 05월 12일\n\n등록일: 2023년 03월 03일\n\n발명자 : 최재영, 곽민호\n\n기술분야: 객체(object) 검출을 위한 딥러닝 기반 초고속 검출기 SW 개발"
+   }
+  },
+  {
+   "title": "[논문게재] 한국멀티미디어학회",
+   "date": "2022-10-01",
+   "body": {
+    "field": "body_ko",
+    "value": "[논문게재] 한국멀티미디어학회\n\n게재 논문지: 멀티미디어학회논문지 2023년 10월 (Vol. 25, No. 10)\n\n논문제목: 단일 훈련 샘플만을 활용하는 준-지도학습 심층 도메인 적응 기반 얼굴인식 기술 개발)\n\n논문저자: 김경태, 최재영"
+   }
+  },
+  {
+   "title": "[논문게재]한국차세대컴퓨팅학회",
+   "date": "2022-10-01",
+   "body": {
+    "field": "body_ko",
+    "value": "저자: 김문업, 김성주, 최재영\n\n제목: 비지도 외부-내부 심층 학습을 사용한 해수면 온도 위성 영상 복원\n\n출판지: 한국차세대컴퓨팅학회 논문지, vol. 18, no. 5, pp. 58-71, Oct., 2022."
+   }
+  },
+  {
+   "title": "[논문게재] 한국멀티미디어학회",
+   "date": "2022-08-31",
+   "body": {
+    "field": "body_ko",
+    "value": "게재 논문지: 멀티미디어학회논문지 2022년 8월호 (Vol. 25, No. 8)\n\n논문제목: 다중 스케일 어텐션과 심층 앙상블 기반 동물 피부 병변 분류 기법\n\n논문저자: 곽민호, 김경태, 최재영"
+   }
+  },
+  {
+   "title": "[언론 기사] 반려동물 AI 피부진단 플랫폼 PetsN 개발",
+   "date": "2022-07-12",
+   "body": {
+    "field": "body_ko",
+    "value": "PMI Lab reported the development of skin diseases in companion animals in the media press.\n\nPlease find the below link for details:\n\n오엔디자인, 대학 연구팀과 ‘반려동물 AI 피부진단 플랫폼 PetsN 개발’ - Businesskorea"
+   },
+   "images": [
+    "assets/img/home/ai-petsn/01.webp"
+   ],
+   "link": "http://www.businesskorea.co.kr/news/articleView.html?idxno=96403"
+  },
+  {
+   "title": "[논문게재] Sensors 국제저널",
+   "date": "2022-07-07",
+   "body": {
+    "field": "body_ko",
+    "value": "게재 논문지: Sensors \n\n논문제목: SM-SegNet: A lightweight Squeeze M-SegNet for tissue segmentation in brain MRI\n\n논문저자: Nagaraj Yamanakkanavar, Jae Young Choi, Bumshik Lee\n\nCongratulation !"
+   }
+  },
+  {
+   "title": "[논문게재] IEEE ACCESS",
+   "date": "2022-05-10",
+   "body": {
+    "field": "body_ko",
+    "value": "게재 논문지: IEEE ACCESS\n\n논문제목: A squeeze U-SegNet architecture based on residual convolution for brain MRI segmentation\n\n논문저자: Chaitra Dayananda, Jae Young Choi, Bumshik Lee\n\nCongratulation !"
+   }
+  },
+  {
+   "title": "[논문게재] Sensors 국제저널",
+   "date": "2022-04-30",
+   "body": {
+    "field": "body_ko",
+    "value": "게재 논문지: Sensors \n\n논문제목: Using a multiscale and hierarchical feature-aggregation network for the segmentation of medical images\n\n논문저자: Nagaraj Yamanakkanavar, Jae Young Choi, Bumshik Lee\n\nCongratulation !"
+   }
+  },
+  {
+   "title": "[논문게재] 한국차세대컴퓨팅학회(Korean Institute of Next Generation Computing)",
+   "date": "2022-04-20",
+   "body": {
+    "field": "body_ko",
+    "value": "게재 논문지: 한국차세대컴퓨팅학회 논문지 2022년 4월호 (Vol. 18, No. 2)\n\n논문제목: 반려동물 피부영상 질환 검출을 위한 딥러닝 기반 털 영역분할 기법 기존 방법의 적용성 평가\n\n논문저자: 이영찬, 박범진, 최재영, 이범식, 유원상"
+   }
+  },
+  {
+   "title": "[특허출원] Apparatus and method for skin lesion classification",
+   "date": "2022-03-31",
+   "body": {
+    "field": "body_ko",
+    "value": "명칭: 피부 병변 분류 장치 및 방법\n\n출원번호: 10-2022-0040175\n\n출원일: 2022.03.31\n\n발명자 : 최재영, 곽민호\n\n기술분야: 피부 병변 이미지 분류 모델의 설계 및 단일 손실 함수 기반 다중 모델 학습 기법 개발"
+   }
+  },
+  {
+   "title": "Min-Su Jo joined PMI Lab as MS. student",
+   "date": "2022-03-21",
+   "body": {
+    "field": "body_en",
+    "value": "Min-Su Jo joined PMI Lab as MS. student, Welcome!"
+   }
+  },
+  {
+   "title": "[논문게재] Transactions on Multimedia (TMM)",
+   "date": "2022-01-19",
+   "body": {
+    "field": "body_en",
+    "value": "Our paper has been accepted to TMI 21. TMI is one of the major international journals on pattern recognition and machine learning\n\nTitle: Combining Deep Convolutional Neural Networks with Stochastic Ensemble Weight Optimization for Facial Expression Recognition in the Wild\n\nAuthors: Jae Young Choi and Bum Shik Lee"
+   }
+  },
+  {
+   "title": "Kyung-Tae Kim (Ph.D Student) receives the best paper award from the Korea Multimedia Society(2021)",
+   "date": "2021-11-10",
+   "body": {
+    "field": "body_en",
+    "value": "The paper entitled “Deep Neural Networks Learning based on Multiple Loss Functions for Both Person and Vehicles Re-Indentification” is selected as the best paper from the Korea Multimedia Society (2021)"
+   }
+  }
+ ],
+ "publications": [
+  {
+   "kind": "dom_conference",
+   "raw": "이영찬, 박범진, 최재영, 이범식, 유원상, \"털 합성 데이터 증강을 통한 피부영상 털 제거 심층학습 기법: 기존 방법의 적용성 평가,\" 제34회 영상처리 및 이해에 관한 워크샵 (IPIU 2022), 2022년 2월.",
+   "pdf": "assets/pdf/publication/ipiu-2022.pdf"
+  },
+  {
+   "kind": "dom_conference",
+   "raw": "이영찬, 박범진, 최재영, 이범식, 유원상, \"반려동물 피부질환 검출을 위한 피부영상 털 영역분할에 대한 크로스 도메인 지식 증류 기법,\" KCC 한국컴퓨터종합학술대회, 2022년 7월.",
+   "pdf": "assets/pdf/publication/kcc-2022.pdf"
+  },
+  {
+   "kind": "dom_journal",
+   "raw": "A Yeong Han, Kyeong Tae Kim, and Jae Young Choi.  Multi-scale Attention GAN with Adaptive Feature Fusion for Unsupervised Animation Face Generation(애니메이션 얼굴 변환을 위한 적응형 특징 융합 연동 다중 스케일 어텐션 활용 비지도 GAN 모델 개발). *Journal of Korea Multimedia Society*, vol. 27, no. 5, pp. 563-576, May., 2024.",
+   "pdf": "assets/pdf/publication/02-5-2024-067.pdf"
+  },
+  {
+   "kind": "dom_journal",
+   "raw": "Seong-Joo Kim and Jae Young Choi. Multiscale Window based Vision Transformer for Image Inpainting(영상 복원을 위한 다차원 윈도우 기반 비전 트랜스포머 네트워크). *한국차세대컴퓨팅학회 논문지*, vol. 7, no. 12, pp. 1-000, Dec., 2023.",
+   "pdf": "assets/pdf/publication/25-7-12.pdf"
+  },
+  {
+   "kind": "dom_journal",
+   "raw": "Joon Min Lee, Kyeong Tae Kim, Jae Young Choi. Ensemble Prediction of 3D Deep Convolutional Neural Networks for the Prediction of PM2.5 Level for the Seoul, Republic of Korea(서울시 대기 중 미세먼지 농도 예측을 위한 3D 심층 합성곱 신경망 앙상블 예측). *한국차세대컴퓨팅학회 논문지*, vol. 7, no. 9, pp. 1-000, Setp., 2023.",
+   "pdf": "assets/pdf/publication/11-7-9.pdf"
+  },
+  {
+   "kind": "dom_journal",
+   "raw": "Joon Min Lee, Kyeong Tae Kim, Jae Young Choi. Attention Based-ConvLSTM-DNN Networks for Fine Dust Concentration Prediction(미세먼지 농도 예측을 위한 어텐션 기반 합성곱 장단기 메모리 모델). *Journal of Korea Multimedia Society*, vol. 26, no. 8, pp. 911-924, Aug., 2023",
+   "pdf": "assets/pdf/publication/05-2023-8-124.pdf"
+  },
+  {
+   "kind": "dom_journal",
+   "raw": "Mun Eob Kim, Seong Joo Kim, and **Jae Young Choi**. Restoration of Satellite Sea Surface Temperature Imagery Using Unsupervised External-Internal Deep Learning (비지도 외부-내부 심층 학습을 사용한 해수면 온도 위성 영상 복원). *한국차세대컴퓨팅학회 논문지*, vol. 18, no. 5, pp. 58-71, Oct., 2022.",
+   "pdf": "assets/pdf/publication/18-5-6.pdf"
+  },
+  {
+   "kind": "dom_journal",
+   "raw": "Kyeong Tae Kim and **Jae Young Choi**. Development of Semi-Supervised Deep Domain Adaptation Based Face Recognition Using Only a Single Training Sample (단일 훈련 샘플만을 활용하는 준-지도학습 심층 도메인 적응 기반 얼굴인식 기술 개발). *Journal of Korea Multimedia Society*, vol. 25, no. 10, pp. 1375-1385, Oct., 2022",
+   "pdf": "assets/pdf/publication/01-10-2022-102.pdf"
+  },
+  {
+   "kind": "dom_journal",
+   "raw": "Min Ho Kwak, Kyeong Tae Kim, and **Jae Young Choi**. Multi-scale Attention and Deep Ensemble-Based Animal Skin Lesions Classification (다중 스케일 어텐션과 심층 앙상블 기반 동물 피부 병변 분류 기법). *Journal of Korea Multimedia Society*, vol. 25, no. 8, pp. 1212-1223, Aug., 2022.",
+   "pdf": "assets/pdf/publication/22-8-2022-130.pdf"
+  },
+  {
+   "kind": "dom_journal",
+   "raw": "Kyeong-Tae kim, Wonsang You, and **Jae Young Choi**. Attention Deep Neural Networks Learning based on Multiple Loss functions for Video Face Recognition (비디오 얼굴인식을 위한 다중 손실 함수 기반 어텐션 심층신경망 학습 제안). *Journal of Korea Multimedia Society*, vol. 24, no. 19, pp. 1380-1390, Oct., 2021.",
+   "pdf": "assets/pdf/publication/08-10-2021-146.pdf"
+  },
+  {
+   "kind": "intl_journal",
+   "raw": "Jae Young Choi and Bumshik Lee. Combining Deep Convolutional Neural Networks with Stochastic Ensemble Weight Optimization for Facial Expression Recognition in the Wild. IEEE Trans. on Multimedia, vol. 25, pp. 100-111, Jan., 2023. (SCI, IF: 6.513)",
+   "pdf": "assets/pdf/publication/combining-deep-convolutional-neural-networks-with-.pdf"
+  },
+  {
+   "kind": "intl_journal",
+   "raw": "Jae Young Choi and Bumshik Lee. Ensemble of Deep Convolutional Neural Networks with Gabor Face Representations for Face Recognition. IEEE Trans. on Image Processing, vol. 29, pp. 3270-3281, Jan., 2020. (SCI, IF: 10.856, Citation: 18)",
+   "pdf": "assets/pdf/publication/2020-tip-jy-bs.pdf"
+  },
+  {
+   "kind": "intl_journal",
+   "raw": "Jae Young Choi and Bumshik Lee. Combining LSTM Network Ensemble via Adaptive Weighting for Improved Time Series Forecasting. Mathematical Problem in Engineering, vol. 2018, no. 2470171, pp. 1-8, Aug., 2019. (SCIE, IF: 1.305, Citation: 108)",
+   "pdf": "assets/pdf/publication/mpe-lstm-network-ensemble-for-improved-time-series.pdf"
+  },
+  {
+   "kind": "patent",
+   "raw": "**최재영, 곽민호.** 고속 연산이 가능한 딥러닝 신경망 장치{CONVOLUTION NEURAL NETWORK SYSTEM CAPABLE OF HIGH SPEED COMPUTATION}. Korea Patent (Application number: P20210061346), May, 2021) (특허 등록번호: 10-2507855, 2023년 3월 3일).",
+   "pdf": "assets/pdf/home/10-2507855.pdf"
+  }
+ ],
+ "professor_cv": "assets/pdf/home/jae-young-choi-cv-23-02.pdf",
+ "research": [
+  {
+   "title": "Object Detection and Tracking",
+   "body": {
+    "field": "description_en",
+    "value": "Our Prpposed YOLOv4-DeepSort Tracker Method\n\nDemo for Detecting and Tracking Cars Using Our Proposed YOLOv4-DeepSort Tracker\n\nDemo for Detecting and Tracking Persons and Cars Using Our Proposed YOLOv4-DeepSort Tracker on Real-Time CCCT Images"
+   }
+  },
+  {
+   "title": "LSTM Ensemble for Time-series Forecasting",
+   "body": {
+    "field": "description_en",
+    "value": "Further details on this research work can be found at the following paper:"
+   }
+  }
+ ],
+ "resources": [
+  {
+   "title": "PMI 연구환경",
+   "body": {
+    "field": "body_ko",
+    "value": "[딥러닝 연구 및 개발 환경]\n\n- 각 학생 당 최소 딥러닝 서버 1대 배치함\n\n[쾌적한 연구실 환경]\n\n[풍부한 연구실 비품]\n\n    - Privacy가 보장되는 넓은 책상\n\n    - 허리 보호를 위한 최상급 의자 배치\n\n    - 무선 청소 도구\n\n    - 연구를 위한 사무 용품 항시 배치\n\n    - 프린터기 3대 배치 (무선 프린트 가능)\n\n    - 스캐너 배치\n\n    - 스낵, 다과, 음료수 항시 배치"
+   }
+  }
+ ]
+}

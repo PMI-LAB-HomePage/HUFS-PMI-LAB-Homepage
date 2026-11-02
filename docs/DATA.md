@@ -53,7 +53,7 @@ publications.json
   text              마크다운 제거한 정리본
   year              본문에서 추출한 연도 (119건 전부 추출됨)
   pdf, doi          빈 값 (쓰지 않음)
-  link              논문 페이지 URL → Publication.doi_url. 83건 (2026-10-14, 7절)
+  link              논문 페이지 URL → Publication.doi_url. 100건 (2026-11-03, 7절)
 
 news.json          title · date · tags[] · body("") · link("")
 gallery.json       title · date · date_end · location · note · images[] · is_public
@@ -86,7 +86,7 @@ Publication
   kind · text · raw · year · pdf · doi_url · order · is_public
   ※ 저자·제목·학술지 분리는 2차 작업. 지금은 만들지 않는다
 
-News + NewsImage(news, image, order)   ※ 본문·사진이 있는 12건만 상세 페이지로 링크
+News + NewsImage(news, image, order)   ※ 24건 모두 상세가 열린다. 본문·사진이 있는 22건만 sitemap에 넣는다
   title_ko/en · date · tag (academic|recruit|patent|news) · body_ko/en · link · is_public
 
 GalleryEvent + GalleryImage(event, image, order)
@@ -167,6 +167,13 @@ Publication 종류별: intl_journal 43 · intl_conference 37 · dom_journal 18 �
 
 ## 6. 보강 작업 (`enrich_notion`) — 완료 2026-09-28
 
+> **운영 DB 반영 (2026-11-03):** Export가 서버에 없어 실서버에는 이 보강분이 한 번도 들어가지 않았다
+> (소식 상세 0건 · 논문 PDF 0건 · 교수 CV 없음). 결과를 `seed/content/enrich.json`으로 옮기고
+> 마이그레이션 `0006`이 빈 칸에만 넣는다. `load_notion`도 같은 데이터를 넣는다 (`lab/seed_sync.py`).
+>
+> **고친 함정:** 본문 맨 앞의 `논문제목: …`·`저자: …` 줄을 노션 속성으로 보고 버려서 소식 9건이 "본문 없음"이 됐었다.
+> 지금은 `Date`·`Patent`·`Property`만 속성이다. 소식 24건 중 본문·사진이 있는 것은 22건 (입학 소식 2건만 제목뿐).
+
 `load_notion`만으로는 비는 것들을 노션 Export 원본에서 채운다. **Export(458MB)는 저장소 밖
 `../04_노션Export/`에 있으므로 이 명령은 손성원 로컬에서 1회만 돌린다. 서버에서는 쓰지 않는다.**
 
@@ -238,16 +245,20 @@ python manage.py enrich_notion --export <경로>   # Export 위치가 다를 때
 | 국제저널 20 | `Video Cdoing HEVC` | `Video Coding HEVC` |
 | 국제저널 43 | `..., Citation: .pdf` | `...)` |
 
-### 논문 링크 (2026-10-14)
+### 논문 링크 (2026-10-14, 2026-11-03 추가)
 
-119건 중 **83건**에 링크를 걸었다(`seed/content/publications.json`의 `link` → `doi_url`).
+2026-11-03에 17건을 더 찾아 **100건**이 됐다(DOI 88 · 특허 12). 추가분은 KoreaScience에서 제목·저자·권호·쪽을 대조한 국내저널 10,
+Crossref의 국제저널 1·국제학회 1, Google Patents에서 발명자와 출원번호를 대조한 특허 5다. 서지에 출원번호만 있는 특허는 그 공개·등록본으로 걸었고,
+중복 수록된 특허 2건(심장 초음파 뷰 평면)은 같은 주소를 가리킨다. 화면에서는 서지 문장 전체가 링크다.
+
+처음에 119건 중 **83건**에 링크를 걸었다(`seed/content/publications.json`의 `link` → `doi_url`).
 목록과 대조용 출판 제목은 저장소 밖 `03_작업메모/13_논문링크_목록.md`.
 
 | 종류 | 건 | 방법 |
 |---|---|---|
 | 논문 | 76 | Crossref 상위 3개 후보 중 **제목 단어 80%↑ + 저자 성이 서지에 있음 + 연도 ±2년**을 모두 만족. DOI 76개 전부 doi.org 응답 확인 |
 | 특허 | 7 | 서지의 등록번호로 Google Patents를 열어 **제목과 발명자(최재영)까지 대조** |
-| 없음 | 36 | 국내학회 5 · 국내저널 12 · 국제학회 9 · 국제저널 1 · 특허 9. 관리자에서 "논문 링크: 없음" 필터로 골라 채운다 |
+| 없음 (현재) | 19 | 국내학회 5 · 국내저널 2 · 국제학회 8 · 특허 4. 관리자에서 "논문 링크: 없음" 필터로 골라 채운다 |
 
 **기준을 일부러 빡빡하게 잡았다 — 틀린 링크가 빈칸보다 나쁘다.** 1차(제목이 서지에 통째로 포함)는 64건이었는데
 대소문자·`Toward`/`Towards`·온라인 선공개 연도 차이로 맞는 논문이 떨어져서, 저자 대조를 넣고 기준을 넓혔다.
@@ -267,7 +278,7 @@ python manage.py enrich_notion --export <경로>   # Export 위치가 다를 때
                제목은 "피부 병변 분류 장치". 올바른 번호를 받아 관리자에서 고칠 것. 링크는 걸지 않았다
 특허 7·8번      공동발명자가 서로 뒤바뀌었다. 등록 기록: 해수면 온도 영상 복원(10-2016977) 최영진·최재영·강송희,
                시계열 데이터 예측(10-1919076) 최영진·최재영·임진욱
-논문 링크       36건 못 찾음 (위 7절). 국내학회는 대부분 DOI가 없다
+논문 링크       19건 못 찾음 (위 7절). 국내학회는 대부분 DOI가 없다
 논문 인용수     국제저널 43번의 인용수가 원본에서 날아갔다. 숫자를 받아 관리자에서 채울 것
                (오탈자 8건은 7절에서 text만 교정 완료. raw는 원문 그대로)
 번호 오류       노션 국내저널 페이지 번호가 3번 뒤 1번으로 되돌아감 (seq는 1~18로 재부여됨)

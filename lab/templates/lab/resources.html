@@ -3,19 +3,31 @@
 {% block content %}
 <div class="container section stack stack--lg">
   <div class="section-head" style="align-items:flex-end"><h1 class="title-2">대학원생 모집</h1></div>
-  {% if site.recruit_notice_ko or site.recruit_notice_en %}
-  <div class="pi__bio">
-    {% if site.recruit_notice_ko %}<p>{{ site.recruit_notice_ko|hide_emails }}</p>{% endif %}
-    {% if site.recruit_notice_en %}<p lang="en">{{ site.recruit_notice_en|hide_emails }}</p>{% endif %}
+  <nav class="filter" aria-label="모집 안내">
+    <a class="filter__btn{% if not active %} is-active{% endif %}" href="{% querystring c=None %}">모집 안내</a>
+    {% for r in items %}
+    <a class="filter__btn{% if r == active %} is-active{% endif %}" href="{% querystring c=r.pk %}">{{ r|tr:"title" }}</a>
+    {% endfor %}
+  </nav>
+
+  {% if active %}
+  <section class="stack stack--lg">
+    {% with body=active|tr:"body" %}{% if body %}<div class="outline">{{ body|outline }}</div>{% endif %}{% endwith %}
+    {% if active.media.all %}
+      {# 사진이 한 장이면 글자가 든 안내 이미지라 자르지 않는다 #}
+      {% if active.media.all|length == 1 %}
+        {% include "lab/_media.html" with media=active.media.all prefix="s" group=active.pk tile="media--contain" %}
+      {% else %}
+        {% include "lab/_media.html" with media=active.media.all prefix="s" group=active.pk %}
+      {% endif %}
+    {% endif %}
+  </section>
+  {% else %}
+  <div class="notice">
+    {% if site.recruit_notice_ko %}<p class="notice__lead">{{ site.recruit_notice_ko|hide_emails }}</p>{% endif %}
+    {% if site.email %}<div class="notice__cta"><span class="meta">입학 및 연구참여 문의</span>{{ site.email|email }}</div>{% endif %}
+    {% if site.recruit_notice_en %}<p class="notice__en" lang="en">{{ site.recruit_notice_en|hide_emails }}</p>{% endif %}
   </div>
   {% endif %}
-
-  {% for r in items %}
-  <section class="stack">
-    <div class="group-head"><b class="title-3">{{ r|tr:"title" }}</b>{% if r.subtitle %}<span class="meta">{{ r.subtitle }}</span>{% endif %}</div>
-    {% with body=r|tr:"body" %}{% if body %}<p class="lead" style="max-width:68ch">{{ body|hide_emails }}</p>{% endif %}{% endwith %}
-    {% if r.media.all %}{% include "lab/_media.html" with media=r.media.all group="s"|add:r.pk|stringformat:"s" %}{% endif %}
-  </section>
-  {% endfor %}
 </div>
 {% endblock %}

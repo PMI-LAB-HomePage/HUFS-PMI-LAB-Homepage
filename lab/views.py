@@ -3,6 +3,7 @@
 화면 구성은 시안 `03_작업메모/PMI Lab 1a v2.html`(1a 아카이브 에디토리얼)을 따른다.
 템플릿·CSS만 시안에서 가져왔고 데이터 규칙은 docs/DATA.md 그대로다.
 """
+from collections import Counter
 from itertools import groupby
 
 from django.db.models import Count, Q
@@ -22,6 +23,21 @@ def by_year(items):
     """연도 내림차순으로 묶는다. [(연도, [항목...]), ...] — 시안의 .year-block 단위."""
     items = sorted(items, key=lambda o: (o.year or 0), reverse=True)
     return [(year, list(group)) for year, group in groupby(items, key=lambda o: o.year)]
+
+
+def year_filter(request, items, year_of):
+    """연도 버튼. (버튼 [(값, 라벨, 건수)...], 고른 값, 고른 항목들). 기본은 전체, 없는 연도를 주면 전체."""
+    counts = Counter(year_of(o) for o in items)
+    years = sorted(counts, key=lambda y: y or 0, reverse=True)
+    buttons = [("", "전체", len(items))] + [(str(y), y or "연도 미상", counts[y]) for y in years]
+    active = request.GET.get("year", "")
+    if active not in [b[0] for b in buttons]:
+        active = ""
+    return buttons, active, [o for o in items if not active or str(year_of(o)) == active]
+
+
+def event_year(obj):
+    return obj.date.year if obj.date else None
 
 
 def home(request):
@@ -66,9 +82,9 @@ def publications(request):
     if kind not in dict(Publication.Kind.choices):
         kind = "all"
 
-    items = list(found if kind == "all" else found.filter(kind=kind))
+    buttons, year, items = year_filter(request, list(found if kind == "all" else found.filter(kind=kind)), lambda p: p.year)
     return render(request, "lab/publications.html", {
-        "tabs": tabs, "active": kind, "q": q,
+        "tabs": tabs, "active": kind, "q": q, "buttons": buttons, "year": year,
         "total": len(items), "years": by_year(items), "show_kind": kind == "all",
     })
 
@@ -83,17 +99,20 @@ def projects(request):
 
 
 def research(request):
+    groups = list(ResearchGroup.objects.filter(is_public=True).prefetch_related("items__media"))
+    active = next((g for g in groups if str(g.pk) == request.GET.get("group")), None)
     return render(request, "lab/research.html", {
-        "groups": ResearchGroup.objects.filter(is_public=True).prefetch_related("items__media"),
+        "groups": groups, "active": active, "shown": [active] if active else groups,
     })
 
 
 def gallery(request):
     events = list(GalleryEvent.objects.filter(is_public=True).prefetch_related("images"))
-    groups = [(d.year if (d := ev.date) else None, ev) for ev in events]
-    years = [(year, [ev for _, ev in group])
-             for year, group in groupby(groups, key=lambda pair: pair[0])]
-    return render(request, "lab/gallery.html", {"years": years, "total": len(events)})
+    buttons, year, shown = year_filter(request, events, event_year)
+    years = [(y, list(group)) for y, group in groupby(shown, key=event_year)]
+    return render(request, "lab/gallery.html", {
+        "years": years, "total": len(shown), "buttons": buttons, "year": year,
+    })
 
 
 def gallery_detail(request, pk):
@@ -127,21 +146,18 @@ def news(request):
 
 def news_detail(request, pk):
     item = get_object_or_404(News, pk=pk, is_public=True)
-    if not (item.body_ko or item.body_en or item.images.exists()):
-        # 본문도 사진도 없으면 목록에서 링크하지 않는다 (24건 중 12건만 본문 있음)
-        from django.http import Http404
-        raise Http404
     return render(request, "lab/news_detail.html", {"item": item, "images": item.images.all()})
 
 
 def awards(request):
-    return render(request, "lab/awards.html", {
-        "items": Award.objects.filter(is_public=True).prefetch_related("images"),
-    })
+    buttons, year, items = year_filter(
+        request, list(Award.objects.filter(is_public=True).prefetch_related("images")), event_year)
+    return render(request, "lab/awards.html", {"items": items, "buttons": buttons, "year": year})
 
 
 def resources(request):
+    items = list(Resource.objects.filter(is_public=True).prefetch_related("media"))
     return render(request, "lab/resources.html", {
-        "items": Resource.objects.filter(is_public=True).prefetch_related("media"),
-        "recruit": SiteSetting.load(),
+        "items": items,
+        "active": next((r for r in items if str(r.pk) == request.GET.get("c")), None),  # 없으면 모집 안내
     })

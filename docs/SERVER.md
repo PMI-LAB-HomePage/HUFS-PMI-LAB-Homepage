@@ -279,6 +279,7 @@ cat /srv/pmilab/app/.deployed               # 지금 운영 중인 커밋
 | 날짜 | 마이그레이션 | 무엇 |
 |---|---|---|
 | 2026-10-14 | `0005_sync_publication_links` | 논문 링크 83건 · Improvnig 출판 제목. 빈 칸만 채우고 관리자 수정분 보존 |
+| 2026-11-03 | `0006_sync_enrichment` | 논문 링크 17건 추가 · 소식 본문 22건·사진·링크 · 논문 PDF 14건 · 교수 CV · 연구 설명 · 모집 본문. 빈 칸만 채움 |
 
 미리 보고 싶으면: `sudo docker compose exec web python manage.py sync_publications --dry-run`
 

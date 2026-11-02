@@ -61,8 +61,8 @@
 config/     Django 설정 (settings는 환경변수로 분기)
 lab/        모델 · 관리자 · 뷰 · 템플릿 · 정적 파일(static/lab/site.css·site.js)
   management/commands/   load_notion(최초 적재) · enrich_notion(노션 Export 보강) · sync_publications(운영 DB 반영 미리보기)
-  seed_sync.py           운영 DB에 seed 변경을 반영하는 로직 (데이터 마이그레이션 0005가 사용)
-  tests.py               python manage.py test lab — 20개
+  seed_sync.py           운영 DB에 seed 변경을 반영하는 로직 (데이터 마이그레이션 0005·0006이 사용). 보강분은 seed/content/enrich.json
+  tests.py               python manage.py test lab — 29개
 seed/       노션 원본 — content/*.json, asset_map.csv, assets/{img,pdf,video}
 compose.yaml · Dockerfile · .dockerignore   운영 구성 (컨테이너 2개)
 deploy/     Caddyfile · entrypoint.sh · backup.sh · auto-update.sh(자동 배포) · DEPLOY.md
@@ -104,7 +104,7 @@ for c in $(git log --format=%h -- lab/static/lab/site.css | head -5); do
 | `04_노션Export/` | 노션 원본 458MB — `enrich_notion` 보강용 |
 | `~/Documents/Portfolio-Logs/PMI 홈페이지 재구축/` | 개인 작업 기록 (포트폴리오용, 저장소와 무관) |
 
-## 현재 상태 (2026-10-27)
+## 현재 상태 (2026-11-03)
 
 - ✓ **실서버 운영 중 — https://pmi.hufs.ac.kr** (2026-10-14 개설). 10/19 전후로 `7b57c2a` 이상이 배포됨
   (주아체·글씨 크기·모바일 수정·논문 링크 76건 표시 확인).
@@ -112,11 +112,11 @@ for c in $(git log --format=%h -- lab/static/lab/site.css | head -5); do
   **`main`에 push하면 10분 안에 실서버에 나간다.** 서버 담당자는 GitHub `yuseungyeol-823`.
   배포 기록은 서버의 `/srv/pmilab/auto-update.log` (서버 접근이 필요하면 담당자에게 요청).
 - **? 4단계 전환 전.** 기존 주소 `lab.hufs.ac.kr/pmi`는 아직 노션으로 간다(2026-10-27 확인).
-- ✓ 데이터: 멤버 29(현재 6 — 실서버는 관리자가 고쳐 5) · 논문 119(링크 83) · 소식 24 · 갤러리 38 · 연구 11 · 수상 7 · 과제 16.
+- ✓ 데이터: 멤버 29(현재 6 — 실서버는 관리자가 고쳐 5) · 논문 119(링크 100) · 소식 24 · 갤러리 38 · 연구 11 · 수상 7 · 과제 16.
 - 저장소: `github.com/PMI-LAB-HomePage/HUFS-PMI-LAB-Homepage` (private, 연구실 조직). 조직 멤버 `chest-press-man`(손성원) · `yuseungyeol-823`(서버).
 
 **교수님 확인이 필요한 데이터** (`docs/DATA.md` 8절): 국제저널 43번 인용수 · 특허 5번 등록번호(남의 특허를 가리킴) ·
-특허 7·8번 공동발명자 뒤바뀜 · 링크 못 찾은 논문 36건.
+특허 7·8번 공동발명자 뒤바뀜 · 링크 못 찾은 논문 19건.
 
 ## 다음 할 일
 
@@ -136,11 +136,13 @@ for c in $(git log --format=%h -- lab/static/lab/site.css | head -5); do
 
 - 토큰·컴포넌트 CSS는 `lab/static/lab/site.css` 하나. **색·간격·글꼴은 `:root` 토큰만 고칠 것.**
 - 자바스크립트는 `lab/static/lab/site.js` 하나 — 이메일 조립 · 모바일 메뉴 · 연도 선택 · 라이트박스. 라이브러리 없음.
-- 연도 필터는 `<details>` 드롭다운(`_year_pick.html`). 논문은 연도가 19개라 나열하면 줄을 먹는다.
-- **글꼴 (2026-10-14 변경):** 제목·메뉴·라벨·탭·버튼은 **배달의민족 주아체**(Google Fonts `Jua`),
-  본문·논문 서지·약력·소식 본문은 IBM Plex Sans KR, 날짜·건수·태그는 IBM Plex Mono.
-  주아체를 본문에 쓰지 않는 이유: 영문 서지 119개(평균 232자)가 읽기 힘들어진다.
-  **주아체는 굵기가 400 하나뿐**이라 `body { font-synthesis: none }`으로 가짜 굵게를 막았다. 위계는 크기로만 만든다.
+- **페이지 안 분류는 버튼**(`.filter`, 2026-11-03): 논문·갤러리·수상은 연도(`?year=`, `_year_filter.html`), 연구는 분야(`?group=`), 모집은 카테고리(`?c=`).
+  서버에서 거르고 링크라 주소 공유가 된다. **기본은 전체**(모집은 모집 안내). 과제만 `<details>` 드롭다운(`_year_pick.html`)이 남아 있다.
+- **사진은 위아래 한 줄로만 놓는다**(`.photo-stack`, 2026-11-03 요청). 크기는 칸(`.media`)이 정한다. 갤러리·모집은 4:3 채움,
+  수상·소식은 4:3 여백(`.media--contain`, 상장 글자가 잘리면 안 된다), 연구는 16:9 여백(도표가 전부 가로로 길다). 누르면 라이트박스로 원본.
+  인물 카드(구성원)는 예외. 좌우 격자로 되돌리지 말 것.
+- **글꼴 (2026-11-03 변경):** 전체 **IBM Plex Sans KR** 한 벌. 주아체·IBM Plex Mono는 요청으로 제거했다. 위계는 크기와 굵기(400·500·600)로 만든다.
+  숫자는 `tabular-nums`로 자리를 맞춘다. 굵기를 더 쓰면 Google Fonts 주소도 고칠 것 (`base.html`). `body { font-synthesis: none }`.
 - **글씨 크기 하한 13px.** 구역 라벨(연구 분야·연락처 등 `.eyebrow`)은 **20px** — 13px도 작다는 요청으로 구역 제목 크기로 올렸다.
   메뉴·탭·링크 16px, 날짜·태그 13–14px. 본문(`--fs-body`)·서지(`--fs-cite`)는 손대지 않았다.
 - 정적 파일은 `{% asset 'lab/site.css' %}`로 넣는다 (`?v=수정시각`). `{% static %}`만 쓰면 로컬 개발 서버에서
@@ -163,8 +165,7 @@ for c in $(git log --format=%h -- lab/static/lab/site.css | head -5); do
 - 언어 전환 버튼 자리 미구현 — 지금은 `ko or en` 폴백만
 
 ### SEO · 오류 페이지 (완료 2026-09-29)
-- `sitemap.xml` — `lab/sitemaps.py`. 정적 9 + 갤러리 35 + 소식 13 = 57개.
-  갤러리는 사진 있는 것만, 소식은 본문이나 사진이 있는 것만(상세 페이지가 있는 것만) 넣는다.
+- `sitemap.xml` — `lab/sitemaps.py`. 갤러리는 사진 있는 것만, 소식은 본문이나 사진이 있는 것만 넣는다(상세 페이지는 전부 열리지만 제목뿐인 2건은 검색에 내보내지 않는다).
 - `robots.txt` — `/admin/` 차단, sitemap 위치 안내.
 - 파비콘 `lab/static/lab/favicon.svg` (SVG 한 장. **XML 주석에 하이픈 두 개를 쓰면 파싱이 깨진다**).
 - OG·canonical 태그 — `base.html`. **og:image는 관리자에서 바꾼 홈 대표 사진을 쓴다.**

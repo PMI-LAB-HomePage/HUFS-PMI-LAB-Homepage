@@ -3,7 +3,7 @@
 {% block og_title %}{{ item|tr:"title" }}{% endblock %}
 {% block content %}
 <div class="container section stack stack--lg">
-  <a class="link-arrow" href="{% url 'gallery' %}" style="align-self:flex-start">← 갤러리</a>
+  <a class="link-arrow link-arrow--back" href="{% url 'gallery' %}" style="align-self:flex-start">← 갤러리</a>
   <div class="event-head">
     <h1 class="title-2">{{ item|tr:"title" }}</h1>
     <dl class="facts">
@@ -15,7 +15,7 @@
   </div>
 
   {% if images %}
-    {% include "lab/_photos.html" with photos=images group="g"|add:item.pk|stringformat:"s" alt=item %}
+    {% include "lab/_photos.html" with photos=images prefix="g" group=item.pk alt=item %}
   {% else %}
     <p class="note" style="border:1px dashed var(--line-strong);padding:28px">이 행사에는 등록된 사진이 없습니다.</p>
   {% endif %}

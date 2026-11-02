@@ -1,0 +1,6 @@
+{# 연도 버튼. 링크라 주소 공유가 되고 다른 조건(논문 종류·검색어)은 유지된다 #}
+<nav class="filter" aria-label="연도">
+  {% for value, label, n in buttons %}
+  <a class="filter__btn{% if value == year %} is-active{% endif %}" href="{% querystring year=value|default:None %}"{% if value == year %} aria-current="true"{% endif %}>{{ label }}<span>{{ n }}</span></a>
+  {% endfor %}
+</nav>

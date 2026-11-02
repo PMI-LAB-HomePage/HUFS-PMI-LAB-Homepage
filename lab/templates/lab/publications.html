@@ -13,9 +13,11 @@
 
   <nav class="tabs" aria-label="종류">
     {% for value, label, n in tabs %}
-    <a class="tab{% if value == active %} is-active{% endif %}" href="?type={{ value }}{% if q %}&q={{ q|urlencode }}{% endif %}">{{ label }}<span class="tab__count">{{ n }}</span></a>
+    <a class="tab{% if value == active %} is-active{% endif %}" href="{% querystring type=value year=None %}">{{ label }}<span class="tab__count">{{ n }}</span></a>
     {% endfor %}
   </nav>
+
+  {% include "lab/_year_filter.html" %}
 
   {% if years %}
     {% include "lab/_cite_years.html" %}

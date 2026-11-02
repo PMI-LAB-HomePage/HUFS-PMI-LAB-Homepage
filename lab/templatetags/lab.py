@@ -4,8 +4,8 @@ import re
 from django import template
 from django.contrib.staticfiles import finders
 from django.templatetags.static import static
-from django.template.defaultfilters import linebreaksbr
-from django.utils.html import conditional_escape, format_html
+from django.template.defaultfilters import linebreaksbr, urlize
+from django.utils.html import conditional_escape, escape, format_html
 from django.utils.safestring import mark_safe
 
 register = template.Library()
@@ -31,13 +31,36 @@ EMAIL_RE = re.compile(r"[\w.+-]+@[\w-]+(?:\.[\w-]+)+")
 
 @register.filter
 def hide_emails(text):
-    """자유 텍스트(모집 공지·본문) 안의 이메일도 email 필터처럼 바꾼다. 줄바꿈은 <br>."""
+    """자유 텍스트(모집 공지·본문) 안의 이메일도 email 필터처럼 바꾼다. 줄바꿈은 <br>, 주소는 링크."""
     parts = EMAIL_RE.split(text or "")
     found = EMAIL_RE.findall(text or "")
-    out = [linebreaksbr(parts[0])]
+    out = [linebreaksbr(urlize(parts[0]))]
     for addr, rest in zip(found, parts[1:]):
-        out += [email(addr), linebreaksbr(rest)]
+        out += [email(addr), linebreaksbr(urlize(rest))]
     return mark_safe("".join(str(x) for x in out))
+
+
+@register.filter
+def outline(text):
+    """`[제목]`과 `- 항목` 줄로 쓴 본문(연구환경)을 제목·목록으로 그린다. 나머지 줄은 문단."""
+    out, in_list = [], False
+    for line in (text or "").splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        is_item = line.startswith("- ")
+        if is_item != in_list:
+            out.append("<ul>" if is_item else "</ul>")
+            in_list = is_item
+        if is_item:
+            out.append(f"<li>{hide_emails(line[2:])}</li>")
+        elif line.startswith("[") and line.endswith("]"):
+            out.append(f"<h3>{escape(line[1:-1])}</h3>")
+        else:
+            out.append(f"<p>{hide_emails(line)}</p>")
+    if in_list:
+        out.append("</ul>")
+    return mark_safe("".join(out))
 
 
 @register.filter(needs_autoescape=True)

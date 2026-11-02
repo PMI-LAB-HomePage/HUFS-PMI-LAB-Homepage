@@ -3,19 +3,27 @@
 {% block content %}
 <div class="container section stack stack--lg">
   <div class="section-head"><h1 class="title-2">연구 분야</h1></div>
-  {% for g in groups %}
-  <section class="stack stack--lg" id="g{{ g.pk }}">
-    <div class="group-head">
-      <span class="eyebrow eyebrow--accent">{{ forloop.counter|stringformat:"02d" }}</span>
-      <b class="title-3">{{ g|tr:"title" }}</b>
+  <nav class="filter" aria-label="연구 분야">
+    <a class="filter__btn{% if not active %} is-active{% endif %}" href="{% querystring group=None %}">전체</a>
+    {% for g in groups %}
+    <a class="filter__btn{% if g == active %} is-active{% endif %}" href="{% querystring group=g.pk %}">{{ g|tr:"title" }}</a>
+    {% endfor %}
+  </nav>
+  {% for g in shown %}
+  <section class="stack" id="g{{ g.pk }}">
+    <div class="group-head"><b class="title-2">{{ g|tr:"title" }}</b></div>
+    <div>
+      {% for r in g.items.all %}{% if r.is_public %}
+      <article class="topic">
+        <div class="topic__head">
+          <b class="title-3">{{ r|tr:"title" }}</b>
+          {% if r.subtitle %}<span class="meta">{{ r.subtitle }}</span>{% endif %}
+          {% with body=r|tr:"description" %}{% if body %}<p>{{ body|hide_emails }}</p>{% endif %}{% endwith %}
+        </div>
+        {% if r.media.all %}{% include "lab/_media.html" with media=r.media.all prefix="r" group=r.pk tile="media--16x9 media--contain" %}{% endif %}
+      </article>
+      {% endif %}{% endfor %}
     </div>
-    {% for r in g.items.all %}{% if r.is_public %}
-    <div class="stack">
-      <div class="section-head"><b class="row__title">{{ r|tr:"title" }}</b>{% if r.subtitle %}<span class="meta">{{ r.subtitle }}</span>{% endif %}</div>
-      {% with body=r|tr:"description" %}{% if body %}<p class="lead" style="max-width:68ch">{{ body|hide_emails }}</p>{% endif %}{% endwith %}
-      {% if r.media.all %}{% include "lab/_media.html" with media=r.media.all group="r"|add:r.pk|stringformat:"s" %}{% endif %}
-    </div>
-    {% endif %}{% endfor %}
   </section>
   {% endfor %}
 </div>

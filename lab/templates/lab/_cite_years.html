@@ -1,5 +1,4 @@
 {% load lab %}{# 연도별 서지 목록 — 논문·과제 공통 (.year-block / .cite) #}
-{% include "lab/_year_pick.html" with prefix="y" %}
 <div>
   {% for year, items in years %}
   <div class="year-block" id="y{{ year }}">
@@ -7,7 +6,7 @@
     <ol class="cite-list">
       {% for p in items %}
       <li class="cite">
-        <p class="cite__text">{{ p.text|highlight:q }}</p>
+        <p class="cite__text">{% if p.doi_url %}<a class="cite__link" href="{{ p.doi_url }}" target="_blank" rel="noopener">{{ p.text|highlight:q }}</a>{% elif p.pdf %}<a class="cite__link" href="{{ p.pdf.url }}">{{ p.text|highlight:q }}</a>{% else %}{{ p.text|highlight:q }}{% endif %}</p>
         {% if p.pdf or p.doi_url or show_kind %}
         <div class="cite__meta">
           {% if show_kind %}<span class="tag">{{ p.get_kind_display }}</span>{% endif %}

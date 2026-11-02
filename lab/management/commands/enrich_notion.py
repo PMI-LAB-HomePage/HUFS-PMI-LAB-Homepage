@@ -34,7 +34,8 @@ KINDS = {
 ITEM_RE = re.compile(r"^\s*(?:\d+\.|\[\d+\])\s+\S")
 # 링크 대상에 괄호가 든 파일명이 있어서(`02_(5-2024-067).pdf`) 비탐욕 매칭을 쓴다
 PDF_LINK_RE = re.compile(r"\]\((.+?\.pdf)\)", re.I)
-PROP_RE = re.compile(r"^[A-Za-z가-힣 ]{1,20}:\s")
+# 노션 DB 속성 줄만 걷어낸다. "저자: ..." "논문제목: ..." 같은 줄은 본문이다
+PROP_RE = re.compile(r"^(?:Date|Patent|Property):\s")
 MD_IMAGE_RE = re.compile(r"!\[[^\]]*\]\([^)]*\)")
 MD_LINK_RE = re.compile(r"\[([^\]]*)\]\([^)]*\)")
 MD_HEADING_RE = re.compile(r"^#+\s*", re.M)

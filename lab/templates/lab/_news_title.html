@@ -1,1 +1,1 @@
-{% load lab %}{% if n.body_ko or n.body_en or n.images.exists %}<a href="{% url 'news_detail' n.pk %}">{{ n|tr:"title" }}</a>{% else %}{{ n|tr:"title" }}{% endif %}
+{% load lab %}<a href="{% url 'news_detail' n.pk %}">{{ n|tr:"title" }}</a>

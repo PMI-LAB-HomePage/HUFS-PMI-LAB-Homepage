@@ -10,7 +10,7 @@
   </nav>
   <ul class="row-list">
     {% for n in items %}
-    <li class="row row--compact">
+    <li class="row row--compact row--link">
       <span class="tag{% if n.tag == 'recruit' %} tag--filled{% endif %}">{{ n.get_tag_display }}</span>
       <div class="row__main"><span class="row__title">{% include "lab/_news_title.html" %}</span></div>
       <span class="row__meta">{{ n.date|date:"Y.m.d"|default:"날짜 미상" }}</span>

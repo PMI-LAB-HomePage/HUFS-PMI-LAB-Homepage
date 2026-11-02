@@ -42,7 +42,7 @@ class NewsSitemap(Sitemap):
     priority = 0.4
 
     def items(self):
-        # 본문이나 사진이 있는 것만 상세 페이지가 있다 (views.news_detail 참고)
+        # 상세 페이지는 전부 열리지만, 제목뿐인 빈 페이지는 검색에 내보내지 않는다
         return [n for n in News.objects.filter(is_public=True).prefetch_related("images")
                 if n.body_ko or n.body_en or n.images.exists()]
 

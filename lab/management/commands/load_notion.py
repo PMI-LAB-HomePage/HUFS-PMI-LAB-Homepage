@@ -9,11 +9,13 @@ import shutil
 from datetime import date
 from pathlib import Path
 
+from django.apps import apps
 from django.conf import settings
 from django.core.files import File
 from django.core.management.base import BaseCommand, CommandError
 from django.db import transaction
 
+from lab.seed_sync import sync_enrichment
 from lab.models import (
     Award, AwardImage, GalleryEvent, GalleryImage, Member, News, Project, Publication,
     Research, ResearchGroup, ResearchMedia, Resource, ResourceMedia, SiteSetting,
@@ -105,6 +107,7 @@ class Command(BaseCommand):
             self.load_media_items("resources", Resource, ResourceMedia, "resource")
             self.load_awards()
             self.load_projects()
+            sync_enrichment(apps.get_model)
         self.report()
 
     # ---- helpers ----
@@ -269,7 +272,7 @@ class Command(BaseCommand):
             "갤러리 사진": GalleryImage.objects.count(),
             "연구 영상": ResearchMedia.objects.filter(kind="video").count(),
             "연구 분야 미배정 (기대 0)": Research.objects.filter(group=None).count(),
-            "논문 링크 (기대 83)": Publication.objects.exclude(doi_url="").count(),
+            "논문 링크 (기대 100)": Publication.objects.exclude(doi_url="").count(),
         }
         for kind, label in Publication.Kind.choices:
             extra[f"논문 {kind}"] = Publication.objects.filter(kind=kind).count()

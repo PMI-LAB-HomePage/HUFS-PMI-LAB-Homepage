@@ -1,5 +1,6 @@
 import re
 import tempfile
+from pathlib import Path
 
 from django.utils.html import escape
 
@@ -52,6 +53,17 @@ class StripMarkdownTest(TestCase):
         # 일반 링크는 문구를 남긴다
         self.assertEqual(strip_markdown("자세한 내용은 [여기](http://x)"), "자세한 내용은 여기")
 
+    def test_read_page_keeps_labeled_lines_as_body(self):
+        # "논문제목: ..."을 속성으로 보고 버려서 소식 9건의 본문이 통째로 사라진 적이 있다
+        from lab.management.commands.enrich_notion import Command
+
+        with tempfile.NamedTemporaryFile("w", suffix=".md", encoding="utf-8") as f:
+            f.write("# 제목\n\nDate: 05/10/2022\nPatent: Academic\n\n논문제목: 어떤 논문\n\n논문저자: 홍길동\n")
+            f.flush()
+            title, props, body = Command().read_page(Path(f.name))
+        self.assertEqual((title, props["Date"]), ("제목", "05/10/2022"))
+        self.assertEqual(body, "논문제목: 어떤 논문\n\n논문저자: 홍길동")
+
 
 @override_settings(MEDIA_ROOT=tempfile.mkdtemp())
 class SeoAndErrorPageTest(TestCase):
@@ -69,11 +81,12 @@ class SeoAndErrorPageTest(TestCase):
         # 갤러리 목록 1 + 공개·사진 있는 행사 34
         # (사진 없는 3건은 상세가 없고, 감사편지 1건은 비공개다 — docs/DATA.md 7절)
         self.assertEqual(body.count("<loc>http://testserver/gallery/"), 35)
-        # 소식 상세는 본문이나 사진이 있는 것만. 여기선 enrich_notion을 돌리지 않아 목록 1개뿐이다
-        self.assertEqual(body.count("<loc>http://testserver/news/"), 1)
-        News.objects.filter(pk=News.objects.first().pk).update(body_ko="본문")
+        # 소식은 목록 1 + 본문이나 사진이 있는 상세 22. 제목뿐인 상세 2건은 검색에 내보내지 않는다
+        self.assertEqual(body.count("<loc>http://testserver/news/"), 23)
+        empty = next(n for n in News.objects.all() if not (n.body_ko or n.body_en or n.images.exists()))
+        News.objects.filter(pk=empty.pk).update(body_ko="본문")
         body = self.client.get("/sitemap.xml").content.decode()
-        self.assertEqual(body.count("<loc>http://testserver/news/"), 2)
+        self.assertEqual(body.count("<loc>http://testserver/news/"), 24)
 
     def test_robots_allows_site_and_blocks_admin(self):
         res = self.client.get("/robots.txt")
@@ -157,10 +170,10 @@ class PublicationLinkTest(TestCase):
 
     def test_links_are_loaded_and_rendered(self):
         linked = Publication.objects.exclude(doi_url="")
-        self.assertEqual(linked.count(), 83)  # DOI 76 + 특허 7 (docs/DATA.md 7절)
+        self.assertEqual(linked.count(), 100)  # DOI 88 + 특허 12 (docs/DATA.md 7절)
         body = self.client.get(reverse("publications")).content.decode()
-        self.assertEqual(body.count("DOI ↗"), 76)
-        self.assertEqual(body.count("LINK ↗"), 7)
+        self.assertEqual(body.count("DOI ↗"), 88)
+        self.assertEqual(body.count("LINK ↗"), 12)
         self.assertIn(f'href="{linked.first().doi_url}"', body)
 
     def test_unverified_patent_number_is_not_linked(self):
@@ -170,7 +183,7 @@ class PublicationLinkTest(TestCase):
     def test_admin_can_list_papers_without_links(self):
         self.client.force_login(User.objects.create_superuser("admin", "", "pw"))
         body = self.client.get("/admin/lab/publication/", {"link": "no", "all": ""}).content.decode()
-        self.assertEqual(body.count('class="action-select"'), 36)
+        self.assertEqual(body.count('class="action-select"'), 19)
         self.assertIn('-doi_url"', body)  # 목록에서 바로 붙여넣을 수 있는 입력칸
 
 
@@ -199,7 +212,7 @@ class SyncPublicationsTest(TestCase):
         self.assertEqual(Publication.objects.get(pk=admin_link_pk).doi_url, "https://example.org/admin-set")
         self.assertEqual(Publication.objects.get(pk=admin_text_pk).text, "관리자가 고친 서지")
         self.assertIn("Improvnig MOT", Publication.objects.get(pk=typo_pk).text)
-        self.assertEqual(Publication.objects.exclude(doi_url="").count(), 83)  # 82 채움 + 관리자 것 1
+        self.assertEqual(Publication.objects.exclude(doi_url="").count(), 100)  # 99 채움 + 관리자 것 1
 
     def test_is_idempotent(self):
         self._as_on_server()
@@ -223,4 +236,86 @@ class SyncPublicationsTest(TestCase):
         self.assertEqual(Publication.objects.get(pk=admin_link_pk).doi_url, "https://example.org/admin-set")
         self.assertEqual(Publication.objects.get(pk=admin_text_pk).text, "관리자가 고친 서지")
         self.assertIn("Improvnig MOT", Publication.objects.get(pk=typo_pk).text)
-        self.assertEqual(Publication.objects.exclude(doi_url="").count(), 83)
+        self.assertEqual(Publication.objects.exclude(doi_url="").count(), 100)
+
+
+@override_settings(MEDIA_ROOT=tempfile.mkdtemp())
+class SiteRevisionTest(TestCase):
+    """2026-11-03 수정 요청: 필터 버튼 · 소식 상세 · 서지 링크 · 사진 한 줄 · 운영 DB 보강."""
+
+    @classmethod
+    def setUpTestData(cls):
+        call_command("load_notion", stdout=open("/dev/null", "w"))
+
+    def test_year_buttons_default_to_all_and_filter(self):
+        for name in ["publications", "gallery", "awards"]:
+            self.assertRegex(self.client.get(reverse(name)).content.decode(), r'filter__btn is-active"[^>]*>전체<span>')
+        body = self.client.get(reverse("publications"), {"year": 2024}).content.decode()
+        self.assertEqual(body.count('class="cite"'), Publication.objects.filter(year=2024).count())
+        self.assertNotIn('id="y2023"', body)
+        # 없는 연도를 주면 빈 화면 대신 전체
+        body = self.client.get(reverse("publications"), {"year": 1900}).content.decode()
+        self.assertEqual(body.count('class="cite"'), Publication.objects.count())
+
+    def test_year_button_keeps_kind_and_kind_tab_resets_year(self):
+        body = self.client.get(reverse("publications"), {"type": "patent", "year": 2024}).content.decode()
+        self.assertRegex(body, r'href="\?type=patent&amp;year=\d{4}"')
+        self.assertRegex(body, r'href="\?type=intl_journal"')
+
+    def test_every_news_item_opens(self):
+        items = list(News.objects.filter(is_public=True))
+        body = self.client.get(reverse("news")).content.decode()
+        for n in items:
+            self.assertIn(f'href="{reverse("news_detail", args=[n.pk])}"', body)
+            self.assertEqual(self.client.get(reverse("news_detail", args=[n.pk])).status_code, 200)
+
+    def test_citation_text_is_the_link(self):
+        linked = Publication.objects.exclude(doi_url="").first()
+        body = self.client.get(reverse("publications")).content.decode()
+        self.assertIn(f'<a class="cite__link" href="{linked.doi_url}"', body)
+
+    def test_photos_stack_and_lightbox_stays_in_its_own_group(self):
+        body = self.client.get(reverse("awards")).content.decode()
+        self.assertNotIn("photo-grid", body)
+        self.assertNotIn('data-lightbox=""', body)
+        groups = set(re.findall(r'data-lightbox="(\w+)"', body))
+        self.assertGreater(len(groups), 1)
+
+    def test_research_and_recruit_buttons(self):
+        from .models import Research, ResearchGroup, Resource
+        group = ResearchGroup.objects.first()
+        body = self.client.get(reverse("research"), {"group": group.pk}).content.decode()
+        self.assertEqual(body.count('class="group-head"'), 1)
+        self.assertEqual(body.count('class="topic"'), Research.objects.filter(group=group, is_public=True).count())
+        self.assertContains(self.client.get(reverse("resources")), 'class="notice"')
+        env = Resource.objects.get(title_ko="PMI 연구환경")
+        res = self.client.get(reverse("resources"), {"c": env.pk})
+        self.assertNotContains(res, 'class="notice"')
+        self.assertContains(res, "<h3>풍부한 연구실 비품</h3>")
+        self.assertContains(res, "<li>스캐너 배치</li>")
+
+    def test_outline_escapes_html(self):
+        from .templatetags.lab import outline
+        self.assertNotIn("<script>", outline("[<script>]\n- <script>x\n<script>"))
+
+    def test_enrichment_fills_empty_only_and_is_idempotent(self):
+        from django.apps import apps
+        from .models import NewsImage
+        from .seed_sync import sync_enrichment
+
+        with_body = News.objects.exclude(body_en="").first()
+        kept = News.objects.exclude(body_en="").exclude(pk=with_body.pk).first()
+        News.objects.filter(pk=with_body.pk).update(body_en="")
+        News.objects.filter(pk=kept.pk).update(body_en="관리자가 고친 본문")
+        pub = Publication.objects.exclude(pdf="").first()
+        Publication.objects.filter(pk=pub.pk).update(pdf="")
+        NewsImage.objects.all().delete()
+
+        counts = sync_enrichment(apps.get_model)
+        self.assertEqual(counts["news_bodies"], 1)
+        self.assertEqual(counts["pdfs"], 1)
+        self.assertEqual(counts["news_images"], 2)
+        self.assertEqual(counts["missing"], 0)
+        self.assertEqual(News.objects.get(pk=kept.pk).body_en, "관리자가 고친 본문")
+        self.assertTrue(News.objects.get(pk=with_body.pk).body_en)
+        self.assertFalse(sync_enrichment(apps.get_model))

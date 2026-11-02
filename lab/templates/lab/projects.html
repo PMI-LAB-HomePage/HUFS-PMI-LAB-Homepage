@@ -10,6 +10,7 @@
     </form>
   </div>
   {% if years %}
+    {% include "lab/_year_pick.html" with prefix="y" year_prefix="~" %}
     {% include "lab/_cite_years.html" with year_prefix="~" %}
   {% else %}
     <p class="note">“{{ q }}”에 해당하는 결과가 없습니다.</p>

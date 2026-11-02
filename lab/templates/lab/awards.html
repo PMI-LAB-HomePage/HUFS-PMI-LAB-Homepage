@@ -3,18 +3,18 @@
 {% block content %}
 <div class="container section stack stack--lg">
   <div class="section-head" style="align-items:flex-end"><h1 class="title-2">수상 <span class="count">{{ items|length }}</span></h1></div>
-  {% for a in items %}
-  <div class="stack">
-    <div class="row" style="border-top:1px solid var(--ink);border-bottom:0">
-      <span class="row__num">{{ forloop.counter|stringformat:"02d" }}</span>
-      <div class="row__main">
-        <span class="row__title">{{ a|tr:"title" }}</span>
-        {% if a.recipients %}<div class="row__sub"><span>{{ a.recipients }}</span></div>{% endif %}
+  {% include "lab/_year_filter.html" %}
+  <div>
+    {% for a in items %}
+    <article class="topic">
+      <div class="topic__head">
+        <span class="meta">{{ a.date|date:"Y.m.d"|default:"날짜 미상" }}</span>
+        <b class="title-3">{{ a|tr:"title" }}</b>
+        {% if a.recipients %}<p>{{ a.recipients }}</p>{% endif %}
       </div>
-      <span class="row__meta">{{ a.date|date:"Y.m.d"|default:"날짜 미상" }}</span>
-    </div>
-    {% if a.images.all %}{% include "lab/_photos.html" with photos=a.images.all group="a"|add:a.pk|stringformat:"s" alt=a %}{% endif %}
+      {% if a.images.all %}{% include "lab/_photos.html" with photos=a.images.all prefix="a" group=a.pk alt=a tile="media--contain" %}{% endif %}
+    </article>
+    {% endfor %}
   </div>
-  {% endfor %}
 </div>
 {% endblock %}

@@ -24,7 +24,7 @@
       <li class="row">
         <span class="row__num">{{ forloop.counter|stringformat:"02d" }}</span>
         <div class="row__main">
-          <a class="row__title" href="{% url 'research' %}#g{{ g.pk }}">{{ g|tr:"title" }}</a>
+          <a class="row__title" href="{% url 'research' %}?group={{ g.pk }}">{{ g|tr:"title" }}</a>
           <div class="row__sub">{% for item in g.items.all %}{% if item.is_public %}<span>{{ item|tr:"title" }}</span>{% endif %}{% endfor %}</div>
         </div>
       </li>
@@ -36,7 +36,7 @@
     <div class="section-head"><span class="eyebrow">연구실 소식</span><a class="link-arrow" href="{% url 'news' %}">전체 보기</a></div>
     <ul class="row-list">
       {% for n in news %}
-      <li class="row row--compact">
+      <li class="row row--compact row--link">
         <span class="tag{% if n.tag == 'recruit' %} tag--filled{% endif %}">{{ n.get_tag_display }}</span>
         <div class="row__main"><span class="row__title">{% include "lab/_news_title.html" %}</span></div>
         <span class="row__meta">{{ n.date|date:"Y.m.d" }}</span>
