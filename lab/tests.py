@@ -40,6 +40,40 @@ class LoadNotionTest(TestCase):
         self.assertEqual(self.client.get("/admin/lab/sitesetting/add/").status_code, 403)  # 단일 레코드
 
 
+@override_settings(MEDIA_ROOT=tempfile.mkdtemp())
+class LabPhotoReplacementTest(TestCase):
+    def test_replaces_only_environment_images_and_preserves_old_files(self):
+        import importlib
+        from types import SimpleNamespace
+        from django.apps import apps
+        from django.core.files.base import ContentFile
+        from django.db import connection
+        from .models import Resource, ResourceMedia
+
+        env = Resource.objects.create(title_ko="PMI 연구환경", body_ko="관리자가 수정한 설명")
+        old = ResourceMedia(resource=env)
+        old.file.save("old.webp", ContentFile(b"old photo"))
+        other = Resource.objects.create(title_ko="다른 자료")
+        kept = ResourceMedia.objects.create(resource=other, file="resources/keep.webp")
+        video = ResourceMedia.objects.create(resource=env, kind="video", file="resources/keep.mp4")
+
+        forward = importlib.import_module("lab.migrations.0007_replace_lab_photos").forward
+        forward(apps, SimpleNamespace(connection=connection))
+
+        photos = list(env.media.filter(kind="image"))
+        self.assertEqual([photo.order for photo in photos], list(range(7)))
+        from django.conf import settings
+        for i, photo in enumerate(photos, 1):
+            expected = settings.BASE_DIR / f"seed/assets/img/resources/lab-20261116/{i:02}.webp"
+            with photo.file.open("rb") as stored:
+                self.assertEqual(stored.read(), expected.read_bytes())
+        env.refresh_from_db()
+        self.assertEqual(env.body_ko, "관리자가 수정한 설명")
+        self.assertTrue(old.file.storage.exists(old.file.name))
+        self.assertTrue(ResourceMedia.objects.filter(pk=kept.pk).exists())
+        self.assertTrue(ResourceMedia.objects.filter(pk=video.pk).exists())
+
+
 class StripMarkdownTest(TestCase):
     """노션 본문 정리 규칙. Export 원본은 저장소 밖이라 enrich_notion 전체는 테스트하지 않는다."""
 

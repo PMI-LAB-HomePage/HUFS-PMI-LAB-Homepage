@@ -12,16 +12,13 @@
   "title": "PMI 연구환경",
   "subtitle": "",
   "images": [
-   "assets/img/resources/pmi-3/01.webp",
-   "assets/img/resources/pmi-3/02.webp",
-   "assets/img/resources/pmi-3/03.webp",
-   "assets/img/resources/pmi-3/04.webp",
-   "assets/img/resources/pmi-3/05.webp",
-   "assets/img/resources/pmi-3/06.webp",
-   "assets/img/resources/pmi-3/07.webp",
-   "assets/img/resources/pmi-3/08.webp",
-   "assets/img/resources/pmi-3/09.webp",
-   "assets/img/resources/pmi-3/10.webp"
+   "assets/img/resources/lab-20261116/01.webp",
+   "assets/img/resources/lab-20261116/02.webp",
+   "assets/img/resources/lab-20261116/03.webp",
+   "assets/img/resources/lab-20261116/04.webp",
+   "assets/img/resources/lab-20261116/05.webp",
+   "assets/img/resources/lab-20261116/06.webp",
+   "assets/img/resources/lab-20261116/07.webp"
   ],
   "order": 1,
   "is_public": true

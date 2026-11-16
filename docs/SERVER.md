@@ -280,6 +280,7 @@ cat /srv/pmilab/app/.deployed               # 지금 운영 중인 커밋
 |---|---|---|
 | 2026-10-14 | `0005_sync_publication_links` | 논문 링크 83건 · Improvnig 출판 제목. 빈 칸만 채우고 관리자 수정분 보존 |
 | 2026-11-03 | `0006_sync_enrichment` | 논문 링크 17건 추가 · 소식 본문 22건·사진·링크 · 논문 PDF 14건 · 교수 CV · 연구 설명 · 모집 본문. 빈 칸만 채움 |
+| 2026-11-16 | `0007_replace_lab_photos` | PMI 연구환경 이미지 10장을 사용자 제공 사진 7장(001~007)으로 교체. 이전 파일은 보존하며 본문·영상·다른 항목은 유지 |
 
 미리 보고 싶으면: `sudo docker compose exec web python manage.py sync_publications --dry-run`
 
